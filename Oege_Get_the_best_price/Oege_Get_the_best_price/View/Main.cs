@@ -16,5 +16,15 @@ namespace Oege_Get_the_best_price.View.Main
         {
             InitializeComponent();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            tabControl.TabPages.Add(new frmParsing());
+        }
+
+        private void öffneFensterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl.TabPages.Add(new frmParsing());
+        }
     }
 }
