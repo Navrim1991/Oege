@@ -1,6 +1,6 @@
-﻿namespace Oege_Get_the_best_price
+﻿namespace Oege_Get_the_best_price.View.Main
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1244, 661);
+            this.Name = "Main";
+            this.Text = "Oege get the best price";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
