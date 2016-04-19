@@ -38,9 +38,5 @@ namespace Oege_Get_the_best_price.View
                 
         }
 
-        private void frmParsing_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
