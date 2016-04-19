@@ -18,6 +18,7 @@ namespace Oege_Get_the_best_price.View
         Controller.DataController dataController;
         Controller.ExcelController excelController;
         Controller.FormController formController;
+        Controller.Parsing.ParsingController parsingController;
         const short level = 1;
 
         public frmParsing()
@@ -31,6 +32,7 @@ namespace Oege_Get_the_best_price.View
             dataController = controller.getDataController(hash, level);
             excelController = controller.getExcelController(hash, level);
             formController = controller.getFormController(hash, level);
+            parsingController = controller.getParsingController(hash, level);
         }
 
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)

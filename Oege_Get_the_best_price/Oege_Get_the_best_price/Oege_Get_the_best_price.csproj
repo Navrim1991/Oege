@@ -76,6 +76,10 @@
     <Compile Include="Controller\DataController.cs" />
     <Compile Include="Controller\ExcelController.cs" />
     <Compile Include="Controller\FormController.cs" />
+    <Compile Include="Controller\Parsing\ParsingController.cs" />
+    <Compile Include="Controller\Parsing\ParsingControllerAmazon.cs" />
+    <Compile Include="Controller\Parsing\ParsingControllerEbay.cs" />
+    <Compile Include="Controller\Parsing\ParsingControllerIdealo.cs" />
     <Compile Include="Model\DataHolding.cs" />
     <Compile Include="Resources\CurrencyEuroBox.cs">
       <SubType>Component</SubType>
@@ -141,9 +145,7 @@
   <ItemGroup>
     <None Include="Resources\Gelb.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\Parsing\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
