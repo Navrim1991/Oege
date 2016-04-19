@@ -21,7 +21,14 @@ namespace Oege_Get_the_best_price.View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing());
+            try
+            {
+                tabControl.TabPages.Add(new frmParsing());
+            }
+            catch(ArgumentNullException ex)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters\n" + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tabControl_SelectedTabChanged(object sender, EventArgs e)
@@ -32,7 +39,14 @@ namespace Oege_Get_the_best_price.View
 
         private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing());
+            try
+            {
+                tabControl.TabPages.Add(new frmParsing());
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters\n" + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

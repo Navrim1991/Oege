@@ -13,6 +13,8 @@ namespace Oege_Get_the_best_price.View
 {
     public partial class frmParsing : Form
     {
+        #region Attributs
+
         private static int frmCounter = 0;
         Controller.Controller controller;
         Controller.DataController dataController;
@@ -21,6 +23,9 @@ namespace Oege_Get_the_best_price.View
         Controller.Parsing.ParsingController parsingController;
         const short level = 1;
 
+        #endregion
+
+        #region Constructor
         public frmParsing()
         {
             InitializeComponent();
@@ -29,35 +34,27 @@ namespace Oege_Get_the_best_price.View
             controller = Controller.Controller.Instance();
             controller.Register(this, level);
             int hash = this.GetHashCode();
+
             dataController = controller.getDataController(hash, level);
             if (dataController == null)
-            {
-                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
-                
+                throw new ArgumentNullException("dataController", "dataController ist null");
+
             excelController = controller.getExcelController(hash, level);
             if (excelController == null)
-            {
-                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
+                throw new ArgumentNullException("excelController", "excelController ist null");
 
             formController = controller.getFormController(hash, level);
             if (formController == null)
-            {
-                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
+                throw new ArgumentNullException("formController", "formController ist null");
 
             parsingController = controller.getParsingController(hash, level);
             if (parsingController == null)
-            {
-                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
+                throw new ArgumentNullException("parsingController", "parsingController ist null");
 
         }
+        #endregion
+
+        #region Events
 
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -68,9 +65,8 @@ namespace Oege_Get_the_best_price.View
                 frmCounter--;
                 controller.Unregister(this, level);
             }
-                
-                
         }
 
+        #endregion
     }
 }

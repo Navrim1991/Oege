@@ -31,6 +31,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing
             }
         }
 
+        #region Get Parsingcontroller
+
         public Amazon.ParsingControllerAmazon ParsingControllerAmazon
         {
             get
@@ -54,5 +56,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing
                 return parsingControllerIdealo;
             }
         }
+
+        #endregion
+
     }
 }
