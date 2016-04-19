@@ -92,5 +92,14 @@ namespace Oege_Get_the_best_price.Model
             this.priceEbay = 0;
             this.PriceIdealo = 0;
         }
+
+        public Data(string ean, string articel, decimal priceAmazon, decimal priceEbay, decimal priceIdealo)
+        {
+            this.ean = ean;
+            this.aritcel = articel;
+            this.priceAmazon = priceAmazon;
+            this.priceEbay = priceEbay;
+            this.priceIdealo = priceIdealo;
+        }
     }
 }

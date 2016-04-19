@@ -113,7 +113,7 @@ namespace Oege_Get_the_best_price.Controller
 
             listDataController.Add(new DataController(frm.GetHashCode()));
             listExcelController.Add(new ExcelController(frm.GetHashCode()));
-            listFormController.Add(new FormController(frm.GetHashCode()));
+            listFormController.Add(new FormController(frm));
             listParsingController.Add(new ParsingController(frm.GetHashCode()));
         }
 

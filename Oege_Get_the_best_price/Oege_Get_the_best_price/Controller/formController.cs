@@ -10,6 +10,7 @@ namespace Oege_Get_the_best_price.Controller
     class FormController
     {
         int guiHash;
+        Form frm;
 
         public int GuiHash
         {
@@ -19,9 +20,18 @@ namespace Oege_Get_the_best_price.Controller
             }
         }
 
-        public FormController(int guiHash)
+        public Form Frm
         {
-            this.guiHash = guiHash;
+            get
+            {
+                return frm;
+            }
+        }
+
+        public FormController(Form frm)
+        {
+            this.frm = frm;
+            this.guiHash = frm.GetHashCode();
         }
     }
 }

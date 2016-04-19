@@ -26,7 +26,7 @@ namespace Oege_Get_the_best_price.Controller
         {
             List<Oege_Get_the_best_price.Model.Data> tmp = new List<Oege_Get_the_best_price.Model.Data>();
 
-            Controller.Instance().getDataController(guiHash, level).Data.ListData = tmp;
+            Controller.Instance().getDataController(guiHash, level).DataHolding.ListData = tmp;
         }
     }
 }

@@ -35,6 +35,8 @@ namespace Oege_Get_the_best_price.View
         {
             activeForm = (Form)tabControl.SelectedForm;
             int hash = activeForm.GetHashCode();
+
+            
         }
 
         private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)

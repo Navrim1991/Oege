@@ -10,7 +10,7 @@ namespace Oege_Get_the_best_price.Controller
     class DataController
     {
         int guiHash;
-        DataHolding data;
+        DataHolding dataHolding;
 
         public int GuiHash
         {
@@ -20,18 +20,18 @@ namespace Oege_Get_the_best_price.Controller
             }
         }
 
-        public DataHolding Data
+        public DataHolding DataHolding
         {
             get
             {
-                return data;
+                return dataHolding;
             }
         }
 
         public DataController(int guiHash)
         {
             this.guiHash = guiHash;
-            data = new DataHolding();
+            dataHolding = new DataHolding();
         }
 
     }
