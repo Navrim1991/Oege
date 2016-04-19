@@ -8,6 +8,6 @@ namespace Oege_Get_the_best_price.Controller.Excel
 {
     class Excel
     {
-      bvfczcgfghjj  "Hallo"
+      
     }
 }
