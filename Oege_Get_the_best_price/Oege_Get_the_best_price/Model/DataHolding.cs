@@ -10,81 +10,12 @@ namespace Oege_Get_the_best_price.Model
     class DataHolding
     {       
         #region attributes
-        List<DataHolding> listData;
-        private string ean;
-        private string aritcel;
-        private decimal priceAmazon;
-        private decimal priceEbay;
-        private decimal priceIdealo;
+        List<Data> listData;
         #endregion
 
         #region properties
-        public string Ean
-        {
-            get
-            {
-                return ean;
-            }
 
-            set
-            {
-                ean = value;
-            }
-        }
-
-        public string Aritcel
-        {
-            get
-            {
-                return aritcel;
-            }
-
-            set
-            {
-                aritcel = value;
-            }
-        }
-
-        public decimal PriceAmazon
-        {
-            get
-            {
-                return priceAmazon;
-            }
-
-            set
-            {
-                priceAmazon = value;
-            }
-        }
-
-        public decimal PriceEbay
-        {
-            get
-            {
-                return priceEbay;
-            }
-
-            set
-            {
-                priceEbay = value;
-            }
-        }
-
-        public decimal PriceIdealo
-        {
-            get
-            {
-                return priceIdealo;
-            }
-
-            set
-            {
-                priceIdealo = value;
-            }
-        }
-
-        public List<DataHolding> ListData
+        public List<Data> ListData
         {
             get
             {
@@ -100,16 +31,8 @@ namespace Oege_Get_the_best_price.Model
 
         public DataHolding()
         {
-            listData = new List<DataHolding>();
+            listData = new List<Data>();
         }
 
-        public DataHolding(string ean, string articel)
-        {
-            this.ean = ean;
-            this.aritcel = articel;
-            this.priceAmazon = 0;
-            this.priceEbay = 0;
-            this.PriceIdealo = 0;
-        }
     }
 }

@@ -24,7 +24,7 @@ namespace Oege_Get_the_best_price.Controller
 
         public void readExcelFile(string filePath, int level)
         {
-            List<Oege_Get_the_best_price.Model.DataHolding> tmp = new List<Oege_Get_the_best_price.Model.DataHolding>();
+            List<Oege_Get_the_best_price.Model.Data> tmp = new List<Oege_Get_the_best_price.Model.Data>();
 
             Controller.Instance().getDataController(guiHash, level).Data.ListData = tmp;
         }

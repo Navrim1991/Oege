@@ -80,6 +80,7 @@
     <Compile Include="Controller\Parsing\ParsingControllerAmazon.cs" />
     <Compile Include="Controller\Parsing\ParsingControllerEbay.cs" />
     <Compile Include="Controller\Parsing\ParsingControllerIdealo.cs" />
+    <Compile Include="Model\Data.cs" />
     <Compile Include="Model\DataHolding.cs" />
     <Compile Include="Resources\CurrencyEuroBox.cs">
       <SubType>Component</SubType>
