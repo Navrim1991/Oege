@@ -30,9 +30,33 @@ namespace Oege_Get_the_best_price.View
             controller.Register(this, level);
             int hash = this.GetHashCode();
             dataController = controller.getDataController(hash, level);
+            if (dataController == null)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+                
             excelController = controller.getExcelController(hash, level);
+            if (excelController == null)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
             formController = controller.getFormController(hash, level);
+            if (formController == null)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
             parsingController = controller.getParsingController(hash, level);
+            if (parsingController == null)
+            {
+                MessageBox.Show("Fehler beim Laden des Fensters", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+
         }
 
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
