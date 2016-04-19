@@ -14,16 +14,23 @@ namespace Oege_Get_the_best_price.View
     public partial class frmParsing : Form
     {
         private static int frmCounter = 0;
-        int hash;
-        IFormHandler formHandler;
+        Controller.Controller controller;
+        Controller.DataController dataController;
+        Controller.ExcelController excelController;
+        Controller.FormController formController;
+        const short level = 1;
 
-        public frmParsing(IFormHandler formHandler)
+        public frmParsing()
         {
             InitializeComponent();
             frmCounter++;
-            hash = this.GetHashCode();
-            this.formHandler = formHandler;
-            formHandler.add(this);
+
+            controller = Controller.Controller.Instance();
+            controller.Register(this, level);
+            int hash = this.GetHashCode();
+            dataController = controller.getDataController(hash, level);
+            excelController = controller.getExcelController(hash, level);
+            formController = controller.getFormController(hash, level);
         }
 
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
@@ -33,8 +40,9 @@ namespace Oege_Get_the_best_price.View
             else
             {
                 frmCounter--;
-                formHandler.delete(this.GetHashCode());
+                controller.Unregister(this, level);
             }
+                
                 
         }
 

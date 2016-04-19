@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Oege_Get_the_best_price.View.Main
+namespace Oege_Get_the_best_price.View
 {
-    public partial class Main : Form, IFormHandler
+    public partial class Main : Form
     {
         List<Form> listForms = new List<Form>();
         Form activeForm;
@@ -21,7 +21,7 @@ namespace Oege_Get_the_best_price.View.Main
 
         private void Main_Load(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing(this));
+            tabControl.TabPages.Add(new frmParsing());
         }
 
         private void tabControl_SelectedTabChanged(object sender, EventArgs e)
@@ -32,18 +32,7 @@ namespace Oege_Get_the_best_price.View.Main
 
         private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing(this));
-        }
-
-        public void delete(int hash)
-        {
-            Form del = (from frm in listForms where frm.GetHashCode() == hash select frm).First();
-            listForms.Remove(del);
-        }
-
-        public void add(Form frm)
-        {
-            listForms.Add(frm);
+            tabControl.TabPages.Add(new frmParsing());
         }
     }
 }

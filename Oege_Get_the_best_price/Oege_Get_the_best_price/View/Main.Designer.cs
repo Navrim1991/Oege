@@ -1,4 +1,4 @@
-﻿namespace Oege_Get_the_best_price.View.Main
+﻿namespace Oege_Get_the_best_price.View
 {
     partial class Main
     {

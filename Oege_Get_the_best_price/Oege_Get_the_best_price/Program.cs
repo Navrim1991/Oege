@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oege_Get_the_best_price.View.Main;
+using Oege_Get_the_best_price.View;
 
 namespace Oege_Get_the_best_price
 {
