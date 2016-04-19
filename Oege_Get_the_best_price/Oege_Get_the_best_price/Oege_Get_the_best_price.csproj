@@ -74,6 +74,9 @@
   <ItemGroup>
     <Compile Include="Controller\Excel.cs" />
     <Compile Include="Model\DataHolding.cs" />
+    <Compile Include="Resources\NumericBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\IFormHandler.cs" />
     <Compile Include="View\frmParsing.cs">
       <SubType>Form</SubType>
@@ -99,6 +102,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resources\NumericBox.resx">
+      <DependentUpon>NumericBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>
     </EmbeddedResource>

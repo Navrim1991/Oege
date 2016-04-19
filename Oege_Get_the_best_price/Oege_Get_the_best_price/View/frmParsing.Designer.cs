@@ -1,4 +1,6 @@
-﻿namespace Oege_Get_the_best_price.View
+﻿using Oege_Get_the_best_price.Resources;
+
+namespace Oege_Get_the_best_price.View
 {
     partial class frmParsing
     {
@@ -28,20 +30,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBox1 = new NumericBox();
             this.SuspendLayout();
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(65, 59);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
             // 
             // frmParsing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.textBox1);
             this.Name = "frmParsing";
             this.Text = "find the price";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParsing_FormClosing);
+            this.Load += new System.EventHandler(this.frmParsing_Load);
             this.ResumeLayout(false);
-
+            this.PerformLayout();
         }
 
         #endregion
+
+        private NumericBox textBox1;
     }
 }
