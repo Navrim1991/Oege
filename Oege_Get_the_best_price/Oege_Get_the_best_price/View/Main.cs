@@ -25,6 +25,7 @@ namespace Oege_Get_the_best_price.View.Main
         private void öffneFensterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl.TabPages.Add(new frmParsing());
+
         }
     }
 }

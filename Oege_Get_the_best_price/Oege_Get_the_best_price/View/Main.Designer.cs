@@ -30,10 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.oegeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.öffneFensterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelDateiÖffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new MdiTabControl.TabControl();
-            this.öffneFensterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,13 @@
             this.oegeToolStripMenuItem.Name = "oegeToolStripMenuItem";
             this.oegeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.oegeToolStripMenuItem.Text = "Oege";
+            // 
+            // öffneFensterToolStripMenuItem
+            // 
+            this.öffneFensterToolStripMenuItem.Name = "öffneFensterToolStripMenuItem";
+            this.öffneFensterToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.öffneFensterToolStripMenuItem.Text = "Öffne Fenster";
+            this.öffneFensterToolStripMenuItem.Click += new System.EventHandler(this.öffneFensterToolStripMenuItem_Click);
             // 
             // excelDateiÖffnenToolStripMenuItem
             // 
@@ -86,13 +93,6 @@
             this.tabControl.TabCloseButtonImageDisabled = null;
             this.tabControl.TabCloseButtonImageHot = null;
             this.tabControl.TabIndex = 1;
-            // 
-            // öffneFensterToolStripMenuItem
-            // 
-            this.öffneFensterToolStripMenuItem.Name = "öffneFensterToolStripMenuItem";
-            this.öffneFensterToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.öffneFensterToolStripMenuItem.Text = "Öffne Fenster";
-            this.öffneFensterToolStripMenuItem.Click += new System.EventHandler(this.öffneFensterToolStripMenuItem_Click);
             // 
             // Main
             // 
