@@ -31,35 +31,38 @@ namespace Oege_Get_the_best_price.View
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtSuche = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
             this.clmHeaderEan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderArticel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderAmazon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderEbay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderIdealo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblProgressAmazon = new System.Windows.Forms.Label();
+            this.lblProgressEbay = new System.Windows.Forms.Label();
+            this.lblProgressIdealo = new System.Windows.Forms.Label();
+            this.lvlProgress = new System.Windows.Forms.Label();
+            this.progressBarParsing = new System.Windows.Forms.ProgressBar();
             this.grpBoxIdealo = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
+            this.currencyEuroBox2 = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.lvlArtikel = new System.Windows.Forms.Label();
             this.txtArtikel = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblEbayPrice = new System.Windows.Forms.Label();
+            this.cur = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
             this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
+            this.curAmazonPrice = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.lblEan = new System.Windows.Forms.Label();
             this.txtEan = new System.Windows.Forms.TextBox();
-            this.progressBarParsing = new System.Windows.Forms.ProgressBar();
-            this.lvlProgress = new System.Windows.Forms.Label();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSuche = new System.Windows.Forms.TextBox();
             this.backgroundWorkerAmazon = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerEbay = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerIdealo = new System.ComponentModel.BackgroundWorker();
-            this.currencyEuroBox2 = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
-            this.cur = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
-            this.curAmazonPrice = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,6 +88,9 @@ namespace Oege_Get_the_best_price.View
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblProgressAmazon);
+            this.splitContainer1.Panel2.Controls.Add(this.lblProgressEbay);
+            this.splitContainer1.Panel2.Controls.Add(this.lblProgressIdealo);
             this.splitContainer1.Panel2.Controls.Add(this.lvlProgress);
             this.splitContainer1.Panel2.Controls.Add(this.progressBarParsing);
             this.splitContainer1.Panel2.Controls.Add(this.grpBoxIdealo);
@@ -97,6 +103,22 @@ namespace Oege_Get_the_best_price.View
             this.splitContainer1.Size = new System.Drawing.Size(1241, 643);
             this.splitContainer1.SplitterDistance = 499;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // txtSuche
+            // 
+            this.txtSuche.Location = new System.Drawing.Point(52, 24);
+            this.txtSuche.Name = "txtSuche";
+            this.txtSuche.Size = new System.Drawing.Size(141, 20);
+            this.txtSuche.TabIndex = 4;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Location = new System.Drawing.Point(3, 27);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(38, 13);
+            this.lblSearch.TabIndex = 3;
+            this.lblSearch.Text = "Suche";
             // 
             // listView
             // 
@@ -146,6 +168,49 @@ namespace Oege_Get_the_best_price.View
             this.clmHeaderIdealo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.clmHeaderIdealo.Width = 67;
             // 
+            // lblProgressAmazon
+            // 
+            this.lblProgressAmazon.AutoSize = true;
+            this.lblProgressAmazon.Location = new System.Drawing.Point(92, 437);
+            this.lblProgressAmazon.Name = "lblProgressAmazon";
+            this.lblProgressAmazon.Size = new System.Drawing.Size(45, 13);
+            this.lblProgressAmazon.TabIndex = 10;
+            this.lblProgressAmazon.Text = "Amazon";
+            // 
+            // lblProgressEbay
+            // 
+            this.lblProgressEbay.AutoSize = true;
+            this.lblProgressEbay.Location = new System.Drawing.Point(143, 437);
+            this.lblProgressEbay.Name = "lblProgressEbay";
+            this.lblProgressEbay.Size = new System.Drawing.Size(31, 13);
+            this.lblProgressEbay.TabIndex = 9;
+            this.lblProgressEbay.Text = "Ebay";
+            // 
+            // lblProgressIdealo
+            // 
+            this.lblProgressIdealo.AutoSize = true;
+            this.lblProgressIdealo.Location = new System.Drawing.Point(180, 437);
+            this.lblProgressIdealo.Name = "lblProgressIdealo";
+            this.lblProgressIdealo.Size = new System.Drawing.Size(36, 13);
+            this.lblProgressIdealo.TabIndex = 8;
+            this.lblProgressIdealo.Text = "Idealo";
+            // 
+            // lvlProgress
+            // 
+            this.lvlProgress.AutoSize = true;
+            this.lvlProgress.Location = new System.Drawing.Point(30, 437);
+            this.lvlProgress.Name = "lvlProgress";
+            this.lvlProgress.Size = new System.Drawing.Size(56, 13);
+            this.lvlProgress.TabIndex = 7;
+            this.lvlProgress.Text = "Fortschritt:";
+            // 
+            // progressBarParsing
+            // 
+            this.progressBarParsing.Location = new System.Drawing.Point(27, 453);
+            this.progressBarParsing.Name = "progressBarParsing";
+            this.progressBarParsing.Size = new System.Drawing.Size(383, 23);
+            this.progressBarParsing.TabIndex = 6;
+            // 
             // grpBoxIdealo
             // 
             this.grpBoxIdealo.Controls.Add(this.linkLabel2);
@@ -176,6 +241,14 @@ namespace Oege_Get_the_best_price.View
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Preis";
+            // 
+            // currencyEuroBox2
+            // 
+            this.currencyEuroBox2.Location = new System.Drawing.Point(109, 20);
+            this.currencyEuroBox2.Name = "currencyEuroBox2";
+            this.currencyEuroBox2.Size = new System.Drawing.Size(100, 20);
+            this.currencyEuroBox2.TabIndex = 4;
+            this.currencyEuroBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lvlArtikel
             // 
@@ -226,6 +299,14 @@ namespace Oege_Get_the_best_price.View
             this.lblEbayPrice.TabIndex = 5;
             this.lblEbayPrice.Text = "Preis";
             // 
+            // cur
+            // 
+            this.cur.Location = new System.Drawing.Point(109, 20);
+            this.cur.Name = "cur";
+            this.cur.Size = new System.Drawing.Size(99, 20);
+            this.cur.TabIndex = 4;
+            this.cur.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // grpBoxAmazon
             // 
             this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
@@ -257,6 +338,14 @@ namespace Oege_Get_the_best_price.View
             this.lblAmazonPrice.TabIndex = 2;
             this.lblAmazonPrice.Text = "Preis";
             // 
+            // curAmazonPrice
+            // 
+            this.curAmazonPrice.Location = new System.Drawing.Point(109, 20);
+            this.curAmazonPrice.Name = "curAmazonPrice";
+            this.curAmazonPrice.Size = new System.Drawing.Size(100, 20);
+            this.curAmazonPrice.TabIndex = 0;
+            this.curAmazonPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // lblEan
             // 
             this.lblEan.AutoSize = true;
@@ -274,61 +363,20 @@ namespace Oege_Get_the_best_price.View
             this.txtEan.Size = new System.Drawing.Size(141, 20);
             this.txtEan.TabIndex = 0;
             // 
-            // progressBarParsing
+            // backgroundWorkerAmazon
             // 
-            this.progressBarParsing.Location = new System.Drawing.Point(27, 453);
-            this.progressBarParsing.Name = "progressBarParsing";
-            this.progressBarParsing.Size = new System.Drawing.Size(383, 23);
-            this.progressBarParsing.TabIndex = 6;
+            this.backgroundWorkerAmazon.WorkerReportsProgress = true;
+            this.backgroundWorkerAmazon.WorkerSupportsCancellation = true;
             // 
-            // lvlProgress
+            // backgroundWorkerEbay
             // 
-            this.lvlProgress.AutoSize = true;
-            this.lvlProgress.Location = new System.Drawing.Point(30, 437);
-            this.lvlProgress.Name = "lvlProgress";
-            this.lvlProgress.Size = new System.Drawing.Size(56, 13);
-            this.lvlProgress.TabIndex = 7;
-            this.lvlProgress.Text = "Fortschritt:";
+            this.backgroundWorkerEbay.WorkerReportsProgress = true;
+            this.backgroundWorkerEbay.WorkerSupportsCancellation = true;
             // 
-            // lblSearch
+            // backgroundWorkerIdealo
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(3, 27);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(38, 13);
-            this.lblSearch.TabIndex = 3;
-            this.lblSearch.Text = "Suche";
-            // 
-            // txtSuche
-            // 
-            this.txtSuche.Location = new System.Drawing.Point(52, 24);
-            this.txtSuche.Name = "txtSuche";
-            this.txtSuche.Size = new System.Drawing.Size(141, 20);
-            this.txtSuche.TabIndex = 4;
-            // 
-            // currencyEuroBox2
-            // 
-            this.currencyEuroBox2.Location = new System.Drawing.Point(109, 20);
-            this.currencyEuroBox2.Name = "currencyEuroBox2";
-            this.currencyEuroBox2.Size = new System.Drawing.Size(100, 20);
-            this.currencyEuroBox2.TabIndex = 4;
-            this.currencyEuroBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // cur
-            // 
-            this.cur.Location = new System.Drawing.Point(109, 20);
-            this.cur.Name = "cur";
-            this.cur.Size = new System.Drawing.Size(99, 20);
-            this.cur.TabIndex = 4;
-            this.cur.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // curAmazonPrice
-            // 
-            this.curAmazonPrice.Location = new System.Drawing.Point(109, 20);
-            this.curAmazonPrice.Name = "curAmazonPrice";
-            this.curAmazonPrice.Size = new System.Drawing.Size(100, 20);
-            this.curAmazonPrice.TabIndex = 0;
-            this.curAmazonPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.backgroundWorkerIdealo.WorkerReportsProgress = true;
+            this.backgroundWorkerIdealo.WorkerSupportsCancellation = true;
             // 
             // frmParsing
             // 
@@ -387,5 +435,8 @@ namespace Oege_Get_the_best_price.View
         private System.ComponentModel.BackgroundWorker backgroundWorkerAmazon;
         private System.ComponentModel.BackgroundWorker backgroundWorkerEbay;
         private System.ComponentModel.BackgroundWorker backgroundWorkerIdealo;
+        private System.Windows.Forms.Label lblProgressAmazon;
+        private System.Windows.Forms.Label lblProgressEbay;
+        private System.Windows.Forms.Label lblProgressIdealo;
     }
 }
