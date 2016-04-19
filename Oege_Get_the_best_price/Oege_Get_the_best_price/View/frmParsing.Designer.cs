@@ -54,6 +54,9 @@ namespace Oege_Get_the_best_price.View
             this.lvlProgress = new System.Windows.Forms.Label();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSuche = new System.Windows.Forms.TextBox();
+            this.backgroundWorkerAmazon = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerEbay = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerIdealo = new System.ComponentModel.BackgroundWorker();
             this.currencyEuroBox2 = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.cur = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.curAmazonPrice = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
@@ -92,7 +95,7 @@ namespace Oege_Get_the_best_price.View
             this.splitContainer1.Panel2.Controls.Add(this.lblEan);
             this.splitContainer1.Panel2.Controls.Add(this.txtEan);
             this.splitContainer1.Size = new System.Drawing.Size(1241, 643);
-            this.splitContainer1.SplitterDistance = 302;
+            this.splitContainer1.SplitterDistance = 499;
             this.splitContainer1.TabIndex = 0;
             // 
             // listView
@@ -110,7 +113,7 @@ namespace Oege_Get_the_best_price.View
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(0, 65);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(300, 576);
+            this.listView.Size = new System.Drawing.Size(497, 576);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -123,7 +126,7 @@ namespace Oege_Get_the_best_price.View
             // clmHeaderArticel
             // 
             this.clmHeaderArticel.Text = "Artikelbeschreibung";
-            this.clmHeaderArticel.Width = 105;
+            this.clmHeaderArticel.Width = 305;
             // 
             // clmHeaderAmazon
             // 
@@ -185,10 +188,10 @@ namespace Oege_Get_the_best_price.View
             // 
             // txtArtikel
             // 
-            this.txtArtikel.Enabled = false;
             this.txtArtikel.Location = new System.Drawing.Point(136, 50);
             this.txtArtikel.Multiline = true;
             this.txtArtikel.Name = "txtArtikel";
+            this.txtArtikel.ReadOnly = true;
             this.txtArtikel.Size = new System.Drawing.Size(263, 56);
             this.txtArtikel.TabIndex = 4;
             // 
@@ -265,9 +268,9 @@ namespace Oege_Get_the_best_price.View
             // 
             // txtEan
             // 
-            this.txtEan.Enabled = false;
             this.txtEan.Location = new System.Drawing.Point(136, 24);
             this.txtEan.Name = "txtEan";
+            this.txtEan.ReadOnly = true;
             this.txtEan.Size = new System.Drawing.Size(141, 20);
             this.txtEan.TabIndex = 0;
             // 
@@ -381,5 +384,8 @@ namespace Oege_Get_the_best_price.View
         private System.Windows.Forms.ProgressBar progressBarParsing;
         private System.Windows.Forms.TextBox txtSuche;
         private System.Windows.Forms.Label lblSearch;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerAmazon;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerEbay;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerIdealo;
     }
 }
