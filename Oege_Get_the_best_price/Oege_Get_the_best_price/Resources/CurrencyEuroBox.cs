@@ -8,9 +8,13 @@ using System.Windows.Forms;
 
 namespace Oege_Get_the_best_price.Resources
 {
-    class NumericBox : TextBox
+    class CurrencyEuroBox : TextBox
     {
         private System.ComponentModel.IContainer components;
+        public CurrencyEuroBox()
+        {
+            this.TextAlign = HorizontalAlignment.Right;
+        }
 
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
@@ -19,8 +23,7 @@ namespace Oege_Get_the_best_price.Resources
 
             NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
             string decimalSeparator = numberFormatInfo.NumberDecimalSeparator;
-            string groupSeparator = numberFormatInfo.NumberGroupSeparator;
-            string negativeSign = numberFormatInfo.NegativeSign;
+            string currencySymbol = numberFormatInfo.CurrencySymbol;
 
             string keyInput = e.KeyChar.ToString();
             if(keyInput.Length == 1)
@@ -29,11 +32,30 @@ namespace Oege_Get_the_best_price.Resources
 
                 if (Char.IsDigit(key))
                 {
-                    // Digits are OK
+                    if(this.Text.Contains(decimalSeparator))
+                    {
+                        int index = this.Text.IndexOf(decimalSeparator);
+
+                        if ((this.Text.Length - index) == 3)
+                            e.Handled = true;
+                        
+                    }
+
+                    if (this.Text.Contains(currencySymbol))
+                        e.Handled = true;
+
                 }
-                else if (keyInput.Equals(decimalSeparator) || keyInput.Equals(negativeSign))
+                else if (keyInput.Equals(decimalSeparator))
                 {
+                    if ((keyInput.Equals(decimalSeparator) && (this.Text.Contains(decimalSeparator) || this.Text.Length == 0)) 
+                        || this.Text.Contains(currencySymbol))
+                        e.Handled = true;                      
                     // Decimal separator is OK
+                }
+                else if (keyInput.Equals(currencySymbol))
+                {
+                    if (this.Text.Contains(currencySymbol) || this.Text.Length == 0)
+                        e.Handled = true;
                 }
                 else if (key == '\b')
                 {
@@ -53,7 +75,7 @@ namespace Oege_Get_the_best_price.Resources
         public int IntValue
         {
             get
-            {
+            {               
                 return Int32.Parse(this.Text);
             }
         }

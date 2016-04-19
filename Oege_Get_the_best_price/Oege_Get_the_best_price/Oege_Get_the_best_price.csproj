@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="Controller\Excel.cs" />
     <Compile Include="Model\DataHolding.cs" />
-    <Compile Include="Resources\NumericBox.cs">
+    <Compile Include="Resources\CurrencyEuroBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\IFormHandler.cs" />
@@ -102,8 +102,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\NumericBox.resx">
-      <DependentUpon>NumericBox.cs</DependentUpon>
+    <EmbeddedResource Include="Resources\CurrencyEuroBox.resx">
+      <DependentUpon>CurrencyEuroBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>

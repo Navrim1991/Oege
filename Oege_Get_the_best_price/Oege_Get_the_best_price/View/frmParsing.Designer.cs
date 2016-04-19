@@ -30,7 +30,7 @@ namespace Oege_Get_the_best_price.View
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new NumericBox();
+            this.textBox1 = new CurrencyEuroBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -56,6 +56,6 @@ namespace Oege_Get_the_best_price.View
 
         #endregion
 
-        private NumericBox textBox1;
+        private CurrencyEuroBox textBox1;
     }
 }
