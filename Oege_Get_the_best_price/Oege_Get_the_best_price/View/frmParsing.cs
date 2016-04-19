@@ -14,15 +14,15 @@ namespace Oege_Get_the_best_price.View
     {
         private static int frmCounter = 0;
         int hash;
-        //IFormHandler formHandler;
+        IFormHandler formHandler;
 
-        public frmParsing(/*IFormHandler formHandler*/)
+        public frmParsing(IFormHandler formHandler)
         {
             InitializeComponent();
             frmCounter++;
             hash = this.GetHashCode();
-            //this.formHandler = formHandler;
-            //formHandler.add(this);
+            this.formHandler = formHandler;
+            formHandler.add(this);
         }
 
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
@@ -32,7 +32,7 @@ namespace Oege_Get_the_best_price.View
             else
             {
                 frmCounter--;
-                //formHandler.delete(this.GetHashCode());
+                formHandler.delete(this.GetHashCode());
             }
                 
         }

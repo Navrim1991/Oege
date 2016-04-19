@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace Oege_Get_the_best_price.View.Main
 {
-    public partial class Main : Form
+    public partial class Main : Form, IFormHandler
     {
+        List<Form> listForms = new List<Form>();
+        Form activeForm;
         public Main()
         {
             InitializeComponent();
@@ -19,32 +21,29 @@ namespace Oege_Get_the_best_price.View.Main
 
         private void Main_Load(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing());
+            tabControl.TabPages.Add(new frmParsing(this));
         }
 
-        private void öffneFensterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tabControl_SelectedTabChanged(object sender, EventArgs e)
         {
-            tabControl.TabPages.Add(new frmParsing());
+            activeForm = (Form)tabControl.SelectedForm;
+            int hash = activeForm.GetHashCode();
         }
 
-        private void oegetradingToolStripMenu_Click(object sender, EventArgs e)
+        private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            tabControl.TabPages.Add(new frmParsing(this));
         }
 
-        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        public void delete(int hash)
         {
-
+            Form del = (from frm in listForms where frm.GetHashCode() == hash select frm).First();
+            listForms.Remove(del);
         }
 
-        private void menuStrip2_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        public void add(Form frm)
         {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
+            listForms.Add(frm);
         }
     }
 }

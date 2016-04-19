@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl = new MdiTabControl.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.oegetradingToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.schnellstartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projektÖffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oegetradingToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +79,7 @@
             this.tabControl.TabCloseButtonImageDisabled = null;
             this.tabControl.TabCloseButtonImageHot = null;
             this.tabControl.TabIndex = 1;
+            this.tabControl.SelectedTabChanged += new System.EventHandler(this.tabControl_SelectedTabChanged);
             // 
             // menuStrip1
             // 
@@ -91,10 +91,24 @@
             this.extraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(2, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(280, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(372, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // oegetradingToolStripMenu
+            // 
+            this.oegetradingToolStripMenu.AutoToolTip = true;
+            this.oegetradingToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.schnellstartToolStripMenuItem,
+            this.projektÖffnenToolStripMenuItem,
+            this.speichernUnterToolStripMenuItem,
+            this.speichernToolStripMenuItem,
+            this.beendenToolStripMenuItem});
+            this.oegetradingToolStripMenu.Name = "oegetradingToolStripMenu";
+            this.oegetradingToolStripMenu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.N)));
+            this.oegetradingToolStripMenu.Size = new System.Drawing.Size(90, 20);
+            this.oegetradingToolStripMenu.Text = "Oege Trading";
             // 
             // schnellstartToolStripMenuItem
             // 
@@ -102,6 +116,7 @@
             this.schnellstartToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.schnellstartToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.schnellstartToolStripMenuItem.Text = "Schnellstart";
+            this.schnellstartToolStripMenuItem.Click += new System.EventHandler(this.schnellstartToolStripMenuItem_Click);
             // 
             // projektÖffnenToolStripMenuItem
             // 
@@ -131,22 +146,6 @@
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
-            // 
-            // oegetradingToolStripMenu
-            // 
-            this.oegetradingToolStripMenu.AutoToolTip = true;
-            this.oegetradingToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.schnellstartToolStripMenuItem,
-            this.projektÖffnenToolStripMenuItem,
-            this.speichernUnterToolStripMenuItem,
-            this.speichernToolStripMenuItem,
-            this.beendenToolStripMenuItem});
-            this.oegetradingToolStripMenu.Name = "oegetradingToolStripMenu";
-            this.oegetradingToolStripMenu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.N)));
-            this.oegetradingToolStripMenu.Size = new System.Drawing.Size(90, 20);
-            this.oegetradingToolStripMenu.Text = "Oege Trading";
-            this.oegetradingToolStripMenu.Click += new System.EventHandler(this.oegetradingToolStripMenu_Click);
             // 
             // bearbeitenToolStripMenuItem
             // 
@@ -211,7 +210,7 @@
             this.textToolStripMenuItem,
             this.mitZeigerMarkierenToolStripMenuItem});
             this.effektToolStripMenuItem.Name = "effektToolStripMenuItem";
-            this.effektToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.effektToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.effektToolStripMenuItem.Text = "Effekt";
             // 
             // mitDenFarbenMarkierenToolStripMenuItem
@@ -228,37 +227,33 @@
             // 
             // rotToolStripMenuItem
             // 
-            this.rotToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rotToolStripMenuItem.Image")));
             this.rotToolStripMenuItem.Name = "rotToolStripMenuItem";
-            this.rotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rotToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.rotToolStripMenuItem.Text = "Rot";
             // 
             // schwarzToolStripMenuItem
             // 
-            this.schwarzToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("schwarzToolStripMenuItem.Image")));
             this.schwarzToolStripMenuItem.Name = "schwarzToolStripMenuItem";
-            this.schwarzToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.schwarzToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.schwarzToolStripMenuItem.Text = "Schwarz";
             // 
             // blauToolStripMenuItem
             // 
-            this.blauToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("blauToolStripMenuItem.Image")));
             this.blauToolStripMenuItem.Name = "blauToolStripMenuItem";
-            this.blauToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.blauToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.blauToolStripMenuItem.Text = "Blau";
             // 
             // grünToolStripMenuItem
             // 
-            this.grünToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("grünToolStripMenuItem.Image")));
             this.grünToolStripMenuItem.Name = "grünToolStripMenuItem";
-            this.grünToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.grünToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.grünToolStripMenuItem.Text = "Grün";
             // 
             // gelbToolStripMenuItem
             // 
             this.gelbToolStripMenuItem.Image = global::Oege_Get_the_best_price.Properties.Resources.Gelb;
             this.gelbToolStripMenuItem.Name = "gelbToolStripMenuItem";
-            this.gelbToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gelbToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.gelbToolStripMenuItem.Text = "Gelb";
             // 
             // textToolStripMenuItem
@@ -274,19 +269,19 @@
             // boldToolStripMenuItem
             // 
             this.boldToolStripMenuItem.Name = "boldToolStripMenuItem";
-            this.boldToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.boldToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.boldToolStripMenuItem.Text = "Bold";
             // 
             // unterstrichToolStripMenuItem
             // 
             this.unterstrichToolStripMenuItem.Name = "unterstrichToolStripMenuItem";
-            this.unterstrichToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unterstrichToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.unterstrichToolStripMenuItem.Text = "Unterstrich";
             // 
             // durchstrichToolStripMenuItem
             // 
             this.durchstrichToolStripMenuItem.Name = "durchstrichToolStripMenuItem";
-            this.durchstrichToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.durchstrichToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.durchstrichToolStripMenuItem.Text = "Durchstrich";
             // 
             // mitZeigerMarkierenToolStripMenuItem
