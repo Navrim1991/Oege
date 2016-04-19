@@ -50,10 +50,10 @@
   <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\HtmlAgilityPack\Net45\HtmlAgilityPack.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\BestPriceEver Oege\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="MdiTabControl">
-      <HintPath>..\..\MDITabControl\MdiTabControl\MdiTabControl\bin\Debug\MdiTabControl.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\BestPriceEver Oege\MdiTabControl\MdiTabControl\bin\Debug\MdiTabControl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Controller\Excel.cs" />
     <Compile Include="Model\DataHolding.cs" />
+    <Compile Include="View\IFormHandler.cs" />
     <Compile Include="View\frmParsing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>
@@ -128,7 +130,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Gelb.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

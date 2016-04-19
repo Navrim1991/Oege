@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "frmParsing";
             this.Text = "find the price";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParsing_FormClosing);
             this.ResumeLayout(false);
 
         }

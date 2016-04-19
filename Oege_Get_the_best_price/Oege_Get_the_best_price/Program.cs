@@ -17,7 +17,15 @@ namespace Oege_Get_the_best_price
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            try
+            {
+                Application.Run(new Main());
+            }
+            catch(ArgumentException e)
+            {
+
+            }
+            
         }
     }
 }

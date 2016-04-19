@@ -25,6 +25,25 @@ namespace Oege_Get_the_best_price.View.Main
         private void öffneFensterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl.TabPages.Add(new frmParsing());
+        }
+
+        private void oegetradingToolStripMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void menuStrip2_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
         }
     }

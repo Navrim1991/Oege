@@ -12,9 +12,29 @@ namespace Oege_Get_the_best_price.View
 {
     public partial class frmParsing : Form
     {
-        public frmParsing()
+        private static int frmCounter = 0;
+        int hash;
+        //IFormHandler formHandler;
+
+        public frmParsing(/*IFormHandler formHandler*/)
         {
             InitializeComponent();
+            frmCounter++;
+            hash = this.GetHashCode();
+            //this.formHandler = formHandler;
+            //formHandler.add(this);
+        }
+
+        private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (frmCounter == 1)
+                e.Cancel = true;
+            else
+            {
+                frmCounter--;
+                //formHandler.delete(this.GetHashCode());
+            }
+                
         }
     }
 }
