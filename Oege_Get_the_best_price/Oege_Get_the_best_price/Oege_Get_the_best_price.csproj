@@ -82,9 +82,6 @@
     <Compile Include="Controller\Parsing\ParsingControllerIdealo.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\DataHolding.cs" />
-    <Compile Include="Resources\CurrencyEuroBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="View\frmParsing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,9 +106,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\CurrencyEuroBox.resx">
-      <DependentUpon>CurrencyEuroBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,7 +140,12 @@
   <ItemGroup>
     <None Include="Resources\Gelb.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Dropbox\Oege %281%29\Oege_Get_the_best_price\Currency_Control\Currency_Control.csproj">
+      <Project>{61BF4075-D4AE-44E5-9EA4-44FA6872C5B7}</Project>
+      <Name>Currency_Control</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

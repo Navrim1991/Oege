@@ -50,5 +50,10 @@ namespace Oege_Get_the_best_price.View
                 MessageBox.Show("Fehler beim Laden des Fensters\n" + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

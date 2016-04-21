@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Oege_Get_the_best_price.Resources;
 
 namespace Oege_Get_the_best_price.Model
 {

@@ -1,6 +1,4 @@
-﻿using Oege_Get_the_best_price.Resources;
-
-namespace Oege_Get_the_best_price.View
+﻿namespace Oege_Get_the_best_price.View
 {
     partial class frmParsing
     {
@@ -47,22 +45,20 @@ namespace Oege_Get_the_best_price.View
             this.grpBoxIdealo = new System.Windows.Forms.GroupBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
-            this.currencyEuroBox2 = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.lvlArtikel = new System.Windows.Forms.Label();
             this.txtArtikel = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblEbayPrice = new System.Windows.Forms.Label();
-            this.cur = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
             this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
-            this.curAmazonPrice = new Oege_Get_the_best_price.Resources.CurrencyEuroBox();
             this.lblEan = new System.Windows.Forms.Label();
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerAmazon = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerEbay = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorkerIdealo = new System.ComponentModel.BackgroundWorker();
+            this.currencyControl1 = new Currency_Control.CurrencyControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -215,7 +211,6 @@ namespace Oege_Get_the_best_price.View
             // 
             this.grpBoxIdealo.Controls.Add(this.linkLabel2);
             this.grpBoxIdealo.Controls.Add(this.label2);
-            this.grpBoxIdealo.Controls.Add(this.currencyEuroBox2);
             this.grpBoxIdealo.Location = new System.Drawing.Point(27, 306);
             this.grpBoxIdealo.Name = "grpBoxIdealo";
             this.grpBoxIdealo.Size = new System.Drawing.Size(383, 91);
@@ -242,14 +237,6 @@ namespace Oege_Get_the_best_price.View
             this.label2.TabIndex = 5;
             this.label2.Text = "Preis";
             // 
-            // currencyEuroBox2
-            // 
-            this.currencyEuroBox2.Location = new System.Drawing.Point(109, 20);
-            this.currencyEuroBox2.Name = "currencyEuroBox2";
-            this.currencyEuroBox2.Size = new System.Drawing.Size(100, 20);
-            this.currencyEuroBox2.TabIndex = 4;
-            this.currencyEuroBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // lvlArtikel
             // 
             this.lvlArtikel.AutoSize = true;
@@ -272,7 +259,6 @@ namespace Oege_Get_the_best_price.View
             // 
             this.grpBoxEbay.Controls.Add(this.linkLabel1);
             this.grpBoxEbay.Controls.Add(this.lblEbayPrice);
-            this.grpBoxEbay.Controls.Add(this.cur);
             this.grpBoxEbay.Location = new System.Drawing.Point(27, 209);
             this.grpBoxEbay.Name = "grpBoxEbay";
             this.grpBoxEbay.Size = new System.Drawing.Size(383, 91);
@@ -299,19 +285,11 @@ namespace Oege_Get_the_best_price.View
             this.lblEbayPrice.TabIndex = 5;
             this.lblEbayPrice.Text = "Preis";
             // 
-            // cur
-            // 
-            this.cur.Location = new System.Drawing.Point(109, 20);
-            this.cur.Name = "cur";
-            this.cur.Size = new System.Drawing.Size(99, 20);
-            this.cur.TabIndex = 4;
-            this.cur.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // grpBoxAmazon
             // 
+            this.grpBoxAmazon.Controls.Add(this.currencyControl1);
             this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
             this.grpBoxAmazon.Controls.Add(this.lblAmazonPrice);
-            this.grpBoxAmazon.Controls.Add(this.curAmazonPrice);
             this.grpBoxAmazon.Location = new System.Drawing.Point(27, 112);
             this.grpBoxAmazon.Name = "grpBoxAmazon";
             this.grpBoxAmazon.Size = new System.Drawing.Size(383, 91);
@@ -337,14 +315,6 @@ namespace Oege_Get_the_best_price.View
             this.lblAmazonPrice.Size = new System.Drawing.Size(30, 13);
             this.lblAmazonPrice.TabIndex = 2;
             this.lblAmazonPrice.Text = "Preis";
-            // 
-            // curAmazonPrice
-            // 
-            this.curAmazonPrice.Location = new System.Drawing.Point(109, 20);
-            this.curAmazonPrice.Name = "curAmazonPrice";
-            this.curAmazonPrice.Size = new System.Drawing.Size(100, 20);
-            this.curAmazonPrice.TabIndex = 0;
-            this.curAmazonPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblEan
             // 
@@ -377,6 +347,13 @@ namespace Oege_Get_the_best_price.View
             // 
             this.backgroundWorkerIdealo.WorkerReportsProgress = true;
             this.backgroundWorkerIdealo.WorkerSupportsCancellation = true;
+            // 
+            // currencyControl1
+            // 
+            this.currencyControl1.Location = new System.Drawing.Point(119, 23);
+            this.currencyControl1.Name = "currencyControl1";
+            this.currencyControl1.Size = new System.Drawing.Size(100, 20);
+            this.currencyControl1.TabIndex = 4;
             // 
             // frmParsing
             // 
@@ -420,13 +397,10 @@ namespace Oege_Get_the_best_price.View
         private System.Windows.Forms.GroupBox grpBoxAmazon;
         private System.Windows.Forms.GroupBox grpBoxIdealo;
         private System.Windows.Forms.Label lblAmazonPrice;
-        private CurrencyEuroBox curAmazonPrice;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label2;
-        private CurrencyEuroBox currencyEuroBox2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lblEbayPrice;
-        private CurrencyEuroBox cur;
         private System.Windows.Forms.LinkLabel linkLblAmazon;
         private System.Windows.Forms.Label lvlProgress;
         private System.Windows.Forms.ProgressBar progressBarParsing;
@@ -438,5 +412,6 @@ namespace Oege_Get_the_best_price.View
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
         private System.Windows.Forms.Label lblProgressIdealo;
+        private Currency_Control.CurrencyControl currencyControl1;
     }
 }

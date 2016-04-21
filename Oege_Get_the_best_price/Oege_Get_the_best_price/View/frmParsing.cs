@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oege_Get_the_best_price.Resources;
 
 namespace Oege_Get_the_best_price.View
 {
@@ -28,6 +27,7 @@ namespace Oege_Get_the_best_price.View
         #region Constructor
         public frmParsing()
         {
+            
             InitializeComponent();
             frmCounter++;
 
@@ -68,6 +68,5 @@ namespace Oege_Get_the_best_price.View
         }
 
         #endregion
-
     }
 }
