@@ -11,9 +11,11 @@ namespace Oege_Get_the_best_price.Model
         #region attributes
         private string ean;
         private string aritcel;
-        private decimal priceAmazon;
-        private decimal priceEbay;
-        private decimal priceIdealo;
+        private string url;
+        private double priceAmazon;
+        private double priceEbay;
+        private double priceIdealo;
+        private double ownPrice;
         #endregion
 
         #region properties
@@ -43,7 +45,20 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
-        public decimal PriceAmazon
+        public string Url
+        {
+            get
+            {
+                return Url;
+            }
+
+            set
+            {
+                Url = value;
+            }
+        }
+
+        public double PriceAmazon
         {
             get
             {
@@ -56,7 +71,7 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
-        public decimal PriceEbay
+        public double PriceEbay
         {
             get
             {
@@ -69,7 +84,7 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
-        public decimal PriceIdealo
+        public double PriceIdealo
         {
             get
             {
@@ -82,24 +97,50 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
+        public double OwnPrice
+        {
+            get
+            {
+                return ownPrice;
+            }
+
+            set
+            {
+                ownPrice = value;
+            }
+        }
+
         #endregion
 
-        public Data(string ean, string articel)
+        public Data(string ean)
+        {
+            this.ean = ean;
+            this.aritcel = "";
+            this.url= "";
+            this.priceAmazon = 0;
+            this.priceEbay = 0;
+            this.PriceIdealo = 0;
+            this.ownPrice = 0;
+        }
+        public Data(string ean, string articel, double ownPrice)
         {
             this.ean = ean;
             this.aritcel = articel;
             this.priceAmazon = 0;
             this.priceEbay = 0;
             this.PriceIdealo = 0;
+            this.ownPrice = ownPrice;
         }
 
-        public Data(string ean, string articel, decimal priceAmazon, decimal priceEbay, decimal priceIdealo)
+        public Data(string ean, string articel, string url, double priceAmazon, double priceEbay, double priceIdealo, double ownPrice)
         {
             this.ean = ean;
             this.aritcel = articel;
+            this.url = url;
             this.priceAmazon = priceAmazon;
             this.priceEbay = priceEbay;
             this.priceIdealo = priceIdealo;
+            this.ownPrice = ownPrice;
         }
     }
 }

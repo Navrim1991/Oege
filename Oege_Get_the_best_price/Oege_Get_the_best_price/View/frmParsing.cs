@@ -68,5 +68,42 @@ namespace Oege_Get_the_best_price.View
         }
 
         #endregion
+
+        #region methods
+
+        public void importExcelFile()
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                List<object> param = new List<object>();
+                param.Add(openFileDialog.FileName);
+
+                //TODO Form für Spaltenauswahl
+
+                backgroundWorkerExcel.RunWorkerAsync(param);
+                
+
+            }
+        }
+
+        public void updateListView()
+        {
+            listView.Items.Clear();
+        }
+
+
+        #endregion
+
+        private void frmParsing_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundWorkerExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<object> param = (List<object>)e.Argument;
+            if(param != null && param.Count > 1)
+                excelController.readExcelFile((string)param[0], level, 3, 1, 7);
+        }
     }
 }

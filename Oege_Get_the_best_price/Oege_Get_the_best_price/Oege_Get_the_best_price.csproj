@@ -141,8 +141,8 @@
     <None Include="Resources\Gelb.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Dropbox\Oege %281%29\Oege_Get_the_best_price\Currency_Control\Currency_Control.csproj">
-      <Project>{61BF4075-D4AE-44E5-9EA4-44FA6872C5B7}</Project>
+    <ProjectReference Include="..\Currency_Control\Currency_Control.csproj">
+      <Project>{61bf4075-d4ae-44e5-9ea4-44fa6872c5b7}</Project>
       <Name>Currency_Control</Name>
     </ProjectReference>
   </ItemGroup>

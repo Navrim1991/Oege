@@ -51,14 +51,13 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblEbayPrice = new System.Windows.Forms.Label();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
+            this.currencyControl1 = new Currency_Control.CurrencyControl();
             this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
             this.lblEan = new System.Windows.Forms.Label();
             this.txtEan = new System.Windows.Forms.TextBox();
-            this.backgroundWorkerAmazon = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerEbay = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorkerIdealo = new System.ComponentModel.BackgroundWorker();
-            this.currencyControl1 = new Currency_Control.CurrencyControl();
+            this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -297,6 +296,13 @@
             this.grpBoxAmazon.TabStop = false;
             this.grpBoxAmazon.Text = "Amazon";
             // 
+            // currencyControl1
+            // 
+            this.currencyControl1.Location = new System.Drawing.Point(119, 23);
+            this.currencyControl1.Name = "currencyControl1";
+            this.currencyControl1.Size = new System.Drawing.Size(100, 20);
+            this.currencyControl1.TabIndex = 4;
+            // 
             // linkLblAmazon
             // 
             this.linkLblAmazon.AutoSize = true;
@@ -333,27 +339,16 @@
             this.txtEan.Size = new System.Drawing.Size(141, 20);
             this.txtEan.TabIndex = 0;
             // 
-            // backgroundWorkerAmazon
+            // backgroundWorkerExcel
             // 
-            this.backgroundWorkerAmazon.WorkerReportsProgress = true;
-            this.backgroundWorkerAmazon.WorkerSupportsCancellation = true;
+            this.backgroundWorkerExcel.WorkerReportsProgress = true;
+            this.backgroundWorkerExcel.WorkerSupportsCancellation = true;
+            this.backgroundWorkerExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExcel_DoWork);
             // 
-            // backgroundWorkerEbay
+            // openFileDialog
             // 
-            this.backgroundWorkerEbay.WorkerReportsProgress = true;
-            this.backgroundWorkerEbay.WorkerSupportsCancellation = true;
-            // 
-            // backgroundWorkerIdealo
-            // 
-            this.backgroundWorkerIdealo.WorkerReportsProgress = true;
-            this.backgroundWorkerIdealo.WorkerSupportsCancellation = true;
-            // 
-            // currencyControl1
-            // 
-            this.currencyControl1.Location = new System.Drawing.Point(119, 23);
-            this.currencyControl1.Name = "currencyControl1";
-            this.currencyControl1.Size = new System.Drawing.Size(100, 20);
-            this.currencyControl1.TabIndex = 4;
+            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
             // 
             // frmParsing
             // 
@@ -364,6 +359,7 @@
             this.Name = "frmParsing";
             this.Text = "find the price";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParsing_FormClosing);
+            this.Load += new System.EventHandler(this.frmParsing_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -406,12 +402,11 @@
         private System.Windows.Forms.ProgressBar progressBarParsing;
         private System.Windows.Forms.TextBox txtSuche;
         private System.Windows.Forms.Label lblSearch;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerAmazon;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerEbay;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerIdealo;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
         private System.Windows.Forms.Label lblProgressIdealo;
         private Currency_Control.CurrencyControl currencyControl1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

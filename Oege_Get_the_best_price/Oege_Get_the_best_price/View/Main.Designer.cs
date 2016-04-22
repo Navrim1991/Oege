@@ -74,7 +74,7 @@
             this.extraToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(2, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(205, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(297, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -147,6 +147,7 @@
             this.excelListeImportierenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.excelListeImportierenToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
             this.excelListeImportierenToolStripMenuItem.Text = "Excel Liste Importieren";
+            this.excelListeImportierenToolStripMenuItem.Click += new System.EventHandler(this.excelListeImportierenToolStripMenuItem_Click);
             // 
             // einzelneEanSuchenToolStripMenuItem
             // 
