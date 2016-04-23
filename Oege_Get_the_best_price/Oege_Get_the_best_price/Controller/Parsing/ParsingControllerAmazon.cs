@@ -30,23 +30,24 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             frmParsing frmPar = null;
             
             if (frm.GetType() == typeof(frmParsing))
-            {
                 frmPar = ((frmParsing)frm);
-            }
 
-            progressBarDelegate del = new progressBarDelegate(frmPar.updateProgressBar);
-            int listCount = listData.Count();
-            int counter = 0;
-            int percent = 0;
-
-            foreach(Data element in listData)
+            if(frmPar != null)
             {
-                Thread.Sleep(100);
-                percent = ++counter * 100 / listCount;
-                if(frmPar != null)                    
-                    frmPar.BeginInvoke(del, new object[] { percent, -1, -1 });
-                
+                progressBarDelegate del = new progressBarDelegate(frmPar.updateProgressBar);
+                int listCount = listData.Count();
+                int counter = 0;
+                int percent = 0;
+
+                foreach (Data element in listData)
+                {
+                    Thread.Sleep(100);
+                    percent = ++counter * 100 / listCount;
+                    if (frmPar != null)
+                        frmPar.BeginInvoke(del, new object[] { percent, -1, -1 });
+                }
             }
+
         }
     }
 }
