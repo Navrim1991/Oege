@@ -9,7 +9,7 @@ namespace Oege_Get_the_best_price.Model
     class DataHolding
     {       
         #region attributes
-        List<Data> listData;
+        volatile List<Data> listData;
         #endregion
 
         #region properties

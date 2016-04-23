@@ -109,7 +109,7 @@ namespace Oege_Get_the_best_price.Controller
 
             Controller.Instance().getDataController(guiHash, level).DataHolding.ListData = tmp;
 
-            //TODO: start parsing
+            Controller.Instance().getParsingController(guiHash, level).start();
         }
     }
 }

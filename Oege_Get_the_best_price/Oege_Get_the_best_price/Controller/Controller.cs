@@ -89,7 +89,7 @@ namespace Oege_Get_the_best_price.Controller
             switch (level)
             {
                 case 1:
-                    registerLevelOne(frm);
+                    registerLevelOne(frm, level);
                     break;
                 default:
                     break;
@@ -97,7 +97,7 @@ namespace Oege_Get_the_best_price.Controller
 
         }
 
-        private void registerLevelOne(Form frm)
+        private void registerLevelOne(Form frm, int level)
         {
             if (listExcelController == null)
                 listExcelController = new List<ExcelController>(); ;
@@ -114,7 +114,7 @@ namespace Oege_Get_the_best_price.Controller
             listDataController.Add(new DataController(frm.GetHashCode()));
             listExcelController.Add(new ExcelController(frm.GetHashCode()));
             listFormController.Add(new FormController(frm));
-            listParsingController.Add(new ParsingController(frm.GetHashCode()));
+            listParsingController.Add(new ParsingController(frm.GetHashCode(), level));
         }
 
         #endregion
