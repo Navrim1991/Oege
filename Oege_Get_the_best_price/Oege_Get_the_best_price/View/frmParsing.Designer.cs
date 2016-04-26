@@ -97,7 +97,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.lblEan);
             this.splitContainer1.Panel2.Controls.Add(this.txtEan);
             this.splitContainer1.Size = new System.Drawing.Size(1241, 643);
-            this.splitContainer1.SplitterDistance = 499;
+            this.splitContainer1.SplitterDistance = 616;
             this.splitContainer1.TabIndex = 0;
             // 
             // txtSuche
@@ -131,7 +131,7 @@
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(0, 65);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(497, 576);
+            this.listView.Size = new System.Drawing.Size(614, 576);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -352,6 +352,7 @@
             // 
             this.currencyControl1.Location = new System.Drawing.Point(119, 23);
             this.currencyControl1.Name = "currencyControl1";
+            this.currencyControl1.ReadOnly = true;
             this.currencyControl1.Size = new System.Drawing.Size(100, 20);
             this.currencyControl1.TabIndex = 4;
             // 

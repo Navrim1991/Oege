@@ -51,6 +51,8 @@ namespace Oege_Get_the_best_price.View
             if (parsingController == null)
                 throw new ArgumentNullException("parsingController", "parsingController ist null");
 
+            //lblAmazonPrice.ForeColor = Color.FromArgb()
+
         }
         #endregion
 

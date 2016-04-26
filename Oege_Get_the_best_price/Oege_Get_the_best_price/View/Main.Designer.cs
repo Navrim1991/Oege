@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl = new MdiTabControl.TabControl();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.oegetradingToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,13 +39,10 @@
             this.erstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelListeImportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.einzelneEanSuchenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mitOptionenSuchenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -135,8 +131,7 @@
             // 
             this.erstellenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.excelListeImportierenToolStripMenuItem,
-            this.einzelneEanSuchenToolStripMenuItem,
-            this.mitOptionenSuchenToolStripMenuItem});
+            this.einzelneEanSuchenToolStripMenuItem});
             this.erstellenToolStripMenuItem.Name = "erstellenToolStripMenuItem";
             this.erstellenToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.erstellenToolStripMenuItem.Text = "Erstellen";
@@ -145,23 +140,15 @@
             // 
             this.excelListeImportierenToolStripMenuItem.Name = "excelListeImportierenToolStripMenuItem";
             this.excelListeImportierenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.excelListeImportierenToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this.excelListeImportierenToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.excelListeImportierenToolStripMenuItem.Text = "Excel Liste Importieren";
             // 
             // einzelneEanSuchenToolStripMenuItem
             // 
             this.einzelneEanSuchenToolStripMenuItem.Name = "einzelneEanSuchenToolStripMenuItem";
             this.einzelneEanSuchenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.einzelneEanSuchenToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
+            this.einzelneEanSuchenToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.einzelneEanSuchenToolStripMenuItem.Text = "Einzelne Ean Suchen";
-            // 
-            // mitOptionenSuchenToolStripMenuItem
-            // 
-            this.mitOptionenSuchenToolStripMenuItem.Name = "mitOptionenSuchenToolStripMenuItem";
-            this.mitOptionenSuchenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.F)));
-            this.mitOptionenSuchenToolStripMenuItem.Size = new System.Drawing.Size(312, 22);
-            this.mitOptionenSuchenToolStripMenuItem.Text = "Mit Optionen Suchen";
             // 
             // extraToolStripMenuItem
             // 
@@ -185,10 +172,6 @@
             this.optionenToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.optionenToolStripMenuItem.Text = "Optionen";
             // 
-            // errorProvider
-            // 
-            this.errorProvider.ContainerControl = this;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,7 +187,6 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,11 +204,9 @@
         private System.Windows.Forms.ToolStripMenuItem erstellenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelListeImportierenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem einzelneEanSuchenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mitOptionenSuchenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionenToolStripMenuItem;
-        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 

@@ -82,6 +82,12 @@
     <Compile Include="Controller\Parsing\ParsingControllerIdealo.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\DataHolding.cs" />
+    <Compile Include="View\frmChooseColumn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmChooseColumn.Designer.cs">
+      <DependentUpon>frmChooseColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\frmParsing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\frmChooseColumn.resx">
+      <DependentUpon>frmChooseColumn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>
     </EmbeddedResource>

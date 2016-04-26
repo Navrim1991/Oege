@@ -61,6 +61,15 @@ namespace Oege_Get_the_best_price.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 30 ähnelt.
+        /// </summary>
+        internal static string formBackgroundRed {
+            get {
+                return ResourceManager.GetString("formBackgroundRed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Gelb {
