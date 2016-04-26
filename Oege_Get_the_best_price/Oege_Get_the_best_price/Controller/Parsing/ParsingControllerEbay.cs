@@ -41,6 +41,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
 
             foreach (Data element in listData)
             {
+
+                //TODO: begin threading
                 Thread.Sleep(100);
                 percent = ++counter * 100 / listCount;
                 if (frmPar != null)                    

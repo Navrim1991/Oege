@@ -167,5 +167,15 @@ namespace Oege_Get_the_best_price.View
             if(param != null)
                 excelController.readExcelFile((string)param[0], level, 3, 1, 7);
         }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvlArtikel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

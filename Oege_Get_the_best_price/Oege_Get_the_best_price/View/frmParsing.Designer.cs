@@ -134,6 +134,7 @@
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             // 
             // clmHeaderEan
             // 
@@ -244,6 +245,7 @@
             this.lvlArtikel.Size = new System.Drawing.Size(100, 13);
             this.lvlArtikel.TabIndex = 5;
             this.lvlArtikel.Text = "Artikelbeschreibung";
+            this.lvlArtikel.Click += new System.EventHandler(this.lvlArtikel_Click);
             // 
             // txtArtikel
             // 
@@ -344,13 +346,6 @@
             this.backgroundWorkerExcel.WorkerReportsProgress = true;
             this.backgroundWorkerExcel.WorkerSupportsCancellation = true;
             this.backgroundWorkerExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExcel_DoWork);
-            // 
-            // openFileDialog
-            // 
-            this.currencyControl1.Location = new System.Drawing.Point(119, 23);
-            this.currencyControl1.Name = "currencyControl1";
-            this.currencyControl1.Size = new System.Drawing.Size(100, 20);
-            this.currencyControl1.TabIndex = 4;
             // 
             // frmParsing
             // 

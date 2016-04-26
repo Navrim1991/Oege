@@ -12,9 +12,33 @@ namespace Oege_Get_the_best_price.View
 {
     public partial class frmChooseColumn : Form
     {
-        public frmChooseColumn()
+       
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
+
         }
+
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textSpaltenNummern_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
