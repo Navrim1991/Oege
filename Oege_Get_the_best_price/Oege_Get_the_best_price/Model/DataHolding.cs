@@ -9,7 +9,8 @@ namespace Oege_Get_the_best_price.Model
     class DataHolding
     {       
         #region attributes
-        List<Data> listData;
+        volatile List<Data> listData;
+        private readonly object syncLock;
         #endregion
 
         #region properties
@@ -31,7 +32,20 @@ namespace Oege_Get_the_best_price.Model
         public DataHolding()
         {
             listData = new List<Data>();
+            syncLock = new object();
         }
 
+        public void mergeList(List<Data> threadList, int id)
+        {
+            lock(syncLock)
+            {
+                int count = listData.Count;
+                for(int i = 0; i < count; i++)
+                {
+                    listData[i].PriceAmazon = threadList[i].PriceAmazon;
+                    //TODO usw.....
+                }
+            }            
+        }
     }
 }

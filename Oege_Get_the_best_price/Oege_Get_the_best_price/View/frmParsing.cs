@@ -12,6 +12,7 @@ namespace Oege_Get_the_best_price.View
 {
     public partial class frmParsing : Form
     {
+
         #region Attributs
 
         private static int frmCounter = 0;
@@ -20,6 +21,10 @@ namespace Oege_Get_the_best_price.View
         Controller.ExcelController excelController;
         Controller.FormController formController;
         Controller.Parsing.ParsingController parsingController;
+        private int percentProgressAmazon;
+        private int percentProgressEbay;
+        private int percentProgressIdealo;
+
         const short level = 1;
 
         #endregion
@@ -30,6 +35,10 @@ namespace Oege_Get_the_best_price.View
             
             InitializeComponent();
             frmCounter++;
+
+            percentProgressAmazon = 0;
+            percentProgressEbay = 0;
+            percentProgressIdealo = 0;
 
             controller = Controller.Controller.Instance();
             controller.Register(this, level);
@@ -70,5 +79,93 @@ namespace Oege_Get_the_best_price.View
         }
 
         #endregion
+
+        #region methods
+
+        public void importExcelFile()
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                List<object> param = new List<object>();
+                param.Add(openFileDialog.FileName);
+
+                //TODO Form für Spaltenauswahl
+
+                backgroundWorkerExcel.RunWorkerAsync(param);
+                
+
+            }
+        }
+
+        public void updateListView()
+        {
+            listView.Items.Clear();
+        }
+
+
+        #endregion
+
+        private void frmParsing_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void updateProgressBar(int percentAmazon, int percentEbay, int percentIdealo)
+        {
+            if (percentAmazon != -1)
+                percentProgressAmazon = percentAmazon;
+            else if (percentEbay != -1)
+                percentProgressEbay = percentEbay;
+            else if (percentIdealo != -1)
+                percentProgressIdealo = percentIdealo;
+
+            switch(percentProgressAmazon)
+            {
+                case 0:
+                    lblProgressAmazon.ForeColor = Color.Red;
+                    break;
+                case 50:
+                    lblProgressAmazon.ForeColor = Color.Orange;
+                    break;
+                case 100:
+                    lblProgressAmazon.ForeColor = Color.Green;
+                    break;
+            }
+
+            switch (percentProgressEbay)
+            {
+                case 0:
+                    lblProgressEbay.ForeColor = Color.Red;
+                    break;
+                case 50:
+                    lblProgressEbay.ForeColor = Color.Orange;
+                    break;
+                case 100:
+                    lblProgressEbay.ForeColor = Color.Green;
+                    break;
+            }
+
+            switch (percentProgressIdealo)
+            {
+                case 0:
+                    lblProgressIdealo.ForeColor = Color.Red;
+                    break;
+                case 50:
+                    lblProgressIdealo.ForeColor = Color.Orange;
+                    break;
+                case 100:
+                    lblProgressIdealo.ForeColor = Color.Green;
+                    break;
+            }
+
+            progressBarParsing.Value = (percentProgressAmazon + percentProgressEbay + percentProgressIdealo) / 3;
+        }
+
+        private void backgroundWorkerExcel_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<object> param = (List<object>)e.Argument;
+            if(param != null)
+                excelController.readExcelFile((string)param[0], level, 3, 1, 7);
+        }
     }
 }

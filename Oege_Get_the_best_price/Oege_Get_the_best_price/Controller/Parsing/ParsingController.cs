@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace Oege_Get_the_best_price.Controller.Parsing
 {
@@ -14,13 +16,13 @@ namespace Oege_Get_the_best_price.Controller.Parsing
         Ebay.ParsingControllerEbay parsingControllerEbay;
         Idealo.ParsingControllerIdealo parsingControllerIdealo;
 
-        public ParsingController(int hash)
+        public ParsingController(int hash, int level)
         {
             this.guiHash = hash;
 
-            this.parsingControllerAmazon = new Amazon.ParsingControllerAmazon(hash);
-            this.parsingControllerEbay = new Ebay.ParsingControllerEbay(hash);
-            this.parsingControllerIdealo = new Idealo.ParsingControllerIdealo(hash);
+            this.parsingControllerAmazon = new Amazon.ParsingControllerAmazon(hash, level);
+            this.parsingControllerEbay = new Ebay.ParsingControllerEbay(hash, level);
+            this.parsingControllerIdealo = new Idealo.ParsingControllerIdealo(hash, level);
         }
 
         public int GuiHash
@@ -58,6 +60,17 @@ namespace Oege_Get_the_best_price.Controller.Parsing
         }
 
         #endregion
+
+        public void start()
+        {
+            Thread amazonThread = new Thread(parsingControllerAmazon.start);
+            Thread ebayThread = new Thread(parsingControllerEbay.start);
+            Thread idealoThread = new Thread(parsingControllerIdealo.start);
+
+            amazonThread.Start();
+            ebayThread.Start();
+            idealoThread.Start();
+        }
 
     }
 }
