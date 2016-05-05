@@ -33,3 +33,19 @@ E:\Dropbox\Dropbox\Neuer Ordner\Oege\Oege_Get_the_best_price\Oege_Get_the_best_p
 E:\Dropbox\Dropbox\Neuer Ordner\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.Main.resources
 E:\Dropbox\Dropbox\Neuer Ordner\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.GenerateResource.Cache
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmChooseColumn.resources
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe.config
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.exe
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.pdb
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.pdb
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Currency_Control.dll
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Currency_Control.pdb
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.xml
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csprojResolveAssemblyReference.cache
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.Properties.Resources.resources
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmChooseColumn.resources
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmParsing.resources
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.Main.resources
+C:\Users\marvi\Dropbox\Repository\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.GenerateResource.Cache

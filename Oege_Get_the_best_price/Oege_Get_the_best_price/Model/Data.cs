@@ -11,7 +11,9 @@ namespace Oege_Get_the_best_price.Model
         #region attributes
         private string ean;
         private string aritcel;
-        private string url;
+        private string urlAmazon;
+        private string urlEbay;
+        private string urlIdealo;
         private double priceAmazon;
         private double priceEbay;
         private double priceIdealo;
@@ -45,16 +47,42 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
-        public string Url
+        public string UrlAmazon
         {
             get
             {
-                return Url;
+                return urlAmazon;
             }
 
             set
             {
-                Url = value;
+                urlAmazon = value;
+            }
+        }
+
+        public string UrlEbay
+        {
+            get
+            {
+                return urlEbay;
+            }
+
+            set
+            {
+                urlEbay = value;
+            }
+        }
+
+        public string UrlIdealo
+        {
+            get
+            {
+                return urlIdealo;
+            }
+
+            set
+            {
+                urlIdealo = value;
             }
         }
 
@@ -116,7 +144,9 @@ namespace Oege_Get_the_best_price.Model
         {
             this.ean = ean;
             this.aritcel = "";
-            this.url= "";
+            this.urlAmazon= "";
+            this.urlEbay = "";
+            this.urlIdealo = "";
             this.priceAmazon = 0;
             this.priceEbay = 0;
             this.PriceIdealo = 0;
@@ -132,11 +162,13 @@ namespace Oege_Get_the_best_price.Model
             this.ownPrice = ownPrice;
         }
 
-        public Data(string ean, string articel, string url, double priceAmazon, double priceEbay, double priceIdealo, double ownPrice)
+        public Data(string ean, string articel, string urlAmazon, string urlEbay, string urlIdealo, double priceAmazon, double priceEbay, double priceIdealo, double ownPrice)
         {
             this.ean = ean;
             this.aritcel = articel;
-            this.url = url;
+            this.urlAmazon = urlAmazon;
+            this.urlEbay = urlEbay;
+            this.urlIdealo = urlIdealo;
             this.priceAmazon = priceAmazon;
             this.priceEbay = priceEbay;
             this.priceIdealo = priceIdealo;
