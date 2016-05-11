@@ -17,6 +17,9 @@ namespace Oege_Get_the_best_price.Model
         private double priceAmazon;
         private double priceEbay;
         private double priceIdealo;
+        private double shippingAmazon;
+        private double shippingEbay;
+        private double shippingIdealo;
         private double ownPrice;
         #endregion
 
@@ -125,6 +128,45 @@ namespace Oege_Get_the_best_price.Model
             }
         }
 
+        public double ShippingAmazon
+        {
+            get
+            {
+                return shippingAmazon;
+            }
+
+            set
+            {
+                shippingAmazon = value;
+            }
+        }
+
+        public double ShippingEbay
+        {
+            get
+            {
+                return shippingEbay;
+            }
+
+            set
+            {
+                shippingEbay = value;
+            }
+        }
+
+        public double ShippingIdealo
+        {
+            get
+            {
+                return shippingIdealo;
+            }
+
+            set
+            {
+                shippingIdealo = value;
+            }
+        }
+
         public double OwnPrice
         {
             get
@@ -156,13 +198,19 @@ namespace Oege_Get_the_best_price.Model
         {
             this.ean = ean;
             this.aritcel = articel;
+            this.urlAmazon = "";
+            this.urlEbay = "";
+            this.urlIdealo = "";
             this.priceAmazon = 0;
             this.priceEbay = 0;
-            this.PriceIdealo = 0;
+            this.priceIdealo = 0;
+            this.shippingAmazon = 0;
+            this.shippingEbay = 0;
+            this.shippingIdealo = 0;
             this.ownPrice = ownPrice;
         }
 
-        public Data(string ean, string articel, string urlAmazon, string urlEbay, string urlIdealo, double priceAmazon, double priceEbay, double priceIdealo, double ownPrice)
+        public Data(string ean, string articel, string urlAmazon, string urlEbay, string urlIdealo, double priceAmazon, double priceEbay, double priceIdealo, double shippingAmazon, double shippingEbay, double shippingIdealo, double ownPrice)
         {
             this.ean = ean;
             this.aritcel = articel;
@@ -172,6 +220,9 @@ namespace Oege_Get_the_best_price.Model
             this.priceAmazon = priceAmazon;
             this.priceEbay = priceEbay;
             this.priceIdealo = priceIdealo;
+            this.shippingAmazon = shippingAmazon;
+            this.shippingEbay = shippingEbay;
+            this.shippingIdealo = shippingIdealo;
             this.ownPrice = ownPrice;
         }
     }
