@@ -70,8 +70,6 @@ namespace Oege_Get_the_best_price.Model
                     default:
                         break;
                 }
-                
-                
             }            
         }
     }

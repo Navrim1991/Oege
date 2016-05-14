@@ -68,8 +68,12 @@ namespace Oege_Get_the_best_price.Controller.Parsing
             Thread idealoThread = new Thread(parsingControllerIdealo.start);
 
             amazonThread.Start();
-            //ebayThread.Start();
+            ebayThread.Start();
             //idealoThread.Start();
+
+            amazonThread.Join();
+            ebayThread.Join();
+
         }
 
     }

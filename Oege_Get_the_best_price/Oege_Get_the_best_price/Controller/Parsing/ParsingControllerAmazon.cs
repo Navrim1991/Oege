@@ -146,49 +146,82 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
         {
             rootNode = GetRootNode(tmp.Ean);
             //rootNode = GetRootNode("4210201105657");
-            var resultNode = rootNode.SelectSingleNode("//div[@id='atfResults']");
 
-            if (ArticleFound(resultNode, tmp.Ean))
+            if (ArticleFound(rootNode, tmp.Ean))
             {
-                var resultOne = resultNode.SelectSingleNode("//li[@id='result_0']");
-                var fixedLeftGrid = resultOne.SelectSingleNode("//div[@class='a-fixed-left-grid-col a-col-right']");
-                HtmlNodeCollection offerCollection = fixedLeftGrid.SelectSingleNode("//div[@class='a-column a-span7']").ChildNodes;
-                string innerHtml = fixedLeftGrid.InnerHtml;
-                int index = innerHtml.IndexOf("title=\"");
-                innerHtml = innerHtml.Substring(index + ("title=\"").Length);
-                index = innerHtml.IndexOf("\" href");
-                innerHtml = innerHtml.Substring(0, index);
-                tmp.DiscriptionAmazon = innerHtml;
+                var resultNode = rootNode.SelectSingleNode("//div[@id='atfResults']");
 
-                HtmlNode matchNode = null;
-                foreach (HtmlNode node in offerCollection)
-                {
-                    bool match = Regex.Match(node.InnerText, "Andere AngeboteEUR [0-9]*,[0-9]{1,2}neu").Success;
+                HtmlNode searchResults = resultNode.SelectSingleNode("//ul[@id='s-results-list-atf']");
 
-                    if(match)
+                HtmlNode cheapestNode = null;
+                double minPrice = 0;
+
+
+                    HtmlNode tmpNode = searchResults;
+
+                    HtmlNodeCollection offerCollection = tmpNode.SelectNodes("//div[@class='a-column a-span7']");
+
+                    for (int j = 0; j < offerCollection.Count; j++)
                     {
-                        matchNode = node;
-                        break;
-                    }
-                }
+                        bool success = Regex.Match(offerCollection[j].InnerText, "Andere AngeboteEUR [0-9]*,[0-9]{1,2}neu").Success;
 
-                if (matchNode != null)
+                        if (success)
+                        {
+                            const string SEARCH_STRING = "Andere AngeboteEUR ";
+                            int index = offerCollection[j].InnerText.IndexOf(SEARCH_STRING);
+                            string subString = offerCollection[j].InnerText.Substring(index + SEARCH_STRING.Length);
+
+                            Match match = Regex.Match(subString, "[0-9]*,[0-9]{1,2}");
+                            string priceString = match.Value;
+
+                            double price = 0;
+                            bool parse = Double.TryParse(priceString, out price);
+
+                            if (parse)
+                            {
+                                if (minPrice == 0)
+                                {
+                                    minPrice = price;
+                                    cheapestNode = offerCollection[j];
+                                }
+                                else if (minPrice > price)
+                                {
+                                    minPrice = price;
+                                    cheapestNode = offerCollection[j];
+                                }
+                            }
+                        }
+                    }
+
+                if (cheapestNode != null)
                 {
-                    innerHtml = matchNode.InnerHtml;
-                    index = innerHtml.IndexOf("href=\"");
-                    innerHtml = innerHtml.Substring(index + ("href=\"").Length);
-                    index = innerHtml.IndexOf("\"><");
-                    innerHtml = innerHtml.Substring(0 , index);
-                    tmp.UrlAmazon = innerHtml;
+                    HtmlNode linkNode = null;
+                    foreach (HtmlNode element in cheapestNode.ChildNodes)
+                    {
+                        if (element.InnerText.StartsWith("Andere AngeboteEUR"))
+                        {
+                            tmp.UrlAmazon = selectSubstring(element.InnerHtml, "href=\"", "\"><");
+                            return;
+                        }
+                    }
                 }
             }
         }
 
+        private string selectSubstring(string str, string headEscape, string tailEscape)
+        {
+            int index = str.IndexOf(headEscape);
+            string subString = str.Substring(index + headEscape.Length);
+            index = subString.IndexOf(tailEscape);
+            return subString.Substring(0, index);
+
+        }
+
         private HtmlNode GetRootNode(string ean)
         {
-            string url =
-                "http://www.amazon.de/s/ref=sr_st_price-asc-rank?__mk_de_DE=%C3%85M%C3%85Z%C3%95%C3%91&keywords=4005808747405&sort=price-asc-rank";
-            
+            //string url =
+                //"http://www.amazon.de/s/ref=sr_st_price-asc-rank?__mk_de_DE=%C3%85M%C3%85Z%C3%95%C3%91&keywords=4005808747405&sort=price-asc-rank";
+            string url = "http://www.amazon.de/s/ref=sr_st_price-asc-rank?&keywords=" + ean;
             HtmlWeb client = new HtmlWeb();
             client.UserAgent = "Chrome/50.0";
             client.UseCookies = true;
