@@ -81,7 +81,7 @@ namespace Oege_Get_the_best_price.Controller
                                         string tmpString = textArray[indexPrice];
 
                                         regExMatch = null;
-                                        regExMatch = Regex.Match(tmpString, "[0-9]*(?:.[0-9]{2})");
+                                        regExMatch = Regex.Match(tmpString, "[0-9]*(?:.[0-9]{1,2})");
                                         if (regExMatch.Success)
                                         {
                                             tmpString = regExMatch.Groups[0].Value;

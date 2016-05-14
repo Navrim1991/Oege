@@ -7,7 +7,15 @@ using System.Threading.Tasks;
 namespace Oege_Get_the_best_price.Model
 {
     class DataHolding
-    {       
+    {
+        public enum Platform
+        {
+            Amazon,
+            Ebay,
+            Idealo,
+            None
+        };
+
         #region attributes
         volatile List<Data> listData;
         private readonly object syncLock;
@@ -35,16 +43,35 @@ namespace Oege_Get_the_best_price.Model
             syncLock = new object();
         }
 
-        public void mergeList(List<Data> threadList, int id)
+        public void mergeList(Platform platform, List<Data> threadList)
         {
             lock(syncLock)
             {
                 int count = listData.Count;
-                for(int i = 0; i < count; i++)
+                switch (platform)
                 {
-                    listData[i].PriceAmazon = threadList[i].PriceAmazon;
-                    //TODO usw.....
+                    case Platform.Amazon:
+                        for (int i = 0; i < count; i++)
+                        {
+                            listData[i].PriceAmazon = threadList[i].PriceAmazon;
+                            listData[i].AmazonShipping = threadList[i].AmazonShipping;
+                            listData[i].UrlAmazon = threadList[i].UrlAmazon;
+                        }
+                        break;
+                    case Platform.Ebay:
+                        for (int i = 0; i < count; i++)
+                        {
+                            listData[i].PriceEbay = threadList[i].PriceEbay;
+                            listData[i].EbayShipping = threadList[i].EbayShipping;
+                            listData[i].UrlEbay = threadList[i].UrlEbay;
+                            listData[i].DiscriptionEbay = threadList[i].DiscriptionEbay;
+                        }
+                        break;
+                    default:
+                        break;
                 }
+                
+                
             }            
         }
     }

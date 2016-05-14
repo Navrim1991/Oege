@@ -11,6 +11,7 @@ using Oege_Get_the_best_price.Model;
 using System.Windows.Forms;
 using Oege_Get_the_best_price.View;
 using System.Text.RegularExpressions;
+using System.Windows.Media.TextFormatting;
 
 namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 {
@@ -46,13 +47,11 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                 foreach (Data element in listData)
                 {
-                    element.UrlAmazon = BeginParsing(element);
+                    Data tmp = element;
+                    BeginParsing(ref tmp);
                     if (element.UrlAmazon != "")
                     {
-                        HtmlNode shippingNode = null;
-                        double[] priceArray = GetPrice(element.UrlAmazon, ref shippingNode);
-                        element.PriceAmazon = priceArray[0];
-                        element.ShippingAmazon = priceArray[1]; 
+                        GetPrice(tmp.UrlAmazon, ref tmp);
                     }
                         
                     Thread.Sleep(20);
@@ -60,12 +59,13 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                     if (frmPar != null)
                         frmPar.BeginInvoke(del, new object[] { percent, -1, -1 });
                 }
+
+                Controller.Instance().getDataController(guiHash, level).DataHolding.mergeList(DataHolding.Platform.Amazon, listData);
             }
         }
 
-        private double[] GetPrice(string url, ref HtmlNode shippingNode)
+        private void GetPrice(string url, ref Data tmp)
         {
-            double[] retVal = new double[2];
             HtmlWeb client = new HtmlWeb();
             client.UserAgent = "Chrome/50.0";
             client.UseCookies = true;
@@ -76,7 +76,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@class='a-section a-spacing-double-large']");
 
             HtmlNodeCollection nodeCollection = node.SelectNodes("//div[@class='a-row a-spacing-mini olpOffer']");
-            shippingNode = nodeCollection.First();
+            HtmlNode shippingNode = nodeCollection.First();
             String innerText = nodeCollection.First().InnerText;
 
             innerText = innerText.Trim();
@@ -95,15 +95,31 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             bool parse = Double.TryParse(priceString, out price);
 
             if (parse)
-                retVal[0] = price;
+                tmp.PriceAmazon = price;
             else
-                retVal[0] = 0.0;
+                tmp.PriceAmazon = 0.0;
 
             HtmlNodeCollection shippingNodeCollection = shippingNode.SelectNodes("//span[@class='a-color-secondary']");
             shippingNode = shippingNodeCollection.First();
 
             if (shippingNode != null && shippingNode.InnerText.Contains("& bestellbar mit kostenlosem Premiumversand."))
-                retVal[1] = 0.0;
+            {
+                tmp.AmazonShipping = 0.0;
+                return;
+            }
+                
+
+            if (shippingNode != null)
+            {
+                string shippingInnerText = shippingNode.InnerText.ToLower();
+
+                if (shippingInnerText.Contains("kostenlose lieferung") || shippingInnerText.Contains("kostenfreie lieferung") )
+                {
+                    tmp.AmazonShipping = 0.0;
+                    return;
+                }
+            }
+
 
             Match match = Regex.Match(shippingNode.InnerText, "EUR [0-9]*,[0-9]{1,2}|Versandkosten");
 
@@ -115,12 +131,10 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                 parse = Double.TryParse(priceString, out price);
 
                 if (parse)
-                    retVal[1] = price;
+                    tmp.AmazonShipping = price;
                 else
-                    retVal[1] = 0.0;
+                    tmp.AmazonShipping = 0.0;
             }
-
-            return retVal;
         }
 
         private bool IsNumber(char number)
@@ -128,18 +142,24 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             return number >= 48 && number <= 57 ? true : false;
         }
 
-        private string BeginParsing(Data element)
+        private void BeginParsing(ref Data tmp)
         {
-            rootNode = GetRootNode(element.Ean);
-            //rootNode = getRootNode("4005808647682");
-            var resultNode = rootNode.SelectSingleNode("//div[@id='rightResultsATF']");
+            rootNode = GetRootNode(tmp.Ean);
+            //rootNode = GetRootNode("4210201105657");
+            var resultNode = rootNode.SelectSingleNode("//div[@id='atfResults']");
 
-            if (ArticleFound(resultNode.InnerHtml, element.Ean))
+            if (ArticleFound(resultNode, tmp.Ean))
             {
                 var resultOne = resultNode.SelectSingleNode("//li[@id='result_0']");
                 var fixedLeftGrid = resultOne.SelectSingleNode("//div[@class='a-fixed-left-grid-col a-col-right']");
                 HtmlNodeCollection offerCollection = fixedLeftGrid.SelectSingleNode("//div[@class='a-column a-span7']").ChildNodes;
-                
+                string innerHtml = fixedLeftGrid.InnerHtml;
+                int index = innerHtml.IndexOf("title=\"");
+                innerHtml = innerHtml.Substring(index + ("title=\"").Length);
+                index = innerHtml.IndexOf("\" href");
+                innerHtml = innerHtml.Substring(0, index);
+                tmp.DiscriptionAmazon = innerHtml;
+
                 HtmlNode matchNode = null;
                 foreach (HtmlNode node in offerCollection)
                 {
@@ -154,21 +174,21 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                 if (matchNode != null)
                 {
-                    string innerHtml = matchNode.InnerHtml;
-                    int index = innerHtml.IndexOf("href=\"");
+                    innerHtml = matchNode.InnerHtml;
+                    index = innerHtml.IndexOf("href=\"");
                     innerHtml = innerHtml.Substring(index + ("href=\"").Length);
                     index = innerHtml.IndexOf("\"><");
                     innerHtml = innerHtml.Substring(0 , index);
-                    return innerHtml;
+                    tmp.UrlAmazon = innerHtml;
                 }
             }
-
-            return "";
         }
 
         private HtmlNode GetRootNode(string ean)
         {
-            String url = "http://www.amazon.de/s/ref=nb_sb_noss?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&url=search-alias%3Daps&field-keywords=" + ean +"&rh=i%3Aaps%2Ck%3A" + ean;
+            string url =
+                "http://www.amazon.de/s/ref=sr_st_price-asc-rank?__mk_de_DE=%C3%85M%C3%85Z%C3%95%C3%91&keywords=4005808747405&sort=price-asc-rank";
+            
             HtmlWeb client = new HtmlWeb();
             client.UserAgent = "Chrome/50.0";
             client.UseCookies = true;
@@ -179,9 +199,14 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             return doc.DocumentNode;
         }
 
-        private bool ArticleFound(string innerHtml, string ean)
+        private bool ArticleFound(HtmlNode articleNode, string ean)
         {
-            return !Regex.Match(innerHtml, "Ihre Suche nach|" + ean + "|ergab leider keine Produkttreffer").Success;
+            HtmlNode tmp = articleNode.SelectSingleNode("//h1[@id='noResultsTitle']");
+
+            if (tmp == null)
+                return true;
+
+            return false;
         }
     }
 }

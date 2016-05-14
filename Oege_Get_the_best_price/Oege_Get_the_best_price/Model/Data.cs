@@ -9,221 +9,87 @@ namespace Oege_Get_the_best_price.Model
     class Data
     {
         #region attributes
-        private string ean;
-        private string aritcel;
-        private string urlAmazon;
-        private string urlEbay;
-        private string urlIdealo;
-        private double priceAmazon;
-        private double priceEbay;
-        private double priceIdealo;
-        private double shippingAmazon;
-        private double shippingEbay;
-        private double shippingIdealo;
-        private double ownPrice;
+
+        private string _discriptionAmazon;
+        private string _discriptionEbay;
+        private string _discriptionIdealo;
+
         #endregion
-
         #region properties
-        public string Ean
-        {
-            get
-            {
-                return ean;
-            }
+        public string Ean { get; set; }
 
-            set
-            {
-                ean = value;
-            }
-        }
+        public string Aritcel { get; set; }
 
-        public string Aritcel
-        {
-            get
-            {
-                return aritcel;
-            }
+        public string UrlAmazon { get; set; }
 
-            set
-            {
-                aritcel = value;
-            }
-        }
+        public string UrlEbay { get; set; }
 
-        public string UrlAmazon
-        {
-            get
-            {
-                return urlAmazon;
-            }
+        public string UrlIdealo { get; set; }
 
-            set
-            {
-                urlAmazon = value;
-            }
-        }
+        public string DiscriptionAmazon { get; set; }
 
-        public string UrlEbay
-        {
-            get
-            {
-                return urlEbay;
-            }
+        public string DiscriptionEbay { get; set; }
 
-            set
-            {
-                urlEbay = value;
-            }
-        }
+        public string DiscriptionIdealo { get; set; }
 
-        public string UrlIdealo
-        {
-            get
-            {
-                return urlIdealo;
-            }
+        public double PriceAmazon { get; set; }
 
-            set
-            {
-                urlIdealo = value;
-            }
-        }
+        public double PriceEbay { get; set; }
 
-        public double PriceAmazon
-        {
-            get
-            {
-                return priceAmazon;
-            }
+        public double PriceIdealo { get; set; }
 
-            set
-            {
-                priceAmazon = value;
-            }
-        }
+        public double AmazonShipping { get; set; }
 
-        public double PriceEbay
-        {
-            get
-            {
-                return priceEbay;
-            }
+        public double EbayShipping { get; set; }
 
-            set
-            {
-                priceEbay = value;
-            }
-        }
+        public double ShippingIdealo { get; set; }
 
-        public double PriceIdealo
-        {
-            get
-            {
-                return priceIdealo;
-            }
-
-            set
-            {
-                priceIdealo = value;
-            }
-        }
-
-        public double ShippingAmazon
-        {
-            get
-            {
-                return shippingAmazon;
-            }
-
-            set
-            {
-                shippingAmazon = value;
-            }
-        }
-
-        public double ShippingEbay
-        {
-            get
-            {
-                return shippingEbay;
-            }
-
-            set
-            {
-                shippingEbay = value;
-            }
-        }
-
-        public double ShippingIdealo
-        {
-            get
-            {
-                return shippingIdealo;
-            }
-
-            set
-            {
-                shippingIdealo = value;
-            }
-        }
-
-        public double OwnPrice
-        {
-            get
-            {
-                return ownPrice;
-            }
-
-            set
-            {
-                ownPrice = value;
-            }
-        }
+        public double OwnPrice { get; set; }
 
         #endregion
 
         public Data(string ean)
         {
-            this.ean = ean;
-            this.aritcel = "";
-            this.urlAmazon= "";
-            this.urlEbay = "";
-            this.urlIdealo = "";
-            this.priceAmazon = 0;
-            this.priceEbay = 0;
+            this.Ean = ean;
+            this.Aritcel = "";
+            this.UrlAmazon= "";
+            this.UrlEbay = "";
+            this.UrlIdealo = "";
+            this.PriceAmazon = 0;
+            this.PriceEbay = 0;
             this.PriceIdealo = 0;
-            this.ownPrice = 0;
+            this.OwnPrice = 0;
         }
         public Data(string ean, string articel, double ownPrice)
         {
-            this.ean = ean;
-            this.aritcel = articel;
-            this.urlAmazon = "";
-            this.urlEbay = "";
-            this.urlIdealo = "";
-            this.priceAmazon = 0;
-            this.priceEbay = 0;
-            this.priceIdealo = 0;
-            this.shippingAmazon = 0;
-            this.shippingEbay = 0;
-            this.shippingIdealo = 0;
-            this.ownPrice = ownPrice;
+            this.Ean = ean;
+            this.Aritcel = articel;
+            this.UrlAmazon = "";
+            this.UrlEbay = "";
+            this.UrlIdealo = "";
+            this.PriceAmazon = 0;
+            this.PriceEbay = 0;
+            this.PriceIdealo = 0;
+            this.AmazonShipping = 0;
+            this.EbayShipping = 0;
+            this.ShippingIdealo = 0;
+            this.OwnPrice = ownPrice;
         }
 
-        public Data(string ean, string articel, string urlAmazon, string urlEbay, string urlIdealo, double priceAmazon, double priceEbay, double priceIdealo, double shippingAmazon, double shippingEbay, double shippingIdealo, double ownPrice)
+        public Data(string ean, string articel, string urlAmazon, string urlEbay, string urlIdealo, double priceAmazon, double priceEbay, double priceIdealo, double _amazonShipping, double ebayShipping, double shippingIdealo, double ownPrice)
         {
-            this.ean = ean;
-            this.aritcel = articel;
-            this.urlAmazon = urlAmazon;
-            this.urlEbay = urlEbay;
-            this.urlIdealo = urlIdealo;
-            this.priceAmazon = priceAmazon;
-            this.priceEbay = priceEbay;
-            this.priceIdealo = priceIdealo;
-            this.shippingAmazon = shippingAmazon;
-            this.shippingEbay = shippingEbay;
-            this.shippingIdealo = shippingIdealo;
-            this.ownPrice = ownPrice;
+            this.Ean = ean;
+            this.Aritcel = articel;
+            this.UrlAmazon = urlAmazon;
+            this.UrlEbay = urlEbay;
+            this.UrlIdealo = urlIdealo;
+            this.PriceAmazon = priceAmazon;
+            this.PriceEbay = priceEbay;
+            this.PriceIdealo = priceIdealo;
+            this.AmazonShipping = _amazonShipping;
+            this.EbayShipping = ebayShipping;
+            this.ShippingIdealo = shippingIdealo;
+            this.OwnPrice = ownPrice;
         }
     }
 }
