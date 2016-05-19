@@ -36,15 +36,10 @@
             this.clmHeaderArticel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderAmazon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderEbay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmHeaderIdealo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblProgressAmazon = new System.Windows.Forms.Label();
             this.lblProgressEbay = new System.Windows.Forms.Label();
-            this.lblProgressIdealo = new System.Windows.Forms.Label();
             this.lvlProgress = new System.Windows.Forms.Label();
             this.progressBarParsing = new System.Windows.Forms.ProgressBar();
-            this.grpBoxIdealo = new System.Windows.Forms.GroupBox();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
             this.lvlArtikel = new System.Windows.Forms.Label();
             this.txtArtikel = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
@@ -57,12 +52,10 @@
             this.lblEan = new System.Windows.Forms.Label();
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.grpBoxIdealo.SuspendLayout();
             this.grpBoxEbay.SuspendLayout();
             this.grpBoxAmazon.SuspendLayout();
             this.SuspendLayout();
@@ -85,10 +78,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressAmazon);
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressEbay);
-            this.splitContainer1.Panel2.Controls.Add(this.lblProgressIdealo);
             this.splitContainer1.Panel2.Controls.Add(this.lvlProgress);
             this.splitContainer1.Panel2.Controls.Add(this.progressBarParsing);
-            this.splitContainer1.Panel2.Controls.Add(this.grpBoxIdealo);
             this.splitContainer1.Panel2.Controls.Add(this.lvlArtikel);
             this.splitContainer1.Panel2.Controls.Add(this.txtArtikel);
             this.splitContainer1.Panel2.Controls.Add(this.grpBoxEbay);
@@ -124,8 +115,7 @@
             this.clmHeaderEan,
             this.clmHeaderArticel,
             this.clmHeaderAmazon,
-            this.clmHeaderEbay,
-            this.clmHeaderIdealo});
+            this.clmHeaderEbay});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(0, 65);
@@ -158,12 +148,6 @@
             this.clmHeaderEbay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.clmHeaderEbay.Width = 36;
             // 
-            // clmHeaderIdealo
-            // 
-            this.clmHeaderIdealo.Text = "Idealo";
-            this.clmHeaderIdealo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.clmHeaderIdealo.Width = 67;
-            // 
             // lblProgressAmazon
             // 
             this.lblProgressAmazon.AutoSize = true;
@@ -182,15 +166,6 @@
             this.lblProgressEbay.TabIndex = 9;
             this.lblProgressEbay.Text = "Ebay";
             // 
-            // lblProgressIdealo
-            // 
-            this.lblProgressIdealo.AutoSize = true;
-            this.lblProgressIdealo.Location = new System.Drawing.Point(180, 437);
-            this.lblProgressIdealo.Name = "lblProgressIdealo";
-            this.lblProgressIdealo.Size = new System.Drawing.Size(36, 13);
-            this.lblProgressIdealo.TabIndex = 8;
-            this.lblProgressIdealo.Text = "Idealo";
-            // 
             // lvlProgress
             // 
             this.lvlProgress.AutoSize = true;
@@ -206,36 +181,6 @@
             this.progressBarParsing.Name = "progressBarParsing";
             this.progressBarParsing.Size = new System.Drawing.Size(383, 23);
             this.progressBarParsing.TabIndex = 6;
-            // 
-            // grpBoxIdealo
-            // 
-            this.grpBoxIdealo.Controls.Add(this.linkLabel2);
-            this.grpBoxIdealo.Controls.Add(this.label2);
-            this.grpBoxIdealo.Location = new System.Drawing.Point(27, 306);
-            this.grpBoxIdealo.Name = "grpBoxIdealo";
-            this.grpBoxIdealo.Size = new System.Drawing.Size(383, 91);
-            this.grpBoxIdealo.TabIndex = 4;
-            this.grpBoxIdealo.TabStop = false;
-            this.grpBoxIdealo.Text = "Idealo";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(3, 54);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(68, 13);
-            this.linkLabel2.TabIndex = 6;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "<Platzhalter>";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Preis";
             // 
             // lvlArtikel
             // 
@@ -356,15 +301,12 @@
             this.Name = "frmParsing";
             this.Text = "find the price";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParsing_FormClosing);
-            this.Load += new System.EventHandler(this.frmParsing_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.grpBoxIdealo.ResumeLayout(false);
-            this.grpBoxIdealo.PerformLayout();
             this.grpBoxEbay.ResumeLayout(false);
             this.grpBoxEbay.PerformLayout();
             this.grpBoxAmazon.ResumeLayout(false);
@@ -381,17 +323,13 @@
         private System.Windows.Forms.ColumnHeader clmHeaderArticel;
         private System.Windows.Forms.ColumnHeader clmHeaderAmazon;
         private System.Windows.Forms.ColumnHeader clmHeaderEbay;
-        private System.Windows.Forms.ColumnHeader clmHeaderIdealo;
         private System.Windows.Forms.Label lblEan;
         private System.Windows.Forms.TextBox txtEan;
         private System.Windows.Forms.Label lvlArtikel;
         private System.Windows.Forms.TextBox txtArtikel;
         private System.Windows.Forms.GroupBox grpBoxEbay;
         private System.Windows.Forms.GroupBox grpBoxAmazon;
-        private System.Windows.Forms.GroupBox grpBoxIdealo;
         private System.Windows.Forms.Label lblAmazonPrice;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lblEbayPrice;
         private System.Windows.Forms.LinkLabel linkLblAmazon;
@@ -399,11 +337,9 @@
         private System.Windows.Forms.ProgressBar progressBarParsing;
         private System.Windows.Forms.TextBox txtSuche;
         private System.Windows.Forms.Label lblSearch;
-        private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
-        private System.Windows.Forms.Label lblProgressIdealo;
         private Currency_Control.CurrencyControl currencyControl1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
     }
 }

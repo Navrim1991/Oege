@@ -14,7 +14,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Idealo
     {
         int guiHash;
         int level;
-        private delegate void progressBarDelegate(int percentAmazon, int percentEbay, int percentIdealo);
+        private delegate void progressBarDelegate(frmParsing.Platform platform, int percent);
 
         public ParsingControllerIdealo(int hash, int level)
         {
@@ -43,7 +43,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Idealo
                 Thread.Sleep(100);
                 percent = ++counter * 100 / listCount;
                 if (frmPar != null)
-                    frmPar.BeginInvoke(del, new object[] { -1 , -1, percent });
+                    frmPar.BeginInvoke(del, new object[] { frmParsing.Platform.Idealo, percent });
 
             }
         }

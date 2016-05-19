@@ -16,7 +16,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
     {
         int guiHash;
         int level;
-        private delegate void progressBarDelegate(int percentAmazon, int percentEbay, int percentIdealo);
+        private delegate void progressBarDelegate(frmParsing.Platform platform, int percent);
 
         private HtmlNode rootNode;
 
@@ -54,7 +54,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                 Thread.Sleep(20);
                 percent = ++counter * 100 / listCount;
                 if (frmPar != null)                    
-                    frmPar.BeginInvoke(del, new object[] { -1, percent, -1 });
+                    frmPar.BeginInvoke(del, new object[] { frmParsing.Platform.Ebay, percent });
             }
             Controller.Instance().getDataController(guiHash, level).DataHolding.mergeList(DataHolding.Platform.Ebay, listData);
         }
@@ -69,67 +69,71 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
             {
                 //resultNode = rootNode.SelectSingleNode("//div[@id='Results']");
                 resultNode = rootNode.SelectSingleNode("//ul[@id='ListViewInner']");
-                resultNode = resultNode.ChildNodes.First(a => a.Name == "li");
-
-                HtmlNode titleNode = resultNode.SelectSingleNode("//h3[@class='lvtitle']");
-                string innerHtml = titleNode.InnerHtml;
-                string title = titleNode.InnerText.Trim();
-                string url = "";
-
-
-                int index = innerHtml.IndexOf("href=\"");
-                url = innerHtml.Substring(index + ("href=\"").Length);
-                index = url.IndexOf("\" class");
-                url = url.Substring(0, index);
-
-                tmp.DiscriptionEbay = title;
-                tmp.UrlEbay = url;
-
-                HtmlNode priceNode = resultNode.SelectSingleNode("//li[@class='lvprice prc']");
-
-                string innerText = priceNode.InnerText.Trim();
-                innerText = innerText.Replace("EUR ", "");
-
-                string priceString = "";
-                for (int i = 0; i < innerText.Length; i++)
+                if(resultNode != null)
                 {
-                    if (innerText[i] == '\n')
-                        break;
-                    if (innerText[i] == 44 || IsNumber(innerText[i]))
-                        priceString += innerText[i];
-                }
+                    resultNode = resultNode.ChildNodes.First(a => a.Name == "li");
 
-                double price;
-                bool parse = Double.TryParse(priceString, out price);
+                    HtmlNode titleNode = resultNode.SelectSingleNode("//h3[@class='lvtitle']");
+                    string innerHtml = titleNode.InnerHtml;
+                    string title = titleNode.InnerText.Trim();
+                    string url = "";
 
-                tmp.PriceEbay = parse ? price : 0.0;
 
-                HtmlNode shippingNode = resultNode.SelectSingleNode("//li[@class='lvshipping']");
+                    int index = innerHtml.IndexOf("href=\"");
+                    url = innerHtml.Substring(index + ("href=\"").Length);
+                    index = url.IndexOf("\" class");
+                    url = url.Substring(0, index);
 
-                innerText = shippingNode.InnerText.Trim();
+                    tmp.DiscriptionEbay = title;
+                    tmp.UrlEbay = url;
 
-                if (innerText.Contains("Kostenloser Versand"))
-                    tmp.EbayShipping = 0.0;
-                else
-                {
-                    Match match = Regex.Match(innerText, "[0-9]*,[0-9]{1,2}");
-                    if (match.Success)
+                    HtmlNode priceNode = resultNode.SelectSingleNode("//li[@class='lvprice prc']");
+
+                    string innerText = priceNode.InnerText.Trim();
+                    innerText = innerText.Replace("EUR ", "");
+
+                    string priceString = "";
+                    for (int i = 0; i < innerText.Length; i++)
                     {
-                        priceString = "";
-                        for (int i = 0; i < innerText.Length; i++)
+                        if (innerText[i] == '\n')
+                            break;
+                        if (innerText[i] == 44 || IsNumber(innerText[i]))
+                            priceString += innerText[i];
+                    }
+
+                    double price;
+                    bool parse = Double.TryParse(priceString, out price);
+
+                    tmp.PriceEbay = parse ? price : 0.0;
+
+                    HtmlNode shippingNode = resultNode.SelectSingleNode("//li[@class='lvshipping']");
+
+                    innerText = shippingNode.InnerText.Trim();
+
+                    if (innerText.Contains("Kostenloser Versand"))
+                        tmp.EbayShipping = 0.0;
+                    else
+                    {
+                        Match match = Regex.Match(innerText, "[0-9]*,[0-9]{1,2}");
+                        if (match.Success)
                         {
-                            if (innerText[i] == '\n')
-                                break;
-                            if (innerText[i] == 44 || IsNumber(innerText[i]))
-                                priceString += innerText[i];
+                            priceString = "";
+                            for (int i = 0; i < innerText.Length; i++)
+                            {
+                                if (innerText[i] == '\n')
+                                    break;
+                                if (innerText[i] == 44 || IsNumber(innerText[i]))
+                                    priceString += innerText[i];
+                            }
+
+                            double shipping;
+                            parse = Double.TryParse(priceString, out shipping);
+
+                            tmp.EbayShipping = parse ? price : 0.0;
                         }
-
-                        double shipping;
-                        parse = Double.TryParse(priceString, out shipping);
-
-                        tmp.EbayShipping = parse ? price : 0.0;
                     }
                 }
+                
             }
         }
 

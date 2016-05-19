@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Oege_Get_the_best_price.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace Oege_Get_the_best_price.Controller.Parsing
 {
@@ -15,6 +16,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing
         Amazon.ParsingControllerAmazon parsingControllerAmazon;
         Ebay.ParsingControllerEbay parsingControllerEbay;
         Idealo.ParsingControllerIdealo parsingControllerIdealo;
+
+        private delegate void listViewDelegate();
 
         public ParsingController(int hash, int level)
         {
@@ -73,6 +76,18 @@ namespace Oege_Get_the_best_price.Controller.Parsing
 
             amazonThread.Join();
             ebayThread.Join();
+
+            Form frm = Controller.Instance().getFormController(guiHash, 1).Frm;
+            frmParsing frmPar = null;
+
+            if (frm.GetType() == typeof(frmParsing))
+                frmPar = ((frmParsing)frm);
+
+            if(frmPar != null)
+            {
+                listViewDelegate del = new listViewDelegate(frmPar.updateListView);
+                frmPar.BeginInvoke(del);
+            }
 
         }
 

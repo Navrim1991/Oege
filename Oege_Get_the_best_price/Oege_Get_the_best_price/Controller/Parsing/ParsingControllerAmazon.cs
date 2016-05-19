@@ -19,7 +19,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
     {
         int guiHash;
         int level;
-        private delegate void progressBarDelegate(int percentAmazon, int percentEbay, int percentIdealo);
+        private delegate void progressBarDelegate(frmParsing.Platform platform, int percent);
 
         private HtmlNode rootNode;
 
@@ -57,7 +57,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                     Thread.Sleep(20);
                     percent = ++counter * 100 / listCount;
                     if (frmPar != null)
-                        frmPar.BeginInvoke(del, new object[] { percent, -1, -1 });
+                        frmPar.BeginInvoke(del, new object[] { frmParsing.Platform.Amazon ,percent });
                 }
 
                 Controller.Instance().getDataController(guiHash, level).DataHolding.mergeList(DataHolding.Platform.Amazon, listData);
@@ -195,7 +195,6 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                 if (cheapestNode != null)
                 {
-                    HtmlNode linkNode = null;
                     foreach (HtmlNode element in cheapestNode.ChildNodes)
                     {
                         if (element.InnerText.StartsWith("Andere AngeboteEUR"))

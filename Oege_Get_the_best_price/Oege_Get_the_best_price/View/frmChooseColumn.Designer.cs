@@ -28,61 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.butOk = new System.Windows.Forms.Button();
             this.textSpaltenNummern = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.txtEan = new System.Windows.Forms.TextBox();
+            this.txtDiscription = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // button1
+            // butOk
             // 
-            this.button1.Location = new System.Drawing.Point(309, 205);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 31);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Ok";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(213, 74);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDown1.TabIndex = 1;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(213, 110);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDown2.TabIndex = 2;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Location = new System.Drawing.Point(213, 148);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(81, 20);
-            this.numericUpDown3.TabIndex = 3;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            this.butOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.butOk.Location = new System.Drawing.Point(309, 205);
+            this.butOk.Name = "butOk";
+            this.butOk.Size = new System.Drawing.Size(102, 31);
+            this.butOk.TabIndex = 0;
+            this.butOk.Text = "Ok";
+            this.butOk.UseVisualStyleBackColor = true;
+            this.butOk.Click += new System.EventHandler(this.butOk_Click);
             // 
             // textSpaltenNummern
             // 
-            this.textSpaltenNummern.AutoSize = true;
             this.textSpaltenNummern.Location = new System.Drawing.Point(12, 20);
             this.textSpaltenNummern.Name = "textSpaltenNummern";
-            this.textSpaltenNummern.Size = new System.Drawing.Size(282, 13);
+            this.textSpaltenNummern.Size = new System.Drawing.Size(310, 26);
             this.textSpaltenNummern.TabIndex = 4;
-            this.textSpaltenNummern.Text = "Bitte geben Sie den entsprechenden Spaltennummern ein:";
-            this.textSpaltenNummern.Click += new System.EventHandler(this.textSpaltenNummern_Click);
+            this.textSpaltenNummern.Text = "Bitte geben Sie den entsprechenden Spaltenbuchstaben an ein:";
             // 
             // label1
             // 
@@ -92,7 +66,6 @@
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "EAN";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label2
             // 
@@ -112,24 +85,48 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "PREIS";
             // 
+            // txtEan
+            // 
+            this.txtEan.Location = new System.Drawing.Point(194, 78);
+            this.txtEan.MaxLength = 1;
+            this.txtEan.Name = "txtEan";
+            this.txtEan.Size = new System.Drawing.Size(100, 20);
+            this.txtEan.TabIndex = 8;
+            // 
+            // txtDiscription
+            // 
+            this.txtDiscription.Location = new System.Drawing.Point(194, 114);
+            this.txtDiscription.MaxLength = 1;
+            this.txtDiscription.Name = "txtDiscription";
+            this.txtDiscription.Size = new System.Drawing.Size(100, 20);
+            this.txtDiscription.TabIndex = 9;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(194, 152);
+            this.txtPrice.MaxLength = 1;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtPrice.TabIndex = 10;
+            // 
             // frmChooseColumn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(423, 248);
+            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.txtDiscription);
+            this.Controls.Add(this.txtEan);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textSpaltenNummern);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.butOk);
             this.Name = "frmChooseColumn";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmChooseColumn_FormClosing);
+            this.Load += new System.EventHandler(this.frmChooseColumn_Load);
+            this.Shown += new System.EventHandler(this.frmChooseColumn_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,13 +134,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.Button butOk;
         private System.Windows.Forms.Label textSpaltenNummern;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtEan;
+        private System.Windows.Forms.TextBox txtDiscription;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
