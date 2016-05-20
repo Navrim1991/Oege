@@ -29,7 +29,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             this.level = level;
         }
 
-        public void start()
+        public void startExcelList()
         {
             List<Data> listData = Controller.Instance().getDataController(guiHash, level).DataHolding.ListData;
             Form frm = Controller.Instance().getFormController(guiHash, level).Frm;

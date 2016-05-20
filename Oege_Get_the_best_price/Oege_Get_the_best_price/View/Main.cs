@@ -61,5 +61,11 @@ namespace Oege_Get_the_best_price.View
             if (activeForm.GetType() == typeof(frmParsing))
                 ((frmParsing)activeForm).importExcelFile();
         }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(activeForm.GetType() == typeof(frmParsing))
+                ((frmParsing)activeForm).exportData();
+        }
     }
 }

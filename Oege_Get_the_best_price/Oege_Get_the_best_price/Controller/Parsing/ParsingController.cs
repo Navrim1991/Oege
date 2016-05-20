@@ -66,8 +66,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing
 
         public void start()
         {
-            Thread amazonThread = new Thread(parsingControllerAmazon.start);
-            Thread ebayThread = new Thread(parsingControllerEbay.start);
+            Thread amazonThread = new Thread(parsingControllerAmazon.startExcelList);
+            Thread ebayThread = new Thread(parsingControllerEbay.startExcelList);
             Thread idealoThread = new Thread(parsingControllerIdealo.start);
 
             amazonThread.Start();

@@ -85,10 +85,12 @@ namespace Oege_Get_the_best_price.Controller
                                         if (regExMatch.Success)
                                         {
                                             tmpString = regExMatch.Groups[0].Value;
+
+                                            tmpString = tmpString.Replace(".", ",");
                                             bool ret = double.TryParse(tmpString, out tmpPrice);
 
                                             if (ret)
-                                                data.OwnPrice = tmpPrice / 100;
+                                                data.OwnPrice = tmpPrice;
                                             else
                                                 data.OwnPrice = 0;
 

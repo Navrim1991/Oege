@@ -43,15 +43,30 @@
             this.lvlArtikel = new System.Windows.Forms.Label();
             this.txtArtikel = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.lblEbayPrice = new System.Windows.Forms.Label();
+            this.butEbay = new System.Windows.Forms.Button();
+            this.lblPriceEbay = new System.Windows.Forms.Label();
+            this.txtPriceEaby = new System.Windows.Forms.TextBox();
+            this.lblShippingEbay = new System.Windows.Forms.Label();
+            this.txtShippingEbay = new System.Windows.Forms.TextBox();
+            this.lblArticelEbay = new System.Windows.Forms.Label();
+            this.txtArticleEbay = new System.Windows.Forms.TextBox();
+            this.linkLblEbay = new System.Windows.Forms.LinkLabel();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
-            this.currencyControl1 = new Currency_Control.CurrencyControl();
-            this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
+            this.butAmazon = new System.Windows.Forms.Button();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
+            this.txtPriceAmazon = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtShippingAmazon = new System.Windows.Forms.TextBox();
+            this.lblAmazonArtikel = new System.Windows.Forms.Label();
+            this.txtArtikelAmazon = new System.Windows.Forms.TextBox();
+            this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
             this.lblEan = new System.Windows.Forms.Label();
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.lblPriceOwn = new System.Windows.Forms.Label();
+            this.txtPriceOwn = new System.Windows.Forms.TextBox();
+            this.clmHeaderOwnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +91,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblPriceOwn);
+            this.splitContainer1.Panel2.Controls.Add(this.txtPriceOwn);
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressAmazon);
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressEbay);
             this.splitContainer1.Panel2.Controls.Add(this.lvlProgress);
@@ -86,7 +103,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.grpBoxAmazon);
             this.splitContainer1.Panel2.Controls.Add(this.lblEan);
             this.splitContainer1.Panel2.Controls.Add(this.txtEan);
-            this.splitContainer1.Size = new System.Drawing.Size(1241, 643);
+            this.splitContainer1.Size = new System.Drawing.Size(1241, 688);
             this.splitContainer1.SplitterDistance = 616;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -115,21 +132,24 @@
             this.clmHeaderEan,
             this.clmHeaderArticel,
             this.clmHeaderAmazon,
-            this.clmHeaderEbay});
+            this.clmHeaderEbay,
+            this.clmHeaderOwnPrice});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(0, 65);
+            this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(614, 576);
+            this.listView.Size = new System.Drawing.Size(614, 621);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             // 
             // clmHeaderEan
             // 
             this.clmHeaderEan.Text = "EAN";
-            this.clmHeaderEan.Width = 34;
+            this.clmHeaderEan.Width = 145;
             // 
             // clmHeaderArticel
             // 
@@ -140,18 +160,18 @@
             // 
             this.clmHeaderAmazon.Text = "Amazon";
             this.clmHeaderAmazon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.clmHeaderAmazon.Width = 50;
+            this.clmHeaderAmazon.Width = 81;
             // 
             // clmHeaderEbay
             // 
             this.clmHeaderEbay.Text = "Ebay";
             this.clmHeaderEbay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.clmHeaderEbay.Width = 36;
+            this.clmHeaderEbay.Width = 81;
             // 
             // lblProgressAmazon
             // 
             this.lblProgressAmazon.AutoSize = true;
-            this.lblProgressAmazon.Location = new System.Drawing.Point(92, 437);
+            this.lblProgressAmazon.Location = new System.Drawing.Point(95, 601);
             this.lblProgressAmazon.Name = "lblProgressAmazon";
             this.lblProgressAmazon.Size = new System.Drawing.Size(45, 13);
             this.lblProgressAmazon.TabIndex = 10;
@@ -160,7 +180,7 @@
             // lblProgressEbay
             // 
             this.lblProgressEbay.AutoSize = true;
-            this.lblProgressEbay.Location = new System.Drawing.Point(143, 437);
+            this.lblProgressEbay.Location = new System.Drawing.Point(146, 601);
             this.lblProgressEbay.Name = "lblProgressEbay";
             this.lblProgressEbay.Size = new System.Drawing.Size(31, 13);
             this.lblProgressEbay.TabIndex = 9;
@@ -169,7 +189,7 @@
             // lvlProgress
             // 
             this.lvlProgress.AutoSize = true;
-            this.lvlProgress.Location = new System.Drawing.Point(30, 437);
+            this.lvlProgress.Location = new System.Drawing.Point(33, 601);
             this.lvlProgress.Name = "lvlProgress";
             this.lvlProgress.Size = new System.Drawing.Size(56, 13);
             this.lvlProgress.TabIndex = 7;
@@ -177,7 +197,7 @@
             // 
             // progressBarParsing
             // 
-            this.progressBarParsing.Location = new System.Drawing.Point(27, 453);
+            this.progressBarParsing.Location = new System.Drawing.Point(30, 617);
             this.progressBarParsing.Name = "progressBarParsing";
             this.progressBarParsing.Size = new System.Drawing.Size(383, 23);
             this.progressBarParsing.TabIndex = 6;
@@ -190,7 +210,6 @@
             this.lvlArtikel.Size = new System.Drawing.Size(100, 13);
             this.lvlArtikel.TabIndex = 5;
             this.lvlArtikel.Text = "Artikelbeschreibung";
-            this.lvlArtikel.Click += new System.EventHandler(this.lvlArtikel_Click);
             // 
             // txtArtikel
             // 
@@ -203,71 +222,181 @@
             // 
             // grpBoxEbay
             // 
-            this.grpBoxEbay.Controls.Add(this.linkLabel1);
-            this.grpBoxEbay.Controls.Add(this.lblEbayPrice);
-            this.grpBoxEbay.Location = new System.Drawing.Point(27, 209);
+            this.grpBoxEbay.Controls.Add(this.butEbay);
+            this.grpBoxEbay.Controls.Add(this.lblPriceEbay);
+            this.grpBoxEbay.Controls.Add(this.txtPriceEaby);
+            this.grpBoxEbay.Controls.Add(this.lblShippingEbay);
+            this.grpBoxEbay.Controls.Add(this.txtShippingEbay);
+            this.grpBoxEbay.Controls.Add(this.lblArticelEbay);
+            this.grpBoxEbay.Controls.Add(this.txtArticleEbay);
+            this.grpBoxEbay.Controls.Add(this.linkLblEbay);
+            this.grpBoxEbay.Location = new System.Drawing.Point(30, 376);
             this.grpBoxEbay.Name = "grpBoxEbay";
-            this.grpBoxEbay.Size = new System.Drawing.Size(383, 91);
+            this.grpBoxEbay.Size = new System.Drawing.Size(383, 209);
             this.grpBoxEbay.TabIndex = 3;
             this.grpBoxEbay.TabStop = false;
             this.grpBoxEbay.Text = "Ebay";
             // 
-            // linkLabel1
+            // butEbay
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(3, 54);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(68, 13);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "<Platzhalter>";
+            this.butEbay.Location = new System.Drawing.Point(268, 173);
+            this.butEbay.Name = "butEbay";
+            this.butEbay.Size = new System.Drawing.Size(104, 23);
+            this.butEbay.TabIndex = 18;
+            this.butEbay.Text = "Artikel suchen";
+            this.butEbay.UseVisualStyleBackColor = true;
             // 
-            // lblEbayPrice
+            // lblPriceEbay
             // 
-            this.lblEbayPrice.AutoSize = true;
-            this.lblEbayPrice.Location = new System.Drawing.Point(3, 23);
-            this.lblEbayPrice.Name = "lblEbayPrice";
-            this.lblEbayPrice.Size = new System.Drawing.Size(30, 13);
-            this.lblEbayPrice.TabIndex = 5;
-            this.lblEbayPrice.Text = "Preis";
+            this.lblPriceEbay.AutoSize = true;
+            this.lblPriceEbay.Location = new System.Drawing.Point(6, 87);
+            this.lblPriceEbay.Name = "lblPriceEbay";
+            this.lblPriceEbay.Size = new System.Drawing.Size(30, 13);
+            this.lblPriceEbay.TabIndex = 17;
+            this.lblPriceEbay.Text = "Preis";
+            // 
+            // txtPriceEaby
+            // 
+            this.txtPriceEaby.Location = new System.Drawing.Point(109, 84);
+            this.txtPriceEaby.Name = "txtPriceEaby";
+            this.txtPriceEaby.ReadOnly = true;
+            this.txtPriceEaby.Size = new System.Drawing.Size(100, 20);
+            this.txtPriceEaby.TabIndex = 16;
+            // 
+            // lblShippingEbay
+            // 
+            this.lblShippingEbay.AutoSize = true;
+            this.lblShippingEbay.Location = new System.Drawing.Point(6, 113);
+            this.lblShippingEbay.Name = "lblShippingEbay";
+            this.lblShippingEbay.Size = new System.Drawing.Size(78, 13);
+            this.lblShippingEbay.TabIndex = 15;
+            this.lblShippingEbay.Text = "Versandkosten";
+            // 
+            // txtShippingEbay
+            // 
+            this.txtShippingEbay.Location = new System.Drawing.Point(109, 110);
+            this.txtShippingEbay.Name = "txtShippingEbay";
+            this.txtShippingEbay.ReadOnly = true;
+            this.txtShippingEbay.Size = new System.Drawing.Size(100, 20);
+            this.txtShippingEbay.TabIndex = 14;
+            // 
+            // lblArticelEbay
+            // 
+            this.lblArticelEbay.AutoSize = true;
+            this.lblArticelEbay.Location = new System.Drawing.Point(6, 16);
+            this.lblArticelEbay.Name = "lblArticelEbay";
+            this.lblArticelEbay.Size = new System.Drawing.Size(100, 13);
+            this.lblArticelEbay.TabIndex = 13;
+            this.lblArticelEbay.Text = "Artikelbeschreibung";
+            // 
+            // txtArticleEbay
+            // 
+            this.txtArticleEbay.Location = new System.Drawing.Point(109, 13);
+            this.txtArticleEbay.Multiline = true;
+            this.txtArticleEbay.Name = "txtArticleEbay";
+            this.txtArticleEbay.ReadOnly = true;
+            this.txtArticleEbay.Size = new System.Drawing.Size(263, 65);
+            this.txtArticleEbay.TabIndex = 12;
+            // 
+            // linkLblEbay
+            // 
+            this.linkLblEbay.AutoSize = true;
+            this.linkLblEbay.Location = new System.Drawing.Point(3, 143);
+            this.linkLblEbay.Name = "linkLblEbay";
+            this.linkLblEbay.Size = new System.Drawing.Size(68, 13);
+            this.linkLblEbay.TabIndex = 11;
+            this.linkLblEbay.TabStop = true;
+            this.linkLblEbay.Text = "<Platzhalter>";
+            this.linkLblEbay.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblEbay_LinkClicked);
             // 
             // grpBoxAmazon
             // 
-            this.grpBoxAmazon.Controls.Add(this.currencyControl1);
-            this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
+            this.grpBoxAmazon.Controls.Add(this.butAmazon);
             this.grpBoxAmazon.Controls.Add(this.lblAmazonPrice);
-            this.grpBoxAmazon.Location = new System.Drawing.Point(27, 112);
+            this.grpBoxAmazon.Controls.Add(this.txtPriceAmazon);
+            this.grpBoxAmazon.Controls.Add(this.label2);
+            this.grpBoxAmazon.Controls.Add(this.txtShippingAmazon);
+            this.grpBoxAmazon.Controls.Add(this.lblAmazonArtikel);
+            this.grpBoxAmazon.Controls.Add(this.txtArtikelAmazon);
+            this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
+            this.grpBoxAmazon.Location = new System.Drawing.Point(30, 161);
             this.grpBoxAmazon.Name = "grpBoxAmazon";
-            this.grpBoxAmazon.Size = new System.Drawing.Size(383, 91);
+            this.grpBoxAmazon.Size = new System.Drawing.Size(383, 209);
             this.grpBoxAmazon.TabIndex = 2;
             this.grpBoxAmazon.TabStop = false;
             this.grpBoxAmazon.Text = "Amazon";
             // 
-            // currencyControl1
+            // butAmazon
             // 
-            this.currencyControl1.Location = new System.Drawing.Point(119, 23);
-            this.currencyControl1.Name = "currencyControl1";
-            this.currencyControl1.Size = new System.Drawing.Size(100, 20);
-            this.currencyControl1.TabIndex = 4;
+            this.butAmazon.Location = new System.Drawing.Point(268, 180);
+            this.butAmazon.Name = "butAmazon";
+            this.butAmazon.Size = new System.Drawing.Size(104, 23);
+            this.butAmazon.TabIndex = 10;
+            this.butAmazon.Text = "Artikel suchen";
+            this.butAmazon.UseVisualStyleBackColor = true;
+            // 
+            // lblAmazonPrice
+            // 
+            this.lblAmazonPrice.AutoSize = true;
+            this.lblAmazonPrice.Location = new System.Drawing.Point(6, 94);
+            this.lblAmazonPrice.Name = "lblAmazonPrice";
+            this.lblAmazonPrice.Size = new System.Drawing.Size(30, 13);
+            this.lblAmazonPrice.TabIndex = 9;
+            this.lblAmazonPrice.Text = "Preis";
+            // 
+            // txtPriceAmazon
+            // 
+            this.txtPriceAmazon.Location = new System.Drawing.Point(109, 91);
+            this.txtPriceAmazon.Name = "txtPriceAmazon";
+            this.txtPriceAmazon.ReadOnly = true;
+            this.txtPriceAmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtPriceAmazon.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Versandkosten";
+            // 
+            // txtShippingAmazon
+            // 
+            this.txtShippingAmazon.Location = new System.Drawing.Point(109, 117);
+            this.txtShippingAmazon.Name = "txtShippingAmazon";
+            this.txtShippingAmazon.ReadOnly = true;
+            this.txtShippingAmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtShippingAmazon.TabIndex = 6;
+            // 
+            // lblAmazonArtikel
+            // 
+            this.lblAmazonArtikel.AutoSize = true;
+            this.lblAmazonArtikel.Location = new System.Drawing.Point(6, 23);
+            this.lblAmazonArtikel.Name = "lblAmazonArtikel";
+            this.lblAmazonArtikel.Size = new System.Drawing.Size(100, 13);
+            this.lblAmazonArtikel.TabIndex = 5;
+            this.lblAmazonArtikel.Text = "Artikelbeschreibung";
+            // 
+            // txtArtikelAmazon
+            // 
+            this.txtArtikelAmazon.Location = new System.Drawing.Point(109, 20);
+            this.txtArtikelAmazon.Multiline = true;
+            this.txtArtikelAmazon.Name = "txtArtikelAmazon";
+            this.txtArtikelAmazon.ReadOnly = true;
+            this.txtArtikelAmazon.Size = new System.Drawing.Size(263, 65);
+            this.txtArtikelAmazon.TabIndex = 4;
             // 
             // linkLblAmazon
             // 
             this.linkLblAmazon.AutoSize = true;
-            this.linkLblAmazon.Location = new System.Drawing.Point(3, 54);
+            this.linkLblAmazon.Location = new System.Drawing.Point(3, 150);
             this.linkLblAmazon.Name = "linkLblAmazon";
             this.linkLblAmazon.Size = new System.Drawing.Size(68, 13);
             this.linkLblAmazon.TabIndex = 3;
             this.linkLblAmazon.TabStop = true;
             this.linkLblAmazon.Text = "<Platzhalter>";
-            // 
-            // lblAmazonPrice
-            // 
-            this.lblAmazonPrice.AutoSize = true;
-            this.lblAmazonPrice.Location = new System.Drawing.Point(3, 23);
-            this.lblAmazonPrice.Name = "lblAmazonPrice";
-            this.lblAmazonPrice.Size = new System.Drawing.Size(30, 13);
-            this.lblAmazonPrice.TabIndex = 2;
-            this.lblAmazonPrice.Text = "Preis";
+            this.linkLblAmazon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblAmazon_LinkClicked);
             // 
             // lblEan
             // 
@@ -292,11 +421,33 @@
             this.backgroundWorkerExcel.WorkerSupportsCancellation = true;
             this.backgroundWorkerExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExcel_DoWork);
             // 
+            // lblPriceOwn
+            // 
+            this.lblPriceOwn.AutoSize = true;
+            this.lblPriceOwn.Location = new System.Drawing.Point(30, 115);
+            this.lblPriceOwn.Name = "lblPriceOwn";
+            this.lblPriceOwn.Size = new System.Drawing.Size(30, 13);
+            this.lblPriceOwn.TabIndex = 12;
+            this.lblPriceOwn.Text = "Preis";
+            // 
+            // txtPriceOwn
+            // 
+            this.txtPriceOwn.Location = new System.Drawing.Point(136, 112);
+            this.txtPriceOwn.Name = "txtPriceOwn";
+            this.txtPriceOwn.ReadOnly = true;
+            this.txtPriceOwn.Size = new System.Drawing.Size(103, 20);
+            this.txtPriceOwn.TabIndex = 11;
+            // 
+            // clmHeaderOwnPrice
+            // 
+            this.clmHeaderOwnPrice.Text = "Lieferant";
+            this.clmHeaderOwnPrice.Width = 81;
+            // 
             // frmParsing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 643);
+            this.ClientSize = new System.Drawing.Size(1241, 688);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmParsing";
             this.Text = "find the price";
@@ -329,9 +480,6 @@
         private System.Windows.Forms.TextBox txtArtikel;
         private System.Windows.Forms.GroupBox grpBoxEbay;
         private System.Windows.Forms.GroupBox grpBoxAmazon;
-        private System.Windows.Forms.Label lblAmazonPrice;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label lblEbayPrice;
         private System.Windows.Forms.LinkLabel linkLblAmazon;
         private System.Windows.Forms.Label lvlProgress;
         private System.Windows.Forms.ProgressBar progressBarParsing;
@@ -339,7 +487,25 @@
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
-        private Currency_Control.CurrencyControl currencyControl1;
         private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Label lblAmazonPrice;
+        private System.Windows.Forms.TextBox txtPriceAmazon;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtShippingAmazon;
+        private System.Windows.Forms.Label lblAmazonArtikel;
+        private System.Windows.Forms.TextBox txtArtikelAmazon;
+        private System.Windows.Forms.Button butEbay;
+        private System.Windows.Forms.Label lblPriceEbay;
+        private System.Windows.Forms.TextBox txtPriceEaby;
+        private System.Windows.Forms.Label lblShippingEbay;
+        private System.Windows.Forms.TextBox txtShippingEbay;
+        private System.Windows.Forms.Label lblArticelEbay;
+        private System.Windows.Forms.TextBox txtArticleEbay;
+        private System.Windows.Forms.LinkLabel linkLblEbay;
+        private System.Windows.Forms.Button butAmazon;
+        private System.Windows.Forms.Label lblPriceOwn;
+        private System.Windows.Forms.TextBox txtPriceOwn;
+        private System.Windows.Forms.ColumnHeader clmHeaderOwnPrice;
     }
 }

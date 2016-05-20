@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oege_Get_the_best_price.Model;
+using CsvHelper;
+using System.IO;
+using System.Diagnostics;
 
 namespace Oege_Get_the_best_price.View
 {
@@ -36,6 +39,7 @@ namespace Oege_Get_the_best_price.View
         private int percentProgressEbay;
         private int percentProgressIdealo;
         int hash;
+        private ListViewColumnSorter lvwColumnSorter;
 
         const short level = 1;
 
@@ -56,6 +60,9 @@ namespace Oege_Get_the_best_price.View
             controller.Register(this, level);
             hash = this.GetHashCode();
 
+            lvwColumnSorter = new ListViewColumnSorter();
+            this.listView.ListViewItemSorter = lvwColumnSorter;
+
             dataController = controller.getDataController(hash, level);
             if (dataController == null)
                 throw new ArgumentNullException("dataController", "dataController ist null");
@@ -72,18 +79,71 @@ namespace Oege_Get_the_best_price.View
             if (parsingController == null)
                 throw new ArgumentNullException("parsingController", "parsingController ist null");
 
+
+            linkLblAmazon.Text = "";
+            linkLblEbay.Text = "";
         }
         #endregion
 
         #region Events
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(listView.SelectedItems.Count > 0)
+            {
+                string ean = listView.SelectedItems[0].Text;
 
-        }
+                Data data = dataController.DataHolding.getData(ean);
 
-        private void lvlArtikel_Click(object sender, EventArgs e)
-        {
+                if (data != null)
+                {
+                    txtEan.Text = data.Ean;
+                    txtArtikel.Text = data.Aritcel;
+                    txtPriceOwn.Text = data.OwnPrice.ToString();
 
+                    txtArtikelAmazon.Text = data.DiscriptionAmazon;
+                    txtPriceAmazon.Text = data.PriceAmazon.ToString();
+                    txtShippingAmazon.Text = data.AmazonShipping.ToString();
+
+                    if(linkLblAmazon.Links.Count > 0)
+                        linkLblAmazon.Links.RemoveAt(0);
+
+                    if (data.UrlAmazon != "")
+                    {
+                        linkLblAmazon.Text = "Artikel in Amazon anschauen";
+                        LinkLabel.Link linkAmazon = new LinkLabel.Link();
+                        linkAmazon.LinkData = data.UrlAmazon;
+                        linkLblAmazon.Links.Add(linkAmazon);
+                        butAmazon.Visible = false;                        
+                    }
+                    else
+                    {
+                        linkLblAmazon.Text = "";                        
+                        butAmazon.Visible = true;
+                    }
+
+                    txtArticleEbay.Text = data.DiscriptionEbay;
+                    txtPriceEaby.Text = data.PriceEbay.ToString();
+                    txtShippingEbay.Text = data.EbayShipping.ToString();
+
+                    if(linkLblEbay.Links.Count > 0)
+                        linkLblEbay.Links.RemoveAt(0);
+
+                    if (data.UrlEbay != "")
+                    {
+                        linkLblEbay.Text = "Artikel in Ebay anschauen";
+                        LinkLabel.Link linkEbay = new LinkLabel.Link();
+                        linkEbay.LinkData = data.UrlEbay;
+                        linkLblEbay.Links.Add(linkEbay);
+                        butEbay.Visible = false;
+                    }
+                    else
+                    {
+                        linkLblEbay.Text = "";
+                        
+                        butEbay.Visible = true;
+                    }
+                }
+            }            
         }
 
         private void backgroundWorkerExcel_DoWork(object sender, DoWorkEventArgs e)
@@ -116,36 +176,138 @@ namespace Oege_Get_the_best_price.View
             }
         }
 
+        public void exportData()
+        {
+            saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV|*.csv";
+            saveFileDialog.Title = "Speichern einer CSV-Datei";
+
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = null;
+
+                writer = new StreamWriter(@saveFileDialog.FileName);
+
+                var csv = new CsvWriter(writer);
+                csv.Configuration.Delimiter = ";";
+
+                string header = "EAN;Artikelbeschreibung;UrlAmazon;UrlEbay;UrlIdealo;ArtikelbeschreibungAmazon;ArtikelbeschreibungEbay;ArtikelbeschreibungIdealo;PreisAmazon;PreisEbay;PreisIdealo;VersantkostenAmazon;VersantkostenEaby;VersantkostenIdealo;EigenerPreis;";
+                writer.WriteLine(header);                
+
+                foreach (var item in dataController.DataHolding.ListData)
+                {
+                    csv.WriteRecord(item);
+                }
+
+                writer.Close();
+                csv.Dispose();
+            }
+        }
+
+        private Color getBackColor(short counter, ref short colorSet, double value, Color currentBackColor)
+        {
+            if (value <= 0.0)
+                return currentBackColor;
+
+            switch (counter)
+            {
+                case 0:
+                    colorSet++;
+                    return Color.Green;
+                case 1:                    
+                        if (colorSet > 0)
+                        {                            
+                            colorSet++;
+                            return Color.Orange;
+                        }
+                        else
+                        {                            
+                            colorSet++;
+                            return Color.Green;
+                        }
+                case 2:
+                    if (colorSet >= 1)
+                        return Color.Red;
+                    else
+                        return Color.Green;
+            }
+
+            return currentBackColor;
+        }
+
         public void updateListView()
         {
             listView.Items.Clear();
 
+            int colorSwitcher = 0;
             foreach(Data data in dataController.DataHolding.ListData)
             {
+                Color currentBackColor;
                 ListViewItem lvi = new ListViewItem(data.Ean);
                 lvi.UseItemStyleForSubItems = false;
-                lvi.SubItems.Add(data.Aritcel);
-                double amazonPrice = data.PriceAmazon + data.AmazonShipping;
-                double ebayPrice = data.PriceEbay + data.EbayShipping;
-                Color ebayColor = Color.White;
-                Color amazonColor = Color.White;
 
-                if(amazonPrice > ebayPrice)
-                {
-                    amazonColor = Color.Red;
-                    ebayColor = Color.Green;
-                }
-                else if(amazonPrice < ebayPrice)
-                {
-                    amazonColor = Color.Green;
-                    ebayColor = Color.Red;
-                }
+                if (colorSwitcher++ % 2 == 0)
+                    currentBackColor = Color.Gray;
+                else
+                    currentBackColor = Color.White;
 
-                ListViewItem.ListViewSubItem subitemAmazon = new ListViewItem.ListViewSubItem(lvi, amazonPrice.ToString(), Color.Black, amazonColor, new Font("Arial", 12));
-                ListViewItem.ListViewSubItem subitemEbay = new ListViewItem.ListViewSubItem(lvi, ebayPrice.ToString(), Color.Black, ebayColor, new Font("Arial", 12));
+                lvi.BackColor = currentBackColor;
+
+                lvi.SubItems.Add(data.Aritcel,Color.Black, currentBackColor, new Font("Arial", 12));
+
+                Dictionary<Platform, double> dic = new Dictionary<Platform, double>();
+
+                dic.Add(Platform.Amazon, data.PriceAmazon);
+                dic.Add(Platform.Ebay, data.PriceEbay);
+                dic.Add(Platform.Own, data.OwnPrice);
+
+
+
+                ListViewItem.ListViewSubItem subitemAmazon = null;
+                ListViewItem.ListViewSubItem subitemEbay = null;
+                ListViewItem.ListViewSubItem subitemOwn = null;
+
+                List<KeyValuePair<Platform, double>> myList = dic.ToList();
+
+                myList.Sort(
+                    delegate (KeyValuePair<Platform, double> pair1,
+                    KeyValuePair<Platform, double> pair2)
+                    {
+                        return pair1.Value.CompareTo(pair2.Value);
+                    }
+                );
+
+                short counter = 0;
+                short colorSet = 0;
+                foreach(KeyValuePair<Platform, double> element in myList)
+                {
+                    Color backColor;
+                    switch (element.Key)
+                    {
+                        case Platform.Amazon:
+                            backColor = getBackColor(counter, ref colorSet, data.PriceAmazon, currentBackColor);
+                            subitemAmazon = new ListViewItem.ListViewSubItem(lvi, data.PriceAmazon.ToString(), Color.Black, backColor, new Font("Arial", 12));
+                            break;
+
+                        case Platform.Ebay:
+                            backColor = getBackColor(counter, ref colorSet, data.PriceEbay, currentBackColor);
+                            subitemEbay = new ListViewItem.ListViewSubItem(lvi, data.PriceEbay.ToString(), Color.Black, backColor, new Font("Arial", 12));
+                            break;
+                            
+                        case Platform.Own:
+                            backColor = getBackColor(counter, ref colorSet, data.OwnPrice, currentBackColor);
+                            subitemOwn = new ListViewItem.ListViewSubItem(lvi, data.OwnPrice.ToString(), Color.Black, backColor, new Font("Arial", 12));
+                            break;
+                    }
+
+                    counter++;
+                }
+                //ListViewItem.ListViewSubItem subitemAmazon = new ListViewItem.ListViewSubItem(lvi, amazonPrice.ToString(), Color.Black, amazonColor, new Font("Arial", 12));
+                //ListViewItem.ListViewSubItem subitemEbay = new ListViewItem.ListViewSubItem(lvi, ebayPrice.ToString(), Color.Black, ebayColor, new Font("Arial", 12));
 
                 lvi.SubItems.Add(subitemAmazon);
                 lvi.SubItems.Add(subitemEbay);
+                lvi.SubItems.Add(subitemOwn);
 
                 listView.Items.Add(lvi);
             }
@@ -207,10 +369,75 @@ namespace Oege_Get_the_best_price.View
 
             progressBarParsing.Value = (percentProgressAmazon + percentProgressEbay) / 2;
         }
+
+
+
         #endregion
 
+        private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            int clickedIndex = -1;
+            bool parse = int.TryParse(e.Column.ToString(), out clickedIndex);
+
+            if (parse)
+            {
+                if (e.Column == lvwColumnSorter.SortColumn)
+                {
+                    // Reverse the current sort direction for this column.
+                    if (lvwColumnSorter.Order == SortOrder.Ascending)
+                    {
+                        lvwColumnSorter.Order = SortOrder.Descending;
+                    }
+                    else
+                    {
+                        lvwColumnSorter.Order = SortOrder.Ascending;
+                    }
+                }
+                else
+                {
+                    // Set the column number that is to be sorted; default to ascending.
+                    lvwColumnSorter.SortColumn = e.Column;
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+
+                // Perform the sort with these new sort options.
+                this.listView.Sort();
+
+                /*Color backColor;
+                for(int i = 0; i < listView.Items.Count; i++)
+                {
+                    if (i % 2 == 0)
+                        backColor = Color.Gray;
+                    else
+                        backColor = Color.White;
+
+                    listView.Items[i].BackColor = backColor;
+
+                    for(int j = 0; j < listView.Items[i].SubItems.Count; j++)
+                    {
+                        double value;
+                        parse = Double.TryParse(listView.Items[i].SubItems[j].Text, out value);
+                        if (parse)
+                            if (value == 0)
+                                listView.Items[i].SubItems[j].BackColor = backColor;
+                        else
+                            listView.Items[i].SubItems[j].BackColor = backColor;
+                    }
 
 
+                }*/
+                dataController.DataHolding.sortList(clickedIndex, (int)lvwColumnSorter.Order);
+            }            
+        }
 
+        private void linkLblAmazon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData.ToString());
+        }
+
+        private void linkLblEbay_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData.ToString());
+        }
     }
 }

@@ -33,8 +33,7 @@
             this.oegetradingToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.schnellstartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projektÖffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelListeImportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,8 +80,7 @@
             this.oegetradingToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.schnellstartToolStripMenuItem,
             this.projektÖffnenToolStripMenuItem,
-            this.speichernUnterToolStripMenuItem,
-            this.speichernToolStripMenuItem,
+            this.exportToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.oegetradingToolStripMenu.Name = "oegetradingToolStripMenu";
             this.oegetradingToolStripMenu.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
@@ -94,7 +92,7 @@
             // 
             this.schnellstartToolStripMenuItem.Name = "schnellstartToolStripMenuItem";
             this.schnellstartToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.schnellstartToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.schnellstartToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.schnellstartToolStripMenuItem.Text = "Schnellstart";
             this.schnellstartToolStripMenuItem.Click += new System.EventHandler(this.schnellstartToolStripMenuItem_Click);
             // 
@@ -103,28 +101,21 @@
             this.projektÖffnenToolStripMenuItem.Name = "projektÖffnenToolStripMenuItem";
             this.projektÖffnenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.N)));
-            this.projektÖffnenToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.projektÖffnenToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.projektÖffnenToolStripMenuItem.Text = "Projekt Öffnen";
             // 
-            // speichernUnterToolStripMenuItem
+            // exportToolStripMenuItem
             // 
-            this.speichernUnterToolStripMenuItem.Name = "speichernUnterToolStripMenuItem";
-            this.speichernUnterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-            this.speichernUnterToolStripMenuItem.Text = "Speichern Unter";
-            // 
-            // speichernToolStripMenuItem
-            // 
-            this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-            this.speichernToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-            this.speichernToolStripMenuItem.Text = "Speichern";
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.exportToolStripMenuItem.Text = "Datei-Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             // 
             // erstellenToolStripMenuItem
@@ -199,8 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem oegetradingToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem schnellstartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projektÖffnenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem speichernUnterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem erstellenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelListeImportierenToolStripMenuItem;
