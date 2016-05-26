@@ -48,37 +48,37 @@ namespace Oege_Get_the_best_price.Model
         {
             //order = 1 asc
             //order = 2 desc
-            switch(index)
+            switch (index)
             {
-                case 0:
-                    if(order == 1)
-                        listData = listData.OrderBy(x => x.Ean).ToList();
-                    else if(order == 2)
-                        listData = listData.OrderByDescending(x => x.Ean).ToList();
-                    break;
-                case 1:
+                    case 0:
+                        if (order == 1)
+                            listData = (from p in listData orderby p.Ean select p).ToList();
+                        else if (order == 2)
+                            listData = (from p in listData orderby p.Ean descending select p).ToList();
+                        break;
+                    case 1:
+                        if (order == 1)
+                            listData = (from p in listData orderby p.Aritcel select p).ToList();
+                        else if (order == 2)
+                            listData = (from p in listData orderby p.Aritcel descending select p).ToList();
+                        break;
+                    case 2:
+                        if (order == 1)
+                            listData = (from p in listData orderby p.PriceAmazon select p).ToList();
+                        else if (order == 2)
+                            listData = (from p in listData orderby p.PriceAmazon descending select p).ToList();
+                        break;
+                    case 3:
+                        if (order == 1)
+                            listData = (from p in listData orderby p.PriceEbay select p).ToList();
+                        else if (order == 2)
+                            listData = (from p in listData orderby p.PriceEbay descending select p).ToList();
+                        break;
+                    case 4:
                     if (order == 1)
-                        listData = listData.OrderBy(x => x.Aritcel).ToList();
+                        listData = (from p in listData orderby p.OwnPrice select p).ToList();
                     else if (order == 2)
-                        listData = listData.OrderByDescending(x => x.Aritcel).ToList();
-                    break;
-                case 2:
-                    if (order == 1)
-                        listData = listData.OrderBy(x => x.PriceAmazon).ToList();
-                    else if (order == 2)
-                        listData = listData.OrderByDescending(x => x.PriceAmazon).ToList();
-                    break;
-                case 3:
-                    if (order == 1)
-                        listData = listData.OrderBy(x => x.PriceEbay).ToList();
-                    else if (order == 2)
-                        listData = listData.OrderByDescending(x => x.PriceEbay).ToList();
-                    break;
-                case 4:
-                    if (order == 1)
-                        listData = listData.OrderBy(x => x.OwnPrice).ToList();
-                    else if (order == 2)
-                        listData = listData.OrderByDescending(x => x.OwnPrice).ToList();
+                        listData = (from p in listData orderby p.OwnPrice descending select p).ToList();
                     break;
             }
         }

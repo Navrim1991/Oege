@@ -302,8 +302,6 @@ namespace Oege_Get_the_best_price.View
 
                     counter++;
                 }
-                //ListViewItem.ListViewSubItem subitemAmazon = new ListViewItem.ListViewSubItem(lvi, amazonPrice.ToString(), Color.Black, amazonColor, new Font("Arial", 12));
-                //ListViewItem.ListViewSubItem subitemEbay = new ListViewItem.ListViewSubItem(lvi, ebayPrice.ToString(), Color.Black, ebayColor, new Font("Arial", 12));
 
                 lvi.SubItems.Add(subitemAmazon);
                 lvi.SubItems.Add(subitemEbay);
@@ -401,32 +399,12 @@ namespace Oege_Get_the_best_price.View
                 }
 
                 // Perform the sort with these new sort options.
-                this.listView.Sort();
-
-                /*Color backColor;
-                for(int i = 0; i < listView.Items.Count; i++)
-                {
-                    if (i % 2 == 0)
-                        backColor = Color.Gray;
-                    else
-                        backColor = Color.White;
-
-                    listView.Items[i].BackColor = backColor;
-
-                    for(int j = 0; j < listView.Items[i].SubItems.Count; j++)
-                    {
-                        double value;
-                        parse = Double.TryParse(listView.Items[i].SubItems[j].Text, out value);
-                        if (parse)
-                            if (value == 0)
-                                listView.Items[i].SubItems[j].BackColor = backColor;
-                        else
-                            listView.Items[i].SubItems[j].BackColor = backColor;
-                    }
-
-
-                }*/
+                //this.listView.Sort();
+                listView.Items.Clear();
+                
                 dataController.DataHolding.sortList(clickedIndex, (int)lvwColumnSorter.Order);
+
+                updateListView();
             }            
         }
 

@@ -68,3 +68,5 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\ob
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.GenerateResource.Cache
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.xml
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.xml

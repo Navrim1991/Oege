@@ -16,6 +16,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing
         Amazon.ParsingControllerAmazon parsingControllerAmazon;
         Ebay.ParsingControllerEbay parsingControllerEbay;
         Idealo.ParsingControllerIdealo parsingControllerIdealo;
+        AmazonRest.ParsingControllerRest amazonrest;
 
         private delegate void listViewDelegate();
 
@@ -26,6 +27,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing
             this.parsingControllerAmazon = new Amazon.ParsingControllerAmazon(hash, level);
             this.parsingControllerEbay = new Ebay.ParsingControllerEbay(hash, level);
             this.parsingControllerIdealo = new Idealo.ParsingControllerIdealo(hash, level);
+            this.amazonrest = new AmazonRest.ParsingControllerRest(hash, level);
         }
 
         public int GuiHash
@@ -66,12 +68,13 @@ namespace Oege_Get_the_best_price.Controller.Parsing
 
         public void start()
         {
-            Thread amazonThread = new Thread(parsingControllerAmazon.startExcelList);
+            amazonrest.test();
+            /*Thread amazonThread = new Thread(parsingControllerAmazon.startExcelList);
             Thread ebayThread = new Thread(parsingControllerEbay.startExcelList);
             Thread idealoThread = new Thread(parsingControllerIdealo.start);
 
             amazonThread.Start();
-            ebayThread.Start();
+            //ebayThread.Start();
             //idealoThread.Start();
 
             amazonThread.Join();
@@ -87,7 +90,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing
             {
                 listViewDelegate del = new listViewDelegate(frmPar.updateListView);
                 frmPar.BeginInvoke(del);
-            }
+            }*/
 
         }
 

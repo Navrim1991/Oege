@@ -50,7 +50,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                 element.UrlEbay = tmp.UrlEbay;
                 element.DiscriptionEbay = tmp.DiscriptionEbay;
                 element.PriceEbay = tmp.PriceEbay;
-                element.ShippingIdealo = tmp.ShippingIdealo;
+                element.EbayShipping = tmp.EbayShipping;
                 Thread.Sleep(20);
                 percent = ++counter * 100 / listCount;
                 if (frmPar != null)                    
@@ -78,6 +78,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                     string title = titleNode.InnerText.Trim();
                     string url = "";
 
+                    
 
                     int index = innerHtml.IndexOf("href=\"");
                     url = innerHtml.Substring(index + ("href=\"").Length);
@@ -129,7 +130,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                             double shipping;
                             parse = Double.TryParse(priceString, out shipping);
 
-                            tmp.EbayShipping = parse ? price : 0.0;
+                            tmp.EbayShipping = parse ? shipping : 0.0;
                         }
                     }
                 }
