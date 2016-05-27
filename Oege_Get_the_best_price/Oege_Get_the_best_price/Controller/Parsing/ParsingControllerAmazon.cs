@@ -48,11 +48,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                 foreach (Data element in listData)
                 {
                     Data tmp = element;
-                    BeginParsing(ref tmp);
-                    if (element.UrlAmazon != "")
-                    {
-                        GetPrice(tmp.UrlAmazon, ref tmp);
-                    }
+                    BeginParsing(ref tmp);                   
                         
                     Thread.Sleep(20);
                     percent = ++counter * 100 / listCount;
@@ -63,8 +59,36 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                 Controller.Instance().getDataController(guiHash, level).DataHolding.mergeList(DataHolding.Platform.Amazon, listData);
             }
         }
-
         private void GetPrice(string url, ref Data tmp)
+        {
+            HtmlWeb client = new HtmlWeb();
+            client.UserAgent = "Chrome/50.0";
+            client.UseCookies = true;
+
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc = client.Load(url);
+
+            HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='soldByThirdParty']");
+
+            if(node == null)
+            {
+                string Amazon = "http://www.amazon.de";
+                node = doc.DocumentNode.SelectSingleNode("//tr[@id='priceblock_ourprice_row']");
+
+                string tmpPriceString = node.InnerText.ToLower();
+
+                if (tmpPriceString.Contains("kostenlose lieferung"))
+                    tmp.AmazonShipping = 0.0;
+
+                node = doc.DocumentNode.SelectSingleNode("//span[@id='priceblock_ourprice']");
+
+                string priceString = node.InnerText.Replace("EUR ", "");
+
+                tmp.PriceAmazon = parseDouble(priceString);
+            }
+        }
+
+        private void GetPriceOtherOffer(string url, ref Data tmp)
         {
             HtmlWeb client = new HtmlWeb();
             client.UserAgent = "Chrome/50.0";
@@ -145,6 +169,94 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
         private void BeginParsing(ref Data tmp)
         {
             rootNode = GetRootNode(tmp.Ean);
+
+            if (ArticleFound(rootNode, tmp.Ean))
+            {
+               //var resultNode = rootNode.SelectSingleNode("//div[@id='atfResults']");
+
+                HtmlNode searchResults = rootNode.SelectSingleNode("//ul[@id='s-results-list-atf']");
+
+                string url = "";
+                bool otherOffer = false;
+                double price = -1;
+                string discription = "";
+
+                foreach(HtmlNode _node in searchResults.ChildNodes)
+                {
+                    HtmlNode result = _node.ChildNodes.First().ChildNodes.First().ChildNodes.First();
+                    HtmlNodeCollection priceNodes = result.ChildNodes[1].ChildNodes[2].FirstChild.ChildNodes;
+
+                    foreach(HtmlNode _priceNode in priceNodes)
+                    {
+                        HtmlNode test = _priceNode;
+
+                        if (_priceNode.Name != "div")
+                            continue;
+
+                        if (_priceNode.InnerText.Contains("Abo"))
+                            continue;
+
+                        if (_priceNode.InnerText.Contains("EUR"))
+                        {                            
+                            string subtring = selectSubstring(_priceNode.InnerText, "EUR ");
+
+                            string priceString = selectPriceFromString(subtring);
+
+                            double tmpPrice = parseDouble(priceString);
+
+                            if(tmpPrice > 0.0)
+                            {
+                                if (price == -1)
+                                {
+                                    price = tmpPrice;
+
+                                    if (_priceNode.InnerText.Contains("Andere Angebote"))
+                                        otherOffer = true;
+                                    else
+                                        otherOffer = false;
+
+                                    url = selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
+
+                                    discription = getDiscription(result);
+                                }                                    
+                                else
+                                {
+                                    if(tmpPrice < price)
+                                    {
+                                        price = tmpPrice;
+
+                                        if (_priceNode.InnerText.Contains("Andere Angebote"))
+                                            otherOffer = true;
+                                        else
+                                            otherOffer = false;
+
+                                        url = selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
+
+                                        discription = getDiscription(result);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                tmp.DiscriptionAmazon = discription;
+                tmp.UrlAmazon = url;
+
+                if(tmp.UrlAmazon != "")
+                {
+                    if (otherOffer)
+                        GetPriceOtherOffer(tmp.UrlAmazon, ref tmp);
+                    else
+                        GetPrice(tmp.UrlAmazon, ref tmp);
+                }
+                    
+            }
+        }
+
+        /*private void BeginParsing(ref Data tmp)
+        {
+            rootNode = GetRootNode(tmp.Ean);
             //rootNode = GetRootNode("4210201105657");
 
             if (ArticleFound(rootNode, tmp.Ean))
@@ -205,6 +317,26 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                     }
                 }
             }
+        }*/
+
+        private string getDiscription(HtmlNode node)
+        {
+            HtmlNode discription = node.SelectSingleNode("//a[@class='a-link-normal s-access-detail-page  a-text-normal']");
+
+            return discription.InnerText;
+        }
+
+        private double parseDouble(string value)
+        {
+            bool parse;
+            double returnValue;
+
+            parse = Double.TryParse(value, out returnValue);
+
+            if (parse)
+                return returnValue;
+
+            return 0.0;
         }
 
         private string selectSubstring(string str, string headEscape, string tailEscape)
@@ -216,11 +348,25 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
         }
 
+        private string selectPriceFromString(string priceString)
+        {
+            Match match = Regex.Match(priceString, "[0-9]*,[0-9]{1,2}");
+
+            if (match.Success)
+                return match.Value;
+
+            return "";
+        }
+
+        private string selectSubstring(string str, string headEscape)
+        {
+            int index = str.IndexOf(headEscape);
+            return str.Substring(index + headEscape.Length);
+        }
+
         private HtmlNode GetRootNode(string ean)
         {
-            //string url =
-                //"http://www.amazon.de/s/ref=sr_st_price-asc-rank?__mk_de_DE=%C3%85M%C3%85Z%C3%95%C3%91&keywords=4005808747405&sort=price-asc-rank";
-            string url = "http://www.amazon.de/s/ref=sr_st_price-asc-rank?&keywords=" + ean;
+            string url = "http://www.amazon.de/s/&keywords=" + ean + "&sort=price-asc-rank";
             HtmlWeb client = new HtmlWeb();
             client.UserAgent = "Chrome/50.0";
             client.UseCookies = true;
