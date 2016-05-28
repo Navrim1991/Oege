@@ -69,22 +69,111 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             doc = client.Load(url);
 
             HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='soldByThirdParty']");
-
+            //TODO Kosten hier
             if(node == null)
             {
                 string Amazon = "http://www.amazon.de";
                 node = doc.DocumentNode.SelectSingleNode("//tr[@id='priceblock_ourprice_row']");
 
-                string tmpPriceString = node.InnerText.ToLower();
+                if(node != null)
+                {
+                    //TODO Versantkosten
+                    string tmpPriceString = node.InnerText.ToLower();
 
-                if (tmpPriceString.Contains("kostenlose lieferung"))
-                    tmp.AmazonShipping = 0.0;
+                    if (tmpPriceString.Contains("kostenlose lieferung"))
+                        tmp.AmazonShipping = 0.0;
 
-                node = doc.DocumentNode.SelectSingleNode("//span[@id='priceblock_ourprice']");
+                    node = doc.DocumentNode.SelectSingleNode("//span[@id='priceblock_ourprice']");
 
-                string priceString = node.InnerText.Replace("EUR ", "");
+                    string priceString = node.InnerText.Replace("EUR ", "");
+
+                    tmp.PriceAmazon = parseDouble(priceString);
+                }
+                else
+                {
+
+                    HtmlNode tmpNode = doc.DocumentNode.SelectSingleNode("//div[@class='a-section a-spacing-double-large']");
+                    if (tmpNode != null)
+                        GetPriceOtherOffer(tmpNode, ref tmp);                    
+                }      
+            }
+            else
+            {
+                HtmlNode tmpNode = node.SelectSingleNode("//span[@class='a-color-price price3P  a-text-bold']");
+
+                string priceString = selectPriceFromString(tmpNode.InnerText);
 
                 tmp.PriceAmazon = parseDouble(priceString);
+
+                tmpNode = node.SelectSingleNode("//span[@class='a-size-small a-color-secondary shipping3P']");
+
+                priceString = selectPriceFromString(tmpNode.InnerText);
+
+                tmp.AmazonShipping = parseDouble(priceString);
+            }
+        }
+
+        private void GetPriceOtherOffer(HtmlNode node, ref Data tmp)
+        {
+            HtmlNodeCollection nodeCollection = node.SelectNodes("//div[@class='a-row a-spacing-mini olpOffer']");
+            HtmlNode shippingNode = nodeCollection.First();
+            String innerText = nodeCollection.First().InnerText;
+
+            innerText = innerText.Trim();
+            innerText = innerText.Replace("EUR ", "");
+
+            string priceString = "";
+            for (int i = 0; i < innerText.Length; i++)
+            {
+                if (innerText[i] == 32)
+                    break;
+                if (innerText[i] == 44 || IsNumber(innerText[i]))
+                    priceString += innerText[i];
+            }
+
+            double price;
+            bool parse = Double.TryParse(priceString, out price);
+
+            if (parse)
+                tmp.PriceAmazon = price;
+            else
+                tmp.PriceAmazon = 0.0;
+
+            HtmlNodeCollection shippingNodeCollection = shippingNode.SelectNodes("//span[@class='a-color-secondary']");
+            shippingNode = shippingNodeCollection.First();
+
+            if (shippingNode != null && shippingNode.InnerText.Contains("& bestellbar mit kostenlosem Premiumversand."))
+            {
+                tmp.AmazonShipping = 0.0;
+                return;
+            }
+
+
+            if (shippingNode != null)
+            {
+                string shippingInnerText = shippingNode.InnerText.ToLower();
+
+                if (shippingInnerText.Contains("kostenlose lieferung") || shippingInnerText.Contains("kostenfreie lieferung"))
+                {
+                    tmp.AmazonShipping = 0.0;
+                    return;
+                }
+            }
+
+
+            Match match = Regex.Match(shippingNode.InnerText, "EUR [0-9]*,[0-9]{1,2}|Versandkosten");
+
+            if (match.Success)
+            {
+                priceString = "";
+                priceString = match.Value.Replace("EUR ", "");
+
+                parse = Double.TryParse(priceString, out price);
+
+                if (parse)
+                    tmp.AmazonShipping = price;
+                else
+                    tmp.AmazonShipping = 0.0;
             }
         }
 
@@ -193,7 +282,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                         if (_priceNode.Name != "div")
                             continue;
 
-                        if (_priceNode.InnerText.Contains("Abo"))
+                        if (_priceNode.InnerText.Contains("Abo")|| _priceNode.InnerHtml.ToLower().Contains("pantry"))
                             continue;
 
                         if (_priceNode.InnerText.Contains("EUR"))
