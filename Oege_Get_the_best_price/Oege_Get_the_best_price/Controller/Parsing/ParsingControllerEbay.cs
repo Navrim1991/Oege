@@ -53,6 +53,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                 element.EbayShipping = tmp.EbayShipping;
                 Thread.Sleep(20);
                 percent = ++counter * 100 / listCount;
+
                 if (frmPar != null)                    
                     frmPar.BeginInvoke(del, new object[] { frmParsing.Platform.Ebay, percent });
             }

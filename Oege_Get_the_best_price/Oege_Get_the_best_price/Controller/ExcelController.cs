@@ -8,7 +8,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System.Text.RegularExpressions;
 using System.Windows;
-
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Oege_Get_the_best_price.Controller
 {
@@ -30,7 +30,94 @@ namespace Oege_Get_the_best_price.Controller
 
         public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice)
         {
-            List<Oege_Get_the_best_price.Model.Data> tmp = new List<Oege_Get_the_best_price.Model.Data>();
+            Excel.Application app;
+            Excel.Workbook workBook;
+            Excel.Worksheet workSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            app = new Excel.Application();
+            //xlWorkBook = xlApp.Workbooks.Open("csharp.net-informations.xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            workBook = app.Workbooks.Open(@filePath);
+            workSheet = (Excel.Worksheet)workBook.Worksheets.get_Item(1);
+
+            int rows = workSheet.UsedRange.Rows.Count;
+            int columns = workSheet.UsedRange.Columns.Count;
+
+            List<Model.Data> tmp = new List<Model.Data>();
+
+            for (int i = 1; i < rows; i++)
+            {
+                if(columns >= indexEan)
+                {
+                    object discription = "";
+                    object price = 0.0;
+                    object ean = (object)(workSheet.Cells[i, indexEan] as Excel.Range).Value;
+
+
+                    if (ean != null)
+                    {
+                        Match regExMatch = Regex.Match(ean.ToString(), "[0-9]{13}|(?:[0-9]{8})");
+                        if (regExMatch.Success)
+                        {
+                            Model.Data data = new Model.Data(ean.ToString());
+
+                            if (indexDiscription > 0 && columns >= indexDiscription)
+                                discription = (object)(workSheet.Cells[i, indexDiscription] as Excel.Range).Value;
+
+                            if (indexPrice > 0 && columns >= indexPrice)
+                                price = (object)(workSheet.Cells[i, indexPrice] as Excel.Range).Value;
+
+                            data.Aritcel = discription.ToString();
+
+                            double ownPrice = 0.0;
+                            bool ret = double.TryParse(price.ToString(), out ownPrice);
+
+                            if (ret)
+                                data.OwnPrice = Math.Round(ownPrice,2);
+                            else
+                                data.OwnPrice = 0;
+
+                            tmp.Add(data);
+                        }
+
+                    }
+                }
+            }
+
+            workBook.Close(false);
+            app.Quit();
+
+            releaseObject(workSheet);
+            releaseObject(workBook);
+            releaseObject(app);
+
+            Controller.Instance().getDataController(guiHash, level).DataHolding.ListData = tmp;
+
+            Controller.Instance().getParsingController(guiHash, level).start();
+
+        }
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Unable to release the Object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
+        /*public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice)
+        {
+            List<Model.Data> tmp = new List<Model.Data>();
             Workbook workBook;
             SharedStringTable sharedStrings;
             IEnumerable<Sheet> workSheets;
@@ -120,7 +207,8 @@ namespace Oege_Get_the_best_price.Controller
             {
                 MessageBox.Show("Fehler beim Laden der Excel-Datei\n" + ex.Message + "\n" + ex.StackTrace, "Fehler beim Laden der Excel-Datei", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
+    }*/
     }
 }

@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtSuche = new System.Windows.Forms.TextBox();
+            this.txtSearchEan = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
             this.clmHeaderEan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderArticel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderAmazon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderEbay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmHeaderOwnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblPriceOwn = new System.Windows.Forms.Label();
+            this.txtPriceOwn = new System.Windows.Forms.TextBox();
             this.lblProgressAmazon = new System.Windows.Forms.Label();
             this.lblProgressEbay = new System.Windows.Forms.Label();
             this.lvlProgress = new System.Windows.Forms.Label();
@@ -64,9 +67,7 @@
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.lblPriceOwn = new System.Windows.Forms.Label();
-            this.txtPriceOwn = new System.Windows.Forms.TextBox();
-            this.clmHeaderOwnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.butSearchEan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,7 +86,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.txtSuche);
+            this.splitContainer1.Panel1.Controls.Add(this.butSearchEan);
+            this.splitContainer1.Panel1.Controls.Add(this.txtSearchEan);
             this.splitContainer1.Panel1.Controls.Add(this.lblSearch);
             this.splitContainer1.Panel1.Controls.Add(this.listView);
             // 
@@ -107,12 +109,12 @@
             this.splitContainer1.SplitterDistance = 616;
             this.splitContainer1.TabIndex = 0;
             // 
-            // txtSuche
+            // txtSearchEan
             // 
-            this.txtSuche.Location = new System.Drawing.Point(52, 24);
-            this.txtSuche.Name = "txtSuche";
-            this.txtSuche.Size = new System.Drawing.Size(141, 20);
-            this.txtSuche.TabIndex = 4;
+            this.txtSearchEan.Location = new System.Drawing.Point(52, 24);
+            this.txtSearchEan.Name = "txtSearchEan";
+            this.txtSearchEan.Size = new System.Drawing.Size(141, 20);
+            this.txtSearchEan.TabIndex = 4;
             // 
             // lblSearch
             // 
@@ -168,6 +170,29 @@
             this.clmHeaderEbay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.clmHeaderEbay.Width = 81;
             // 
+            // clmHeaderOwnPrice
+            // 
+            this.clmHeaderOwnPrice.Text = "Lieferant";
+            this.clmHeaderOwnPrice.Width = 81;
+            // 
+            // lblPriceOwn
+            // 
+            this.lblPriceOwn.AutoSize = true;
+            this.lblPriceOwn.Location = new System.Drawing.Point(30, 115);
+            this.lblPriceOwn.Name = "lblPriceOwn";
+            this.lblPriceOwn.Size = new System.Drawing.Size(30, 13);
+            this.lblPriceOwn.TabIndex = 12;
+            this.lblPriceOwn.Text = "Preis";
+            // 
+            // txtPriceOwn
+            // 
+            this.txtPriceOwn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
+            this.txtPriceOwn.Location = new System.Drawing.Point(136, 112);
+            this.txtPriceOwn.Name = "txtPriceOwn";
+            this.txtPriceOwn.ReadOnly = true;
+            this.txtPriceOwn.Size = new System.Drawing.Size(103, 20);
+            this.txtPriceOwn.TabIndex = 11;
+            // 
             // lblProgressAmazon
             // 
             this.lblProgressAmazon.AutoSize = true;
@@ -213,6 +238,7 @@
             // 
             // txtArtikel
             // 
+            this.txtArtikel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtArtikel.Location = new System.Drawing.Point(136, 50);
             this.txtArtikel.Multiline = true;
             this.txtArtikel.Name = "txtArtikel";
@@ -257,6 +283,7 @@
             // 
             // txtPriceEaby
             // 
+            this.txtPriceEaby.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtPriceEaby.Location = new System.Drawing.Point(109, 84);
             this.txtPriceEaby.Name = "txtPriceEaby";
             this.txtPriceEaby.ReadOnly = true;
@@ -274,6 +301,7 @@
             // 
             // txtShippingEbay
             // 
+            this.txtShippingEbay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtShippingEbay.Location = new System.Drawing.Point(109, 110);
             this.txtShippingEbay.Name = "txtShippingEbay";
             this.txtShippingEbay.ReadOnly = true;
@@ -291,6 +319,7 @@
             // 
             // txtArticleEbay
             // 
+            this.txtArticleEbay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtArticleEbay.Location = new System.Drawing.Point(109, 13);
             this.txtArticleEbay.Multiline = true;
             this.txtArticleEbay.Name = "txtArticleEbay";
@@ -346,6 +375,7 @@
             // 
             // txtPriceAmazon
             // 
+            this.txtPriceAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtPriceAmazon.Location = new System.Drawing.Point(109, 91);
             this.txtPriceAmazon.Name = "txtPriceAmazon";
             this.txtPriceAmazon.ReadOnly = true;
@@ -363,6 +393,7 @@
             // 
             // txtShippingAmazon
             // 
+            this.txtShippingAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtShippingAmazon.Location = new System.Drawing.Point(109, 117);
             this.txtShippingAmazon.Name = "txtShippingAmazon";
             this.txtShippingAmazon.ReadOnly = true;
@@ -380,6 +411,7 @@
             // 
             // txtArtikelAmazon
             // 
+            this.txtArtikelAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtArtikelAmazon.Location = new System.Drawing.Point(109, 20);
             this.txtArtikelAmazon.Multiline = true;
             this.txtArtikelAmazon.Name = "txtArtikelAmazon";
@@ -409,6 +441,7 @@
             // 
             // txtEan
             // 
+            this.txtEan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
             this.txtEan.Location = new System.Drawing.Point(136, 24);
             this.txtEan.Name = "txtEan";
             this.txtEan.ReadOnly = true;
@@ -421,27 +454,15 @@
             this.backgroundWorkerExcel.WorkerSupportsCancellation = true;
             this.backgroundWorkerExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExcel_DoWork);
             // 
-            // lblPriceOwn
+            // butSearchEan
             // 
-            this.lblPriceOwn.AutoSize = true;
-            this.lblPriceOwn.Location = new System.Drawing.Point(30, 115);
-            this.lblPriceOwn.Name = "lblPriceOwn";
-            this.lblPriceOwn.Size = new System.Drawing.Size(30, 13);
-            this.lblPriceOwn.TabIndex = 12;
-            this.lblPriceOwn.Text = "Preis";
-            // 
-            // txtPriceOwn
-            // 
-            this.txtPriceOwn.Location = new System.Drawing.Point(136, 112);
-            this.txtPriceOwn.Name = "txtPriceOwn";
-            this.txtPriceOwn.ReadOnly = true;
-            this.txtPriceOwn.Size = new System.Drawing.Size(103, 20);
-            this.txtPriceOwn.TabIndex = 11;
-            // 
-            // clmHeaderOwnPrice
-            // 
-            this.clmHeaderOwnPrice.Text = "Lieferant";
-            this.clmHeaderOwnPrice.Width = 81;
+            this.butSearchEan.Location = new System.Drawing.Point(199, 22);
+            this.butSearchEan.Name = "butSearchEan";
+            this.butSearchEan.Size = new System.Drawing.Size(75, 23);
+            this.butSearchEan.TabIndex = 5;
+            this.butSearchEan.Text = "Suchen";
+            this.butSearchEan.UseVisualStyleBackColor = true;
+            this.butSearchEan.Click += new System.EventHandler(this.butSearchEan_Click);
             // 
             // frmParsing
             // 
@@ -483,7 +504,7 @@
         private System.Windows.Forms.LinkLabel linkLblAmazon;
         private System.Windows.Forms.Label lvlProgress;
         private System.Windows.Forms.ProgressBar progressBarParsing;
-        private System.Windows.Forms.TextBox txtSuche;
+        private System.Windows.Forms.TextBox txtSearchEan;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
@@ -507,5 +528,6 @@
         private System.Windows.Forms.Label lblPriceOwn;
         private System.Windows.Forms.TextBox txtPriceOwn;
         private System.Windows.Forms.ColumnHeader clmHeaderOwnPrice;
+        private System.Windows.Forms.Button butSearchEan;
     }
 }

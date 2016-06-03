@@ -70,3 +70,11 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bi
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.xml
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Data.Linq.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Interfaces.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.xml
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.xml
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.ResolveComReference.cache

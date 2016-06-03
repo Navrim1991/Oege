@@ -41,6 +41,27 @@ namespace Oege_Get_the_best_price.View
         int hash;
         private ListViewColumnSorter lvwColumnSorter;
 
+        private const string EAN = "EAN";
+        private const string articleDiscription = "Artikelbeschreibung";
+        private const string UrlAmazon = "UrlAmazon";
+        private const string UrlEbay = "UrlEbay";
+        private const string UrlIdealo = "UrlIdealo";
+        private const string articleDiscriptionAmazon = "ArtikelbeschreibungAmazon";
+        private const string articleDiscriptionEbay = "ArtikelbeschreibungEbay";
+        private const string articleDiscriptionIdealo = "ArtikelbeschreibungIdealo";
+        private const string priceAmazon = "ArtikelbeschreibungAmazon";
+        private const string priceEbay = "ArtikelbeschreibungEbay";
+        private const string priceIdealo = "ArtikelbeschreibungIdealo";
+        private const string shippingAmazon = "VersantkostenAmazon";
+        private const string shippingEbay = "VersantkostenEbay";
+        private const string shippingIdealo = "VersantkostenIdealo";
+        private const string ownPrice = "EigenerPreis";
+
+        private const string header = EAN + ";" + articleDiscription + ";" + UrlAmazon + ";" +  UrlEbay + ";" +
+            UrlIdealo + ";" + articleDiscriptionAmazon + ";" + articleDiscriptionEbay + ";" + articleDiscriptionIdealo + ";" +
+            priceAmazon + ";" + priceEbay + ";" + priceIdealo + ";" + shippingAmazon + ";" + shippingEbay + ";" +
+            shippingIdealo + ";" + ownPrice;
+
         const short level = 1;
 
         #endregion
@@ -167,6 +188,16 @@ namespace Oege_Get_the_best_price.View
 
         #region methods
 
+        public bool hasData()
+        {
+            return (listView.Items.Count > 0);
+        }
+
+        private ListViewItem searchItem(string searchValue)
+        {
+            return listView.FindItemWithText(searchValue, false, 0, true);
+        }
+
         public void importExcelFile()
         {
             List<object> param = new List<object>();
@@ -174,6 +205,104 @@ namespace Oege_Get_the_best_price.View
             {
                 backgroundWorkerExcel.RunWorkerAsync(param);
             }
+        }
+
+        public void importData()
+        {
+
+            List<Model.Data> tmp = new List<Data>();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV|*.csv";
+            openFileDialog.Title = "Laden einer CSV-Datei";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                String fileName = @openFileDialog.FileName;
+
+                var sr = new StreamReader(@fileName);
+
+                var reader = new CsvReader(sr);
+                reader.Configuration.Delimiter = ";";
+
+
+                reader.Read();
+                string[] headers = reader.FieldHeaders;
+                while (reader.Read())
+                {
+                    Data data = null;
+
+                    for(int i = 0; i < headers.Count(); i++)
+                    {
+                        switch(i)
+                        {
+                            case 0:
+                                data = new Data(reader.GetField(headers[i]));
+                                break;
+                            case 1:
+                                data.Aritcel = reader.GetField(headers[i]);
+                                break;
+                            case 2:
+                                data.UrlAmazon = reader.GetField(headers[i]);
+                                break;
+                            case 3:
+                                data.UrlEbay = reader.GetField(headers[i]);
+                                break;
+                            case 4:
+                                data.UrlIdealo = reader.GetField(headers[i]);
+                                break;
+                            case 5:
+                                data.DiscriptionAmazon = reader.GetField(headers[i]);
+                                break;
+                            case 6:
+                                data.DiscriptionEbay = reader.GetField(headers[i]);
+                                break;
+                            case 7:
+                                data.DiscriptionIdealo = reader.GetField(headers[i]);
+                                break;
+                            case 8:
+                                data.PriceAmazon = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 9:
+                                data.PriceEbay = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 10:
+                                data.PriceIdealo = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 11:
+                                data.AmazonShipping = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 12:
+                                data.EbayShipping = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 13:
+                                data.ShippingIdealo = parseDouble(reader.GetField(headers[i]));
+                                break;
+                            case 14:
+                                data.OwnPrice = parseDouble(reader.GetField(headers[i]));
+                                break;
+                        }                        
+                    }
+
+                    tmp.Add(data);
+                }
+
+                dataController.DataHolding.ListData = tmp;
+                sr.Close();
+                reader.Dispose();
+
+                updateListView();
+            }
+        }
+
+        private double parseDouble(string value)
+        {
+            double retVal;
+            bool parse = double.TryParse(value, out retVal);
+
+            if (parse)
+                return retVal;
+            else
+                return 0.0;
         }
 
         public void exportData()
@@ -191,7 +320,7 @@ namespace Oege_Get_the_best_price.View
                 var csv = new CsvWriter(writer);
                 csv.Configuration.Delimiter = ";";
 
-                string header = "EAN;Artikelbeschreibung;UrlAmazon;UrlEbay;UrlIdealo;ArtikelbeschreibungAmazon;ArtikelbeschreibungEbay;ArtikelbeschreibungIdealo;PreisAmazon;PreisEbay;PreisIdealo;VersantkostenAmazon;VersantkostenEaby;VersantkostenIdealo;EigenerPreis;";
+                
                 writer.WriteLine(header);                
 
                 foreach (var item in dataController.DataHolding.ListData)
@@ -261,8 +390,6 @@ namespace Oege_Get_the_best_price.View
                 dic.Add(Platform.Ebay, data.PriceEbay);
                 dic.Add(Platform.Own, data.OwnPrice);
 
-
-
                 ListViewItem.ListViewSubItem subitemAmazon = null;
                 ListViewItem.ListViewSubItem subitemEbay = null;
                 ListViewItem.ListViewSubItem subitemOwn = null;
@@ -326,44 +453,21 @@ namespace Oege_Get_the_best_price.View
                     break;
             }
 
-            switch (percentProgressAmazon)
-            {
-                case 0:
-                    lblProgressAmazon.ForeColor = Color.Red;
-                    break;
-                case 50:
-                    lblProgressAmazon.ForeColor = Color.Orange;
-                    break;
-                case 100:
-                    lblProgressAmazon.ForeColor = Color.Green;
-                    break;
-            }
+            if (percentProgressAmazon < 50)
+                lblProgressAmazon.ForeColor = Color.Red;
+            else if (percentProgressAmazon == 50)
+                lblProgressAmazon.ForeColor = Color.Orange;
+            else if (percentProgressAmazon == 100)
+                lblProgressAmazon.ForeColor = Color.Green;
 
-            switch (percentProgressEbay)
-            {
-                case 0:
-                    lblProgressEbay.ForeColor = Color.Red;
-                    break;
-                case 50:
-                    lblProgressEbay.ForeColor = Color.Orange;
-                    break;
-                case 100:
-                    lblProgressEbay.ForeColor = Color.Green;
-                    break;
-            }
+            if (percentProgressEbay < 50)
+                lblProgressEbay.ForeColor = Color.Red;
+            else if(percentProgressEbay == 50)
+                lblProgressEbay.ForeColor = Color.Orange;
+            else if(percentProgressEbay == 100)
+                lblProgressEbay.ForeColor = Color.Green;
 
-            /*switch (percentProgressIdealo)
-            {
-                case 0:
-                    lblProgressIdealo.ForeColor = Color.Red;
-                    break;
-                case 50:
-                    lblProgressIdealo.ForeColor = Color.Orange;
-                    break;
-                case 100:
-                    lblProgressIdealo.ForeColor = Color.Green;
-                    break;
-            }*/
+
 
             progressBarParsing.Value = (percentProgressAmazon + percentProgressEbay) / 2;
         }
@@ -416,6 +520,19 @@ namespace Oege_Get_the_best_price.View
         private void linkLblEbay_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(e.Link.LinkData.ToString());
+        }
+
+        private void butSearchEan_Click(object sender, EventArgs e)
+        {
+            ListViewItem searchResult = searchItem(txtSearchEan.Text);
+            if(searchResult != null)
+            {
+                txtSearchEan.Clear();
+                listView.Focus();
+                listView.TopItem = searchResult;
+            }
+                
+
         }
     }
 }

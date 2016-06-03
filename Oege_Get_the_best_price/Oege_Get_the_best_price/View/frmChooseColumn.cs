@@ -42,22 +42,25 @@ namespace Oege_Get_the_best_price.View
 
         private void butOk_Click(object sender, EventArgs e)
         {
-            excelProcess.Kill();
+            if(excelProcess != null)
+            {
+                excelProcess.Kill();
 
-            Thread.Sleep(100);
+                Thread.Sleep(100);
+            }
 
             if (txtDiscription.Text != "")
-                param.Add(txtDiscription.Text.ToLower().First() - 97);
+                param.Add(txtDiscription.Text.ToLower().First() - 96);
             else
                 param.Add(-1);
 
             if (txtPrice.Text != "")
-                param.Add(txtPrice.Text.ToLower().First() - 97);
+                param.Add(txtPrice.Text.ToLower().First() - 96);
             else
                 param.Add(-1);
 
             if (txtEan.Text != "")
-                param.Add(txtEan.Text.ToLower().First() - 97);              
+                param.Add(txtEan.Text.ToLower().First() - 96);              
             else
                 this.DialogResult = DialogResult.Cancel;
         }

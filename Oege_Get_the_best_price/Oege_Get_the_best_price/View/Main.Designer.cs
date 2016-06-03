@@ -103,6 +103,7 @@
             | System.Windows.Forms.Keys.N)));
             this.projektÖffnenToolStripMenuItem.Size = new System.Drawing.Size(279, 22);
             this.projektÖffnenToolStripMenuItem.Text = "Projekt Öffnen";
+            this.projektÖffnenToolStripMenuItem.Click += new System.EventHandler(this.projektÖffnenToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 

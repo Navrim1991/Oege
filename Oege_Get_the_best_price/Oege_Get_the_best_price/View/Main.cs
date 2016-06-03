@@ -39,7 +39,7 @@ namespace Oege_Get_the_best_price.View
             
         }
 
-        private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addPage()
         {
             try
             {
@@ -51,6 +51,11 @@ namespace Oege_Get_the_best_price.View
             }
         }
 
+        private void schnellstartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addPage();
+        }
+
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -59,13 +64,29 @@ namespace Oege_Get_the_best_price.View
         private void excelListeImportierenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (activeForm.GetType() == typeof(frmParsing))
-                ((frmParsing)activeForm).importExcelFile();
+            {
+                frmParsing frm = ((frmParsing)activeForm);
+                if(!frm.hasData())
+                    ((frmParsing)activeForm).importExcelFile();
+                else
+                {
+                    addPage();
+                    ((frmParsing)activeForm).importExcelFile();
+                }
+            }
+                
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(activeForm.GetType() == typeof(frmParsing))
                 ((frmParsing)activeForm).exportData();
+        }
+
+        private void projektÖffnenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (activeForm.GetType() == typeof(frmParsing))
+                ((frmParsing)activeForm).importData();
         }
     }
 }
