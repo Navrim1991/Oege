@@ -83,7 +83,6 @@ namespace Oege_Get_the_best_price.Controller
                     }
                 }
             }
-
             workBook.Close(false);
             app.Quit();
 

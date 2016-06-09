@@ -51,35 +51,37 @@ namespace Oege_Get_the_best_price.Model
             switch (index)
             {
                     case 0:
-                        if (order == 1)
+                        if (order == 0)
                             listData = (from p in listData orderby p.Ean select p).ToList();
-                        else if (order == 2)
+                        else if (order == 1)
                             listData = (from p in listData orderby p.Ean descending select p).ToList();
                         break;
                     case 1:
-                        if (order == 1)
+                        if (order == 0)
                             listData = (from p in listData orderby p.Aritcel select p).ToList();
-                        else if (order == 2)
+                        else if (order == 1)
                             listData = (from p in listData orderby p.Aritcel descending select p).ToList();
                         break;
                     case 2:
-                    if (order == 1)
-                        listData.Sort((x, y) => ((int)(x.PriceAmazon * 100)).CompareTo((int)(y.PriceAmazon * 100)));
+                    if (order == 0)
+                        listData.Sort((Data x, Data y) => (x.PriceAmazon.CompareTo(y.PriceAmazon )));
                     //listData = (from p in listData orderby ((int)(p.PriceAmazon * 100)) select p).ToList();
-                    else if (order == 2)
-                        listData.Sort((x, y) => -1*((int)(x.PriceAmazon * 100)).CompareTo((int)(y.PriceAmazon * 100)));
+                    else if (order == 1)
+                        listData.Sort((Data x, Data y) => -1*(x.PriceAmazon.CompareTo(y.PriceAmazon)));
                     //listData = (from p in listData orderby ((int)(p.PriceAmazon * 100)) descending select p).ToList();
+
+
                     break;
                     case 3:
-                        if (order == 1)
+                        if (order == 0)
                             listData = (from p in listData orderby ((int)(p.PriceEbay * 100)) select p).ToList();
-                        else if (order == 2)
+                        else if (order == 1)
                             listData = (from p in listData orderby ((int)(p.PriceEbay * 100)) descending select p).ToList();
                         break;
                     case 4:
-                    if (order == 1)
+                    if (order == 0)
                         listData = (from p in listData orderby ((int)(p.OwnPrice * 100))select p).ToList();
-                    else if (order == 2)
+                    else if (order == 1)
                         listData = (from p in listData orderby ((int)(p.OwnPrice * 100)) descending select p).ToList();
                     break;
             }

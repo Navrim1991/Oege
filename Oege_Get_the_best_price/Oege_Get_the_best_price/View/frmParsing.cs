@@ -26,6 +26,13 @@ namespace Oege_Get_the_best_price.View
             None
         };
 
+        private enum SortOrder
+        {
+            Ascending,
+            Descending,
+            None,
+        };
+
 
         #region Attributs
 
@@ -39,7 +46,7 @@ namespace Oege_Get_the_best_price.View
         private int percentProgressEbay;
         private int percentProgressIdealo;
         int hash;
-        private ListViewColumnSorter lvwColumnSorter;
+        KeyValuePair<int, SortOrder> currentSortedHeader = new KeyValuePair<int, SortOrder>(-1, SortOrder.None);
 
         private const string EAN = "EAN";
         private const string articleDiscription = "Artikelbeschreibung";
@@ -80,9 +87,6 @@ namespace Oege_Get_the_best_price.View
             controller = Controller.Controller.Instance();
             controller.Register(this, level);
             hash = this.GetHashCode();
-
-            lvwColumnSorter = new ListViewColumnSorter();
-            this.listView.ListViewItemSorter = lvwColumnSorter;
 
             dataController = controller.getDataController(hash, level);
             if (dataController == null)
@@ -455,19 +459,17 @@ namespace Oege_Get_the_best_price.View
 
             if (percentProgressAmazon < 50)
                 lblProgressAmazon.ForeColor = Color.Red;
-            else if (percentProgressAmazon == 50)
+            else if (percentProgressAmazon >= 50 && percentProgressAmazon < 100)
                 lblProgressAmazon.ForeColor = Color.Orange;
-            else if (percentProgressAmazon == 100)
+            else if (percentProgressAmazon >= 100)
                 lblProgressAmazon.ForeColor = Color.Green;
 
             if (percentProgressEbay < 50)
                 lblProgressEbay.ForeColor = Color.Red;
-            else if(percentProgressEbay == 50)
+            else if(percentProgressEbay >= 50 && percentProgressEbay < 100)
                 lblProgressEbay.ForeColor = Color.Orange;
-            else if(percentProgressEbay == 100)
+            else if(percentProgressEbay >= 100)
                 lblProgressEbay.ForeColor = Color.Green;
-
-
 
             progressBarParsing.Value = (percentProgressAmazon + percentProgressEbay) / 2;
         }
@@ -483,7 +485,7 @@ namespace Oege_Get_the_best_price.View
 
             if (parse)
             {
-                if (e.Column == lvwColumnSorter.SortColumn)
+                /*if (e.Column == lvwColumnSorter.SortColumn)
                 {
                     // Reverse the current sort direction for this column.
                     if (lvwColumnSorter.Order == SortOrder.Ascending)
@@ -500,13 +502,27 @@ namespace Oege_Get_the_best_price.View
                     // Set the column number that is to be sorted; default to ascending.
                     lvwColumnSorter.SortColumn = e.Column;
                     lvwColumnSorter.Order = SortOrder.Ascending;
+                }*/
+                if(e.Column == currentSortedHeader.Key)
+                {
+                    if (currentSortedHeader.Value == SortOrder.Ascending)
+                    {
+                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Descending);
+                    }
+                    else
+                    {
+                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
+                    }
+                }
+                else
+                {
+                    // Set the column number that is to be sorted; default to ascending.
+                    currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
                 }
 
-                // Perform the sort with these new sort options.
-                //this.listView.Sort();
                 listView.Items.Clear();
                 
-                dataController.DataHolding.sortList(clickedIndex, (int)lvwColumnSorter.Order);
+                dataController.DataHolding.sortList(clickedIndex, (int)currentSortedHeader.Value);
 
                 updateListView();
             }            
@@ -529,9 +545,8 @@ namespace Oege_Get_the_best_price.View
             {
                 txtSearchEan.Clear();
                 listView.Focus();
-                listView.TopItem = searchResult;
+                listView.Items[searchResult.Index].Selected = true;
             }
-                
 
         }
     }
