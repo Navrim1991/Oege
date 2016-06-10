@@ -175,7 +175,7 @@ namespace Oege_Get_the_best_price.View
         {
             List<object> param = (List<object>)e.Argument;
             if (param != null)
-                excelController.readExcelFile((string)param[0], level, (int)param[3], (int)param[1], (int)param[2]);
+                excelController.readExcelFile((string)param[0], level, (int)param[4], (int)param[1], (int)param[2], (double)param[3]);
         }
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
         {

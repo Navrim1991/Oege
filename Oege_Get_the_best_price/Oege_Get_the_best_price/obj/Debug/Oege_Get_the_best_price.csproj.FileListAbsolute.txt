@@ -78,3 +78,4 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bi
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.ResolveComReference.cache
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmSearchSingleEan.resources

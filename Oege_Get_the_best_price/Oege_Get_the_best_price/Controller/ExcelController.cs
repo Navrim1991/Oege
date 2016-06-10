@@ -15,7 +15,7 @@ namespace Oege_Get_the_best_price.Controller
     class ExcelController
     {
         int guiHash;
-
+        double currencConversion;
         public int GuiHash
         {
             get
@@ -23,12 +23,25 @@ namespace Oege_Get_the_best_price.Controller
                 return guiHash;
             }
         }
+
         public ExcelController(int guiHash)
         {
             this.guiHash = guiHash;
         }
 
-        public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice)
+        public double CurrencConversion
+        {
+            get
+            {
+                return currencConversion;
+            }
+            set
+            {
+                currencConversion = value;
+            }
+        }
+
+        public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice, double currencyConversion)
         {
             Excel.Application app;
             Excel.Workbook workBook;
@@ -45,6 +58,8 @@ namespace Oege_Get_the_best_price.Controller
 
             List<Model.Data> tmp = new List<Model.Data>();
 
+            Controller controller = Controller.Instance();
+
             for (int i = 1; i < rows; i++)
             {
                 if(columns >= indexEan)
@@ -56,10 +71,12 @@ namespace Oege_Get_the_best_price.Controller
 
                     if (ean != null)
                     {
-                        Match regExMatch = Regex.Match(ean.ToString(), "[0-9]{13}|(?:[0-9]{8})");
-                        if (regExMatch.Success)
+                        string eanString = ean.ToString();
+                        eanString = controller.makeEan(eanString);
+
+                        if(controller.checkEan(eanString))
                         {
-                            Model.Data data = new Model.Data(ean.ToString());
+                            Model.Data data = new Model.Data(eanString);
 
                             if (indexDiscription > 0 && columns >= indexDiscription)
                                 discription = (object)(workSheet.Cells[i, indexDiscription] as Excel.Range).Value;
@@ -69,13 +86,7 @@ namespace Oege_Get_the_best_price.Controller
 
                             data.Aritcel = discription.ToString();
 
-                            double ownPrice = 0.0;
-                            bool ret = double.TryParse(price.ToString(), out ownPrice);
-
-                            if (ret)
-                                data.OwnPrice = Math.Round(ownPrice,2);
-                            else
-                                data.OwnPrice = 0;
+                            data.OwnPrice =  controller.parseDouble(price.ToString()) * currencyConversion;
 
                             tmp.Add(data);
                         }

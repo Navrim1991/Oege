@@ -37,12 +37,15 @@
             this.txtDiscription = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.txtCurrencyConversion = new Currency_Control.CurrencyControl();
+            this.lblCurrency = new System.Windows.Forms.Label();
+            this.butCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // butOk
             // 
             this.butOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.butOk.Location = new System.Drawing.Point(309, 205);
+            this.butOk.Location = new System.Drawing.Point(309, 253);
             this.butOk.Name = "butOk";
             this.butOk.Size = new System.Drawing.Size(102, 31);
             this.butOk.TabIndex = 0;
@@ -109,11 +112,41 @@
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 10;
             // 
+            // txtCurrencyConversion
+            // 
+            this.txtCurrencyConversion.Location = new System.Drawing.Point(194, 188);
+            this.txtCurrencyConversion.Name = "txtCurrencyConversion";
+            this.txtCurrencyConversion.Size = new System.Drawing.Size(100, 20);
+            this.txtCurrencyConversion.TabIndex = 11;
+            // 
+            // lblCurrency
+            // 
+            this.lblCurrency.AutoSize = true;
+            this.lblCurrency.Location = new System.Drawing.Point(25, 191);
+            this.lblCurrency.Name = "lblCurrency";
+            this.lblCurrency.Size = new System.Drawing.Size(109, 13);
+            this.lblCurrency.TabIndex = 12;
+            this.lblCurrency.Text = "Wärungsumrechnung";
+            // 
+            // butCancel
+            // 
+            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.butCancel.Location = new System.Drawing.Point(201, 253);
+            this.butCancel.Name = "butCancel";
+            this.butCancel.Size = new System.Drawing.Size(102, 31);
+            this.butCancel.TabIndex = 13;
+            this.butCancel.Text = "Abbrechen";
+            this.butCancel.UseVisualStyleBackColor = true;
+            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
+            // 
             // frmChooseColumn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 248);
+            this.ClientSize = new System.Drawing.Size(423, 296);
+            this.Controls.Add(this.butCancel);
+            this.Controls.Add(this.lblCurrency);
+            this.Controls.Add(this.txtCurrencyConversion);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtDiscription);
             this.Controls.Add(this.txtEan);
@@ -143,5 +176,8 @@
         private System.Windows.Forms.TextBox txtDiscription;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private Currency_Control.CurrencyControl txtCurrencyConversion;
+        private System.Windows.Forms.Label lblCurrency;
+        private System.Windows.Forms.Button butCancel;
     }
 }

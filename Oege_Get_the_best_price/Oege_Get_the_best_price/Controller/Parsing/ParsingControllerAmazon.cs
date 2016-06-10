@@ -20,6 +20,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
         int guiHash;
         int level;
         private delegate void progressBarDelegate(frmParsing.Platform platform, int percent);
+        Controller controller = Controller.Instance();
 
         private HtmlNode rootNode;
 
@@ -87,7 +88,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                     string priceString = node.InnerText.Replace("EUR ", "");
 
-                    tmp.PriceAmazon = parseDouble(priceString);
+                    tmp.PriceAmazon = controller.parseDouble(priceString);
                 }
                 else
                 {
@@ -103,13 +104,13 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                 string priceString = selectPriceFromString(tmpNode.InnerText);
 
-                tmp.PriceAmazon = parseDouble(priceString);
+                tmp.PriceAmazon = controller.parseDouble(priceString);
 
                 tmpNode = node.SelectSingleNode("//span[@class='a-size-small a-color-secondary shipping3P']");
 
                 priceString = selectPriceFromString(tmpNode.InnerText);
 
-                tmp.AmazonShipping = parseDouble(priceString);
+                tmp.AmazonShipping = controller.parseDouble(priceString);
             }
         }
 
@@ -255,7 +256,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             return number >= 48 && number <= 57 ? true : false;
         }
 
-        private void BeginParsing(ref Data tmp)
+        public void BeginParsing(ref Data tmp)
         {
             rootNode = GetRootNode(tmp.Ean);
 
@@ -287,11 +288,11 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
 
                         if (_priceNode.InnerText.Contains("EUR"))
                         {                            
-                            string subtring = selectSubstring(_priceNode.InnerText, "EUR ");
+                            string subtring = controller.selectSubstring(_priceNode.InnerText, "EUR ");
 
                             string priceString = selectPriceFromString(subtring);
 
-                            double tmpPrice = parseDouble(priceString);
+                            double tmpPrice = controller.parseDouble(priceString);
 
                             if(tmpPrice > 0.0)
                             {
@@ -304,7 +305,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                                     else
                                         otherOffer = false;
 
-                                    url = selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
+                                    url = controller.selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
 
                                     discription = getDiscription(result);
                                 }                                    
@@ -319,7 +320,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                                         else
                                             otherOffer = false;
 
-                                        url = selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
+                                        url = controller.selectSubstring(_priceNode.InnerHtml, "href=\"", "\"><span");
 
                                         discription = getDiscription(result);
                                     }
@@ -413,29 +414,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             HtmlNode discription = node.SelectSingleNode("//a[@class='a-link-normal s-access-detail-page  a-text-normal']");
 
             return discription.InnerText;
-        }
-
-        private double parseDouble(string value)
-        {
-            bool parse;
-            double returnValue;
-
-            parse = Double.TryParse(value, out returnValue);
-
-            if (parse)
-                return returnValue;
-
-            return 0.0;
-        }
-
-        private string selectSubstring(string str, string headEscape, string tailEscape)
-        {
-            int index = str.IndexOf(headEscape);
-            string subString = str.Substring(index + headEscape.Length);
-            index = subString.IndexOf(tailEscape);
-            return subString.Substring(0, index);
-
-        }
+        }        
 
         private string selectPriceFromString(string priceString)
         {
@@ -445,12 +424,6 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
                 return match.Value;
 
             return "";
-        }
-
-        private string selectSubstring(string str, string headEscape)
-        {
-            int index = str.IndexOf(headEscape);
-            return str.Substring(index + headEscape.Length);
         }
 
         private HtmlNode GetRootNode(string ean)

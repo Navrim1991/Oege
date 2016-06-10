@@ -123,6 +123,12 @@
     <Compile Include="View\frmParsing.Designer.cs">
       <DependentUpon>frmParsing.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\frmSearchSingleEan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmSearchSingleEan.Designer.cs">
+      <DependentUpon>frmSearchSingleEan.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmParsing.resx">
       <DependentUpon>frmParsing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmSearchSingleEan.resx">
+      <DependentUpon>frmSearchSingleEan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

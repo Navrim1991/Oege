@@ -25,9 +25,11 @@ namespace Oege_Get_the_best_price.View
         int priceColumn = -1;
         List<object> param;
         string fileName = "";
+        int guiHash;
 
         public frmChooseColumn(int hash, short level,ref List<object> param)
         {
+            this.guiHash = hash;
             this.level = level;            
 
             this.param = param;
@@ -42,7 +44,9 @@ namespace Oege_Get_the_best_price.View
 
         private void butOk_Click(object sender, EventArgs e)
         {
-            if(excelProcess != null)
+            param.Clear();
+            param.Add(fileName);
+            if (excelProcess != null)
             {
                 excelProcess.Kill();
 
@@ -59,10 +63,14 @@ namespace Oege_Get_the_best_price.View
             else
                 param.Add(-1);
 
+            param.Add(Controller.Controller.Instance().parseDouble(txtCurrencyConversion.Text, 1.0));
+
             if (txtEan.Text != "")
                 param.Add(txtEan.Text.ToLower().First() - 96);              
             else
                 this.DialogResult = DialogResult.Cancel;
+
+            
         }
 
         private void frmChooseColumn_Shown(object sender, EventArgs e)
@@ -73,19 +81,40 @@ namespace Oege_Get_the_best_price.View
                 excelProcess = Process.Start(fileName);
                 param.Add(fileName);                
             }
+            else
+            {
+                this.DialogResult = DialogResult.Abort;
+                this.Close();
+            }
         }
 
         private void frmChooseColumn_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult a = this.DialogResult;
 
-            if (a != DialogResult.OK)
+            if (a == DialogResult.Cancel)
             {
                 MessageBox.Show("Bitte geben Sie die Spalte der EAN an", "Fehlerhafte Eingabe", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                excelProcess = Process.Start(fileName);
-                e.Cancel = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    fileName = @openFileDialog.FileName;
+                    excelProcess = Process.Start(fileName);
+                    param.Add(fileName);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.Abort;
+                }
+                
             }
                 
+        }
+
+        private void butCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Abort;
+            this.Close();
         }
     }
 }

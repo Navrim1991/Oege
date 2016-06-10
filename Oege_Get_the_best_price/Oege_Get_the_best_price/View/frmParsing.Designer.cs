@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.butSearchEan = new System.Windows.Forms.Button();
             this.txtSearchEan = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
@@ -67,7 +68,6 @@
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.butSearchEan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -109,6 +109,16 @@
             this.splitContainer1.SplitterDistance = 616;
             this.splitContainer1.TabIndex = 0;
             // 
+            // butSearchEan
+            // 
+            this.butSearchEan.Location = new System.Drawing.Point(199, 22);
+            this.butSearchEan.Name = "butSearchEan";
+            this.butSearchEan.Size = new System.Drawing.Size(75, 23);
+            this.butSearchEan.TabIndex = 5;
+            this.butSearchEan.Text = "Suchen";
+            this.butSearchEan.UseVisualStyleBackColor = true;
+            this.butSearchEan.Click += new System.EventHandler(this.butSearchEan_Click);
+            // 
             // txtSearchEan
             // 
             this.txtSearchEan.Location = new System.Drawing.Point(52, 24);
@@ -138,6 +148,7 @@
             this.clmHeaderOwnPrice});
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
+            this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(0, 65);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
@@ -453,16 +464,6 @@
             this.backgroundWorkerExcel.WorkerReportsProgress = true;
             this.backgroundWorkerExcel.WorkerSupportsCancellation = true;
             this.backgroundWorkerExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerExcel_DoWork);
-            // 
-            // butSearchEan
-            // 
-            this.butSearchEan.Location = new System.Drawing.Point(199, 22);
-            this.butSearchEan.Name = "butSearchEan";
-            this.butSearchEan.Size = new System.Drawing.Size(75, 23);
-            this.butSearchEan.TabIndex = 5;
-            this.butSearchEan.Text = "Suchen";
-            this.butSearchEan.UseVisualStyleBackColor = true;
-            this.butSearchEan.Click += new System.EventHandler(this.butSearchEan_Click);
             // 
             // frmParsing
             // 

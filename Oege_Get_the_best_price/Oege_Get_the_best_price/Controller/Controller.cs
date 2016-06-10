@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oege_Get_the_best_price.Controller.Parsing;
+using System.Text.RegularExpressions;
 
 namespace Oege_Get_the_best_price.Controller
 {
@@ -17,11 +18,15 @@ namespace Oege_Get_the_best_price.Controller
         private static List<ExcelController> listExcelController;
         private static List<FormController> listFormController;
         private static List<ParsingController> listParsingController;
+        private static object syncLock;
 
         #endregion
 
         #region Singleton
-        private Controller() { }
+        private Controller()
+        {
+            syncLock = new object();
+        }
 
         public static Controller Instance()
         {
@@ -33,7 +38,81 @@ namespace Oege_Get_the_best_price.Controller
             return instance;
         }
         #endregion
-        
+
+        #region helper
+
+        public string makeEan(string ean)
+        {
+            string tmp = ean;
+            if(tmp.Length < 8)
+            {
+                do
+                {
+                    tmp = "0" + tmp;
+                } while (tmp.Length < 8);
+            }
+            else if(tmp.Length < 13)
+            {
+                do
+                {
+                    tmp = "0" + tmp;
+                } while (tmp.Length < 13);
+            }
+
+            return tmp;
+        }
+
+        public bool checkEan(string ean)
+        {
+            if(ean.Length == 13 ||  ean.Length == 8)
+                return Regex.Match(ean, "[0-9]" + "{" + ean.Length + "}(?!00000000)(?!0000000000000)").Success;
+
+            return false;
+        }
+
+        public string selectSubstring(string str, string headEscape, string tailEscape)
+        {
+            int index = str.IndexOf(headEscape);
+            string subString = str.Substring(index + headEscape.Length);
+            index = subString.IndexOf(tailEscape);
+            return subString.Substring(0, index);
+
+        }
+
+        public string selectSubstring(string str, string headEscape)
+        {
+            int index = str.IndexOf(headEscape);
+            return str.Substring(index + headEscape.Length);
+        }
+
+        public double parseDouble(string value)
+        {
+            bool parse;
+            double returnValue;
+            value = value.Replace(".", ",");
+            parse = Double.TryParse(value, out returnValue);
+
+            if (parse)
+                return returnValue;
+
+            return 0.0;
+        }
+
+        public double parseDouble(string value, double defaultValue)
+        {
+            bool parse;
+            double returnValue;
+            value = value.Replace(".", ",");
+            parse = Double.TryParse(value, out returnValue);
+
+            if (parse)
+                return returnValue;
+
+            return defaultValue;
+        }
+
+        #endregion
+
         #region Get Controller
 
         public DataController getDataController(int hash, int level)
@@ -86,15 +165,20 @@ namespace Oege_Get_the_best_price.Controller
 
         public void Register(Form frm, int level)
         {
-            switch (level)
+            lock(syncLock)
             {
-                case 1:
-                    registerLevelOne(frm, level);
-                    break;
-                default:
-                    break;
+                switch (level)
+                {
+                    case 1:
+                        registerLevelOne(frm, level);
+                        break;
+                    case 10:
+                        registerLevelTen(frm, level);
+                        break;
+                    default:
+                        break;
+                }
             }
-
         }
 
         private void registerLevelOne(Form frm, int level)
@@ -117,18 +201,32 @@ namespace Oege_Get_the_best_price.Controller
             listParsingController.Add(new ParsingController(frm.GetHashCode(), level));
         }
 
+        private void registerLevelTen(Form frm, int level)
+        {
+            if (listParsingController == null)
+                listParsingController = new List<ParsingController>();
+
+            listParsingController.Add(new ParsingController(frm.GetHashCode(), level));
+        }
+
         #endregion
 
         #region Unregister
         public void Unregister(Form frm, int level)
         {
-            switch (level)
+            lock(syncLock)
             {
-                case 1:
-                    unregisterLevelOne(frm);
-                    break;
-                default:
-                    break;
+                switch (level)
+                {
+                    case 1:
+                        unregisterLevelOne(frm);
+                        break;
+                    case 10:
+                        unregisterLevelTen(frm);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -152,6 +250,15 @@ namespace Oege_Get_the_best_price.Controller
                 listFormController.Remove(delFromCon);
             }
 
+            if (listParsingController != null)
+            {
+                ParsingController delParsingCon = (from parsingController in listParsingController where frm.GetHashCode() == parsingController.GuiHash select parsingController).First();
+                listParsingController.Remove(delParsingCon);
+            }
+        }
+
+        private void unregisterLevelTen(Form frm)
+        {
             if (listParsingController != null)
             {
                 ParsingController delParsingCon = (from parsingController in listParsingController where frm.GetHashCode() == parsingController.GuiHash select parsingController).First();

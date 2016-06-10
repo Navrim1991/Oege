@@ -88,5 +88,11 @@ namespace Oege_Get_the_best_price.View
             if (activeForm.GetType() == typeof(frmParsing))
                 ((frmParsing)activeForm).importData();
         }
+
+        private void einzelneEanSuchenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSearchSingleEan frmSearch = new frmSearchSingleEan();
+            frmSearch.Show(this);
+        }
     }
 }

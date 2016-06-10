@@ -17,6 +17,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
         int guiHash;
         int level;
         private delegate void progressBarDelegate(frmParsing.Platform platform, int percent);
+        Controller controller;
 
         private HtmlNode rootNode;
 
@@ -24,6 +25,8 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
         {
             this.guiHash = hash;
             this.level = level;
+
+            controller = Controller.Instance();
 
         }
 
@@ -60,7 +63,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
             Controller.Instance().getDataController(guiHash, level).DataHolding.mergeList(DataHolding.Platform.Ebay, listData);
         }
 
-        private void BeginParsing(ref Data tmp)
+        public void BeginParsing(ref Data tmp)
         {
             rootNode = GetRootNode(tmp.Ean);
 
@@ -103,10 +106,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                             priceString += innerText[i];
                     }
 
-                    double price;
-                    bool parse = Double.TryParse(priceString, out price);
-
-                    tmp.PriceEbay = parse ? price : 0.0;
+                    tmp.PriceEbay =controller.parseDouble(priceString);
 
                     HtmlNode shippingNode = resultNode.SelectSingleNode("//li[@class='lvshipping']");
 
@@ -128,10 +128,7 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Ebay
                                     priceString += innerText[i];
                             }
 
-                            double shipping;
-                            parse = Double.TryParse(priceString, out shipping);
-
-                            tmp.EbayShipping = parse ? shipping : 0.0;
+                            tmp.EbayShipping = controller.parseDouble(priceString);
                         }
                     }
                 }

@@ -142,6 +142,7 @@
             this.einzelneEanSuchenToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.einzelneEanSuchenToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.einzelneEanSuchenToolStripMenuItem.Text = "Einzelne Ean Suchen";
+            this.einzelneEanSuchenToolStripMenuItem.Click += new System.EventHandler(this.einzelneEanSuchenToolStripMenuItem_Click);
             // 
             // extraToolStripMenuItem
             // 
