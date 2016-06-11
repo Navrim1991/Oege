@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System.Text.RegularExpressions;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -69,7 +67,7 @@ namespace Oege_Get_the_best_price.Controller
                     object ean = (object)(workSheet.Cells[i, indexEan] as Excel.Range).Value;
 
 
-                    if (ean != null)
+                    if (ean != null && ean.ToString() != "0")
                     {
                         string eanString = ean.ToString();
                         eanString = controller.makeEan(eanString);
@@ -91,6 +89,10 @@ namespace Oege_Get_the_best_price.Controller
                             tmp.Add(data);
                         }
 
+                    }
+                    else
+                    {
+                        int abc = i;
                     }
                 }
             }

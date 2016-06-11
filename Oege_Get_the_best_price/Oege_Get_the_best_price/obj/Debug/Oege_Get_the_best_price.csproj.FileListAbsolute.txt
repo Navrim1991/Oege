@@ -55,11 +55,7 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\ob
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.pdb
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Currency_Control.dll
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\DocumentFormat.OpenXml.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Currency_Control.pdb
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\DocumentFormat.OpenXml.xml
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.pdb
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csprojResolveAssemblyReference.cache
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.Properties.Resources.resources
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmChooseColumn.resources
@@ -79,3 +75,7 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bi
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.ResolveComReference.cache
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmSearchSingleEan.resources
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\MdiTabControl.dll
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.pdb
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.xml
