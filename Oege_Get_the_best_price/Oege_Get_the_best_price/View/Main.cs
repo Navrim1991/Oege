@@ -94,5 +94,50 @@ namespace Oege_Get_the_best_price.View
             frmSearchSingleEan frmSearch = new frmSearchSingleEan();
             frmSearch.Show(this);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oegetradingToolStripMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogoPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogoPanel_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_3(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void HeaderPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

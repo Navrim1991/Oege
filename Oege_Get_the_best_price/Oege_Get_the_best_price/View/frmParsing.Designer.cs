@@ -28,24 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmParsing));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.butSearchEan = new System.Windows.Forms.Button();
             this.txtSearchEan = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
             this.listView = new System.Windows.Forms.ListView();
             this.clmHeaderEan = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderArticel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderAmazon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderEbay = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmHeaderOwnPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblPriceOwn = new System.Windows.Forms.Label();
-            this.txtPriceOwn = new System.Windows.Forms.TextBox();
             this.lblProgressAmazon = new System.Windows.Forms.Label();
             this.lblProgressEbay = new System.Windows.Forms.Label();
             this.lvlProgress = new System.Windows.Forms.Label();
             this.progressBarParsing = new System.Windows.Forms.ProgressBar();
-            this.lvlArtikel = new System.Windows.Forms.Label();
-            this.txtArtikel = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
             this.butEbay = new System.Windows.Forms.Button();
             this.lblPriceEbay = new System.Windows.Forms.Label();
@@ -64,7 +61,12 @@
             this.lblAmazonArtikel = new System.Windows.Forms.Label();
             this.txtArtikelAmazon = new System.Windows.Forms.TextBox();
             this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPriceOwn = new System.Windows.Forms.TextBox();
+            this.lblPriceOwn = new System.Windows.Forms.Label();
             this.lblEan = new System.Windows.Forms.Label();
+            this.lvlArtikel = new System.Windows.Forms.Label();
+            this.txtArtikel = new System.Windows.Forms.TextBox();
             this.txtEan = new System.Windows.Forms.TextBox();
             this.backgroundWorkerExcel = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -72,8 +74,10 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpBoxEbay.SuspendLayout();
             this.grpBoxAmazon.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -81,39 +85,52 @@
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.MinimumSize = new System.Drawing.Size(749, 642);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.splitContainer1.MinimumSize = new System.Drawing.Size(999, 790);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainer1.Panel1.BackgroundImage")));
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.butSearchEan);
             this.splitContainer1.Panel1.Controls.Add(this.txtSearchEan);
-            this.splitContainer1.Panel1.Controls.Add(this.lblSearch);
             this.splitContainer1.Panel1.Controls.Add(this.listView);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lblPriceOwn);
-            this.splitContainer1.Panel2.Controls.Add(this.txtPriceOwn);
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressAmazon);
             this.splitContainer1.Panel2.Controls.Add(this.lblProgressEbay);
             this.splitContainer1.Panel2.Controls.Add(this.lvlProgress);
             this.splitContainer1.Panel2.Controls.Add(this.progressBarParsing);
-            this.splitContainer1.Panel2.Controls.Add(this.lvlArtikel);
-            this.splitContainer1.Panel2.Controls.Add(this.txtArtikel);
             this.splitContainer1.Panel2.Controls.Add(this.grpBoxEbay);
             this.splitContainer1.Panel2.Controls.Add(this.grpBoxAmazon);
-            this.splitContainer1.Panel2.Controls.Add(this.lblEan);
-            this.splitContainer1.Panel2.Controls.Add(this.txtEan);
-            this.splitContainer1.Size = new System.Drawing.Size(1241, 688);
-            this.splitContainer1.SplitterDistance = 616;
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer1.Size = new System.Drawing.Size(1573, 936);
+            this.splitContainer1.SplitterDistance = 1110;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // butSearchEan
             // 
-            this.butSearchEan.Location = new System.Drawing.Point(199, 22);
+            this.butSearchEan.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold);
+            this.butSearchEan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butSearchEan.Location = new System.Drawing.Point(254, 27);
+            this.butSearchEan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.butSearchEan.Name = "butSearchEan";
-            this.butSearchEan.Size = new System.Drawing.Size(75, 23);
+            this.butSearchEan.Size = new System.Drawing.Size(127, 35);
             this.butSearchEan.TabIndex = 5;
             this.butSearchEan.Text = "Suchen";
             this.butSearchEan.UseVisualStyleBackColor = true;
@@ -121,19 +138,13 @@
             // 
             // txtSearchEan
             // 
-            this.txtSearchEan.Location = new System.Drawing.Point(52, 24);
+            this.txtSearchEan.Font = new System.Drawing.Font("Verdana", 14F);
+            this.txtSearchEan.Location = new System.Drawing.Point(36, 27);
+            this.txtSearchEan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSearchEan.Multiline = true;
             this.txtSearchEan.Name = "txtSearchEan";
-            this.txtSearchEan.Size = new System.Drawing.Size(141, 20);
+            this.txtSearchEan.Size = new System.Drawing.Size(212, 35);
             this.txtSearchEan.TabIndex = 4;
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(3, 27);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(38, 13);
-            this.lblSearch.TabIndex = 3;
-            this.lblSearch.Text = "Suche";
             // 
             // listView
             // 
@@ -146,13 +157,15 @@
             this.clmHeaderAmazon,
             this.clmHeaderEbay,
             this.clmHeaderOwnPrice});
+            this.listView.Font = new System.Drawing.Font("Verdana", 11F);
+            this.listView.ForeColor = System.Drawing.Color.Black;
             this.listView.FullRowSelect = true;
             this.listView.GridLines = true;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(0, 65);
-            this.listView.MultiSelect = false;
+            this.listView.Location = new System.Drawing.Point(0, 80);
+            this.listView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(614, 621);
+            this.listView.Size = new System.Drawing.Size(1105, 1158);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -162,100 +175,68 @@
             // clmHeaderEan
             // 
             this.clmHeaderEan.Text = "EAN";
-            this.clmHeaderEan.Width = 145;
+            this.clmHeaderEan.Width = 254;
             // 
             // clmHeaderArticel
             // 
             this.clmHeaderArticel.Text = "Artikelbeschreibung";
-            this.clmHeaderArticel.Width = 305;
+            this.clmHeaderArticel.Width = 308;
             // 
             // clmHeaderAmazon
             // 
             this.clmHeaderAmazon.Text = "Amazon";
             this.clmHeaderAmazon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.clmHeaderAmazon.Width = 81;
+            this.clmHeaderAmazon.Width = 168;
             // 
             // clmHeaderEbay
             // 
             this.clmHeaderEbay.Text = "Ebay";
             this.clmHeaderEbay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.clmHeaderEbay.Width = 81;
+            this.clmHeaderEbay.Width = 193;
             // 
             // clmHeaderOwnPrice
             // 
             this.clmHeaderOwnPrice.Text = "Lieferant";
-            this.clmHeaderOwnPrice.Width = 81;
-            // 
-            // lblPriceOwn
-            // 
-            this.lblPriceOwn.AutoSize = true;
-            this.lblPriceOwn.Location = new System.Drawing.Point(30, 115);
-            this.lblPriceOwn.Name = "lblPriceOwn";
-            this.lblPriceOwn.Size = new System.Drawing.Size(30, 13);
-            this.lblPriceOwn.TabIndex = 12;
-            this.lblPriceOwn.Text = "Preis";
-            // 
-            // txtPriceOwn
-            // 
-            this.txtPriceOwn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtPriceOwn.Location = new System.Drawing.Point(136, 112);
-            this.txtPriceOwn.Name = "txtPriceOwn";
-            this.txtPriceOwn.ReadOnly = true;
-            this.txtPriceOwn.Size = new System.Drawing.Size(103, 20);
-            this.txtPriceOwn.TabIndex = 11;
+            this.clmHeaderOwnPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.clmHeaderOwnPrice.Width = 178;
             // 
             // lblProgressAmazon
             // 
             this.lblProgressAmazon.AutoSize = true;
-            this.lblProgressAmazon.Location = new System.Drawing.Point(95, 601);
+            this.lblProgressAmazon.ForeColor = System.Drawing.Color.Black;
+            this.lblProgressAmazon.Location = new System.Drawing.Point(108, 821);
             this.lblProgressAmazon.Name = "lblProgressAmazon";
-            this.lblProgressAmazon.Size = new System.Drawing.Size(45, 13);
+            this.lblProgressAmazon.Size = new System.Drawing.Size(59, 16);
             this.lblProgressAmazon.TabIndex = 10;
             this.lblProgressAmazon.Text = "Amazon";
             // 
             // lblProgressEbay
             // 
             this.lblProgressEbay.AutoSize = true;
-            this.lblProgressEbay.Location = new System.Drawing.Point(146, 601);
+            this.lblProgressEbay.ForeColor = System.Drawing.Color.Black;
+            this.lblProgressEbay.Location = new System.Drawing.Point(175, 821);
             this.lblProgressEbay.Name = "lblProgressEbay";
-            this.lblProgressEbay.Size = new System.Drawing.Size(31, 13);
+            this.lblProgressEbay.Size = new System.Drawing.Size(40, 16);
             this.lblProgressEbay.TabIndex = 9;
             this.lblProgressEbay.Text = "Ebay";
             // 
             // lvlProgress
             // 
             this.lvlProgress.AutoSize = true;
-            this.lvlProgress.Location = new System.Drawing.Point(33, 601);
+            this.lvlProgress.ForeColor = System.Drawing.Color.Black;
+            this.lvlProgress.Location = new System.Drawing.Point(24, 821);
             this.lvlProgress.Name = "lvlProgress";
-            this.lvlProgress.Size = new System.Drawing.Size(56, 13);
+            this.lvlProgress.Size = new System.Drawing.Size(84, 16);
             this.lvlProgress.TabIndex = 7;
             this.lvlProgress.Text = "Fortschritt:";
             // 
             // progressBarParsing
             // 
-            this.progressBarParsing.Location = new System.Drawing.Point(30, 617);
+            this.progressBarParsing.Location = new System.Drawing.Point(21, 840);
+            this.progressBarParsing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.progressBarParsing.Name = "progressBarParsing";
-            this.progressBarParsing.Size = new System.Drawing.Size(383, 23);
+            this.progressBarParsing.Size = new System.Drawing.Size(513, 37);
             this.progressBarParsing.TabIndex = 6;
-            // 
-            // lvlArtikel
-            // 
-            this.lvlArtikel.AutoSize = true;
-            this.lvlArtikel.Location = new System.Drawing.Point(30, 53);
-            this.lvlArtikel.Name = "lvlArtikel";
-            this.lvlArtikel.Size = new System.Drawing.Size(100, 13);
-            this.lvlArtikel.TabIndex = 5;
-            this.lvlArtikel.Text = "Artikelbeschreibung";
-            // 
-            // txtArtikel
-            // 
-            this.txtArtikel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtArtikel.Location = new System.Drawing.Point(136, 50);
-            this.txtArtikel.Multiline = true;
-            this.txtArtikel.Name = "txtArtikel";
-            this.txtArtikel.ReadOnly = true;
-            this.txtArtikel.Size = new System.Drawing.Size(263, 56);
-            this.txtArtikel.TabIndex = 4;
             // 
             // grpBoxEbay
             // 
@@ -267,18 +248,25 @@
             this.grpBoxEbay.Controls.Add(this.lblArticelEbay);
             this.grpBoxEbay.Controls.Add(this.txtArticleEbay);
             this.grpBoxEbay.Controls.Add(this.linkLblEbay);
-            this.grpBoxEbay.Location = new System.Drawing.Point(30, 376);
+            this.grpBoxEbay.Font = new System.Drawing.Font("Verdana", 18F);
+            this.grpBoxEbay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.grpBoxEbay.Location = new System.Drawing.Point(21, 522);
+            this.grpBoxEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpBoxEbay.Name = "grpBoxEbay";
-            this.grpBoxEbay.Size = new System.Drawing.Size(383, 209);
+            this.grpBoxEbay.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpBoxEbay.Size = new System.Drawing.Size(513, 266);
             this.grpBoxEbay.TabIndex = 3;
             this.grpBoxEbay.TabStop = false;
             this.grpBoxEbay.Text = "Ebay";
             // 
             // butEbay
             // 
-            this.butEbay.Location = new System.Drawing.Point(268, 173);
+            this.butEbay.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butEbay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butEbay.Location = new System.Drawing.Point(358, 213);
+            this.butEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.butEbay.Name = "butEbay";
-            this.butEbay.Size = new System.Drawing.Size(104, 23);
+            this.butEbay.Size = new System.Drawing.Size(138, 28);
             this.butEbay.TabIndex = 18;
             this.butEbay.Text = "Artikel suchen";
             this.butEbay.UseVisualStyleBackColor = true;
@@ -286,64 +274,78 @@
             // lblPriceEbay
             // 
             this.lblPriceEbay.AutoSize = true;
-            this.lblPriceEbay.Location = new System.Drawing.Point(6, 87);
+            this.lblPriceEbay.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblPriceEbay.ForeColor = System.Drawing.Color.Black;
+            this.lblPriceEbay.Location = new System.Drawing.Point(3, 131);
             this.lblPriceEbay.Name = "lblPriceEbay";
-            this.lblPriceEbay.Size = new System.Drawing.Size(30, 13);
+            this.lblPriceEbay.Size = new System.Drawing.Size(41, 17);
             this.lblPriceEbay.TabIndex = 17;
             this.lblPriceEbay.Text = "Preis";
             // 
             // txtPriceEaby
             // 
-            this.txtPriceEaby.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtPriceEaby.Location = new System.Drawing.Point(109, 84);
+            this.txtPriceEaby.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPriceEaby.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtPriceEaby.Location = new System.Drawing.Point(155, 131);
+            this.txtPriceEaby.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPriceEaby.Name = "txtPriceEaby";
             this.txtPriceEaby.ReadOnly = true;
-            this.txtPriceEaby.Size = new System.Drawing.Size(100, 20);
+            this.txtPriceEaby.Size = new System.Drawing.Size(132, 24);
             this.txtPriceEaby.TabIndex = 16;
             // 
             // lblShippingEbay
             // 
             this.lblShippingEbay.AutoSize = true;
-            this.lblShippingEbay.Location = new System.Drawing.Point(6, 113);
+            this.lblShippingEbay.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblShippingEbay.ForeColor = System.Drawing.Color.Black;
+            this.lblShippingEbay.Location = new System.Drawing.Point(3, 163);
             this.lblShippingEbay.Name = "lblShippingEbay";
-            this.lblShippingEbay.Size = new System.Drawing.Size(78, 13);
+            this.lblShippingEbay.Size = new System.Drawing.Size(113, 17);
             this.lblShippingEbay.TabIndex = 15;
             this.lblShippingEbay.Text = "Versandkosten";
             // 
             // txtShippingEbay
             // 
-            this.txtShippingEbay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtShippingEbay.Location = new System.Drawing.Point(109, 110);
+            this.txtShippingEbay.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtShippingEbay.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtShippingEbay.Location = new System.Drawing.Point(155, 163);
+            this.txtShippingEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtShippingEbay.Name = "txtShippingEbay";
             this.txtShippingEbay.ReadOnly = true;
-            this.txtShippingEbay.Size = new System.Drawing.Size(100, 20);
+            this.txtShippingEbay.Size = new System.Drawing.Size(132, 24);
             this.txtShippingEbay.TabIndex = 14;
             // 
             // lblArticelEbay
             // 
             this.lblArticelEbay.AutoSize = true;
-            this.lblArticelEbay.Location = new System.Drawing.Point(6, 16);
+            this.lblArticelEbay.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblArticelEbay.ForeColor = System.Drawing.Color.Black;
+            this.lblArticelEbay.Location = new System.Drawing.Point(3, 44);
             this.lblArticelEbay.Name = "lblArticelEbay";
-            this.lblArticelEbay.Size = new System.Drawing.Size(100, 13);
+            this.lblArticelEbay.Size = new System.Drawing.Size(146, 17);
             this.lblArticelEbay.TabIndex = 13;
             this.lblArticelEbay.Text = "Artikelbeschreibung";
             // 
             // txtArticleEbay
             // 
-            this.txtArticleEbay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtArticleEbay.Location = new System.Drawing.Point(109, 13);
+            this.txtArticleEbay.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtArticleEbay.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtArticleEbay.Location = new System.Drawing.Point(155, 44);
+            this.txtArticleEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtArticleEbay.Multiline = true;
             this.txtArticleEbay.Name = "txtArticleEbay";
             this.txtArticleEbay.ReadOnly = true;
-            this.txtArticleEbay.Size = new System.Drawing.Size(263, 65);
+            this.txtArticleEbay.Size = new System.Drawing.Size(349, 79);
             this.txtArticleEbay.TabIndex = 12;
             // 
             // linkLblEbay
             // 
             this.linkLblEbay.AutoSize = true;
-            this.linkLblEbay.Location = new System.Drawing.Point(3, 143);
+            this.linkLblEbay.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblEbay.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.linkLblEbay.Location = new System.Drawing.Point(8, 225);
             this.linkLblEbay.Name = "linkLblEbay";
-            this.linkLblEbay.Size = new System.Drawing.Size(68, 13);
+            this.linkLblEbay.Size = new System.Drawing.Size(123, 18);
             this.linkLblEbay.TabIndex = 11;
             this.linkLblEbay.TabStop = true;
             this.linkLblEbay.Text = "<Platzhalter>";
@@ -359,18 +361,27 @@
             this.grpBoxAmazon.Controls.Add(this.lblAmazonArtikel);
             this.grpBoxAmazon.Controls.Add(this.txtArtikelAmazon);
             this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
-            this.grpBoxAmazon.Location = new System.Drawing.Point(30, 161);
+            this.grpBoxAmazon.Font = new System.Drawing.Font("Verdana", 18F);
+            this.grpBoxAmazon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.grpBoxAmazon.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
+            this.grpBoxAmazon.Location = new System.Drawing.Point(21, 257);
+            this.grpBoxAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpBoxAmazon.Name = "grpBoxAmazon";
-            this.grpBoxAmazon.Size = new System.Drawing.Size(383, 209);
+            this.grpBoxAmazon.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpBoxAmazon.Size = new System.Drawing.Size(513, 266);
             this.grpBoxAmazon.TabIndex = 2;
             this.grpBoxAmazon.TabStop = false;
             this.grpBoxAmazon.Text = "Amazon";
+            this.grpBoxAmazon.UseCompatibleTextRendering = true;
             // 
             // butAmazon
             // 
-            this.butAmazon.Location = new System.Drawing.Point(268, 180);
+            this.butAmazon.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butAmazon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butAmazon.Location = new System.Drawing.Point(358, 222);
+            this.butAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.butAmazon.Name = "butAmazon";
-            this.butAmazon.Size = new System.Drawing.Size(104, 23);
+            this.butAmazon.Size = new System.Drawing.Size(138, 28);
             this.butAmazon.TabIndex = 10;
             this.butAmazon.Text = "Artikel suchen";
             this.butAmazon.UseVisualStyleBackColor = true;
@@ -378,85 +389,166 @@
             // lblAmazonPrice
             // 
             this.lblAmazonPrice.AutoSize = true;
-            this.lblAmazonPrice.Location = new System.Drawing.Point(6, 94);
+            this.lblAmazonPrice.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblAmazonPrice.ForeColor = System.Drawing.Color.Black;
+            this.lblAmazonPrice.Location = new System.Drawing.Point(3, 127);
             this.lblAmazonPrice.Name = "lblAmazonPrice";
-            this.lblAmazonPrice.Size = new System.Drawing.Size(30, 13);
+            this.lblAmazonPrice.Size = new System.Drawing.Size(41, 17);
             this.lblAmazonPrice.TabIndex = 9;
             this.lblAmazonPrice.Text = "Preis";
             // 
             // txtPriceAmazon
             // 
-            this.txtPriceAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtPriceAmazon.Location = new System.Drawing.Point(109, 91);
+            this.txtPriceAmazon.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPriceAmazon.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtPriceAmazon.Location = new System.Drawing.Point(157, 127);
+            this.txtPriceAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPriceAmazon.Name = "txtPriceAmazon";
             this.txtPriceAmazon.ReadOnly = true;
-            this.txtPriceAmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtPriceAmazon.Size = new System.Drawing.Size(132, 24);
             this.txtPriceAmazon.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 120);
+            this.label2.Font = new System.Drawing.Font("Verdana", 10F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(3, 159);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.Size = new System.Drawing.Size(113, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "Versandkosten";
             // 
             // txtShippingAmazon
             // 
-            this.txtShippingAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtShippingAmazon.Location = new System.Drawing.Point(109, 117);
+            this.txtShippingAmazon.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtShippingAmazon.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtShippingAmazon.Location = new System.Drawing.Point(157, 159);
+            this.txtShippingAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtShippingAmazon.Name = "txtShippingAmazon";
             this.txtShippingAmazon.ReadOnly = true;
-            this.txtShippingAmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtShippingAmazon.Size = new System.Drawing.Size(132, 24);
             this.txtShippingAmazon.TabIndex = 6;
             // 
             // lblAmazonArtikel
             // 
             this.lblAmazonArtikel.AutoSize = true;
-            this.lblAmazonArtikel.Location = new System.Drawing.Point(6, 23);
+            this.lblAmazonArtikel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblAmazonArtikel.ForeColor = System.Drawing.Color.Black;
+            this.lblAmazonArtikel.Location = new System.Drawing.Point(3, 40);
             this.lblAmazonArtikel.Name = "lblAmazonArtikel";
-            this.lblAmazonArtikel.Size = new System.Drawing.Size(100, 13);
+            this.lblAmazonArtikel.Size = new System.Drawing.Size(146, 17);
             this.lblAmazonArtikel.TabIndex = 5;
             this.lblAmazonArtikel.Text = "Artikelbeschreibung";
             // 
             // txtArtikelAmazon
             // 
-            this.txtArtikelAmazon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtArtikelAmazon.Location = new System.Drawing.Point(109, 20);
+            this.txtArtikelAmazon.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtArtikelAmazon.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtArtikelAmazon.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtArtikelAmazon.Location = new System.Drawing.Point(156, 40);
+            this.txtArtikelAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtArtikelAmazon.Multiline = true;
             this.txtArtikelAmazon.Name = "txtArtikelAmazon";
             this.txtArtikelAmazon.ReadOnly = true;
-            this.txtArtikelAmazon.Size = new System.Drawing.Size(263, 65);
+            this.txtArtikelAmazon.Size = new System.Drawing.Size(349, 79);
             this.txtArtikelAmazon.TabIndex = 4;
             // 
             // linkLblAmazon
             // 
             this.linkLblAmazon.AutoSize = true;
-            this.linkLblAmazon.Location = new System.Drawing.Point(3, 150);
+            this.linkLblAmazon.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblAmazon.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.linkLblAmazon.Location = new System.Drawing.Point(8, 234);
             this.linkLblAmazon.Name = "linkLblAmazon";
-            this.linkLblAmazon.Size = new System.Drawing.Size(68, 13);
+            this.linkLblAmazon.Size = new System.Drawing.Size(123, 18);
             this.linkLblAmazon.TabIndex = 3;
             this.linkLblAmazon.TabStop = true;
             this.linkLblAmazon.Text = "<Platzhalter>";
             this.linkLblAmazon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblAmazon_LinkClicked);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtPriceOwn);
+            this.groupBox1.Controls.Add(this.lblPriceOwn);
+            this.groupBox1.Controls.Add(this.lblEan);
+            this.groupBox1.Controls.Add(this.lvlArtikel);
+            this.groupBox1.Controls.Add(this.txtArtikel);
+            this.groupBox1.Controls.Add(this.txtEan);
+            this.groupBox1.Font = new System.Drawing.Font("Verdana", 18F);
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.groupBox1.Location = new System.Drawing.Point(21, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(513, 220);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ausgewähltes Produkt";
+            // 
+            // txtPriceOwn
+            // 
+            this.txtPriceOwn.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtPriceOwn.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtPriceOwn.Location = new System.Drawing.Point(155, 175);
+            this.txtPriceOwn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPriceOwn.Name = "txtPriceOwn";
+            this.txtPriceOwn.ReadOnly = true;
+            this.txtPriceOwn.Size = new System.Drawing.Size(135, 24);
+            this.txtPriceOwn.TabIndex = 11;
+            // 
+            // lblPriceOwn
+            // 
+            this.lblPriceOwn.AutoSize = true;
+            this.lblPriceOwn.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblPriceOwn.ForeColor = System.Drawing.Color.Black;
+            this.lblPriceOwn.Location = new System.Drawing.Point(3, 175);
+            this.lblPriceOwn.Name = "lblPriceOwn";
+            this.lblPriceOwn.Size = new System.Drawing.Size(41, 17);
+            this.lblPriceOwn.TabIndex = 12;
+            this.lblPriceOwn.Text = "Preis";
+            // 
             // lblEan
             // 
             this.lblEan.AutoSize = true;
-            this.lblEan.Location = new System.Drawing.Point(30, 27);
+            this.lblEan.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblEan.ForeColor = System.Drawing.Color.Black;
+            this.lblEan.Location = new System.Drawing.Point(3, 58);
             this.lblEan.Name = "lblEan";
-            this.lblEan.Size = new System.Drawing.Size(29, 13);
+            this.lblEan.Size = new System.Drawing.Size(37, 17);
             this.lblEan.TabIndex = 1;
             this.lblEan.Text = "EAN";
             // 
+            // lvlArtikel
+            // 
+            this.lvlArtikel.AutoSize = true;
+            this.lvlArtikel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lvlArtikel.ForeColor = System.Drawing.Color.Black;
+            this.lvlArtikel.Location = new System.Drawing.Point(3, 90);
+            this.lvlArtikel.Name = "lvlArtikel";
+            this.lvlArtikel.Size = new System.Drawing.Size(146, 17);
+            this.lvlArtikel.TabIndex = 5;
+            this.lvlArtikel.Text = "Artikelbeschreibung";
+            // 
+            // txtArtikel
+            // 
+            this.txtArtikel.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtArtikel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtArtikel.Location = new System.Drawing.Point(155, 90);
+            this.txtArtikel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtArtikel.Multiline = true;
+            this.txtArtikel.Name = "txtArtikel";
+            this.txtArtikel.ReadOnly = true;
+            this.txtArtikel.Size = new System.Drawing.Size(349, 77);
+            this.txtArtikel.TabIndex = 4;
+            // 
             // txtEan
             // 
-            this.txtEan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(233)))), ((int)(((byte)(191)))));
-            this.txtEan.Location = new System.Drawing.Point(136, 24);
+            this.txtEan.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtEan.Font = new System.Drawing.Font("Verdana", 10F);
+            this.txtEan.Location = new System.Drawing.Point(155, 58);
+            this.txtEan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEan.Name = "txtEan";
             this.txtEan.ReadOnly = true;
-            this.txtEan.Size = new System.Drawing.Size(141, 20);
+            this.txtEan.Size = new System.Drawing.Size(187, 24);
             this.txtEan.TabIndex = 0;
             // 
             // backgroundWorkerExcel
@@ -467,12 +559,18 @@
             // 
             // frmParsing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 688);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1573, 936);
             this.Controls.Add(this.splitContainer1);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Black;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmParsing";
-            this.Text = "find the price";
+            this.ShowIcon = false;
+            this.Text = "Excel Liste Durchführen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmParsing_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -480,10 +578,13 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpBoxEbay.ResumeLayout(false);
             this.grpBoxEbay.PerformLayout();
             this.grpBoxAmazon.ResumeLayout(false);
             this.grpBoxAmazon.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -506,7 +607,6 @@
         private System.Windows.Forms.Label lvlProgress;
         private System.Windows.Forms.ProgressBar progressBarParsing;
         private System.Windows.Forms.TextBox txtSearchEan;
-        private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Label lblProgressAmazon;
         private System.Windows.Forms.Label lblProgressEbay;
         private System.ComponentModel.BackgroundWorker backgroundWorkerExcel;
@@ -516,7 +616,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtShippingAmazon;
         private System.Windows.Forms.Label lblAmazonArtikel;
-        private System.Windows.Forms.TextBox txtArtikelAmazon;
         private System.Windows.Forms.Button butEbay;
         private System.Windows.Forms.Label lblPriceEbay;
         private System.Windows.Forms.TextBox txtPriceEaby;
@@ -530,5 +629,8 @@
         private System.Windows.Forms.TextBox txtPriceOwn;
         private System.Windows.Forms.ColumnHeader clmHeaderOwnPrice;
         private System.Windows.Forms.Button butSearchEan;
+        private System.Windows.Forms.TextBox txtArtikelAmazon;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -16,21 +16,16 @@ namespace Oege_Get_the_best_price.View
 {
     public partial class frmChooseColumn : Form
     {
-        Controller.ExcelController excelController;
-        Controller.Controller controller;
         short level;
         Process excelProcess;
-        int eanColumn = -1;
-        int discriptionColumn = -1;
-        int priceColumn = -1;
         List<object> param;
         string fileName = "";
         int guiHash;
 
-        public frmChooseColumn(int hash, short level,ref List<object> param)
+        public frmChooseColumn(int hash, short level, ref List<object> param)
         {
             this.guiHash = hash;
-            this.level = level;            
+            this.level = level;
 
             this.param = param;
 
@@ -66,11 +61,11 @@ namespace Oege_Get_the_best_price.View
             param.Add(Controller.Controller.Instance().parseDouble(txtCurrencyConversion.Text, 1.0));
 
             if (txtEan.Text != "")
-                param.Add(txtEan.Text.ToLower().First() - 96);              
+                param.Add(txtEan.Text.ToLower().First() - 96);
             else
                 this.DialogResult = DialogResult.Cancel;
 
-            
+
         }
 
         private void frmChooseColumn_Shown(object sender, EventArgs e)
@@ -79,7 +74,7 @@ namespace Oege_Get_the_best_price.View
             {
                 fileName = @openFileDialog.FileName;
                 excelProcess = Process.Start(fileName);
-                param.Add(fileName);                
+                param.Add(fileName);
             }
             else
             {
@@ -106,9 +101,9 @@ namespace Oege_Get_the_best_price.View
                 {
                     this.DialogResult = DialogResult.Abort;
                 }
-                
+
             }
-                
+
         }
 
         private void butCancel_Click(object sender, EventArgs e)

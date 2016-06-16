@@ -64,7 +64,7 @@ namespace Oege_Get_the_best_price.View
         private const string shippingIdealo = "VersantkostenIdealo";
         private const string ownPrice = "EigenerPreis";
 
-        private const string header = EAN + ";" + articleDiscription + ";" + UrlAmazon + ";" +  UrlEbay + ";" +
+        private const string header = EAN + ";" + articleDiscription + ";" + UrlAmazon + ";" + UrlEbay + ";" +
             UrlIdealo + ";" + articleDiscriptionAmazon + ";" + articleDiscriptionEbay + ";" + articleDiscriptionIdealo + ";" +
             priceAmazon + ";" + priceEbay + ";" + priceIdealo + ";" + shippingAmazon + ";" + shippingEbay + ";" +
             shippingIdealo + ";" + ownPrice;
@@ -76,7 +76,7 @@ namespace Oege_Get_the_best_price.View
         #region Constructor
         public frmParsing()
         {
-            
+
             InitializeComponent();
             frmCounter++;
 
@@ -113,7 +113,7 @@ namespace Oege_Get_the_best_price.View
         #region Events
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listView.SelectedItems.Count > 0)
+            if (listView.SelectedItems.Count > 0)
             {
                 string ean = listView.SelectedItems[0].Text;
 
@@ -129,7 +129,7 @@ namespace Oege_Get_the_best_price.View
                     txtPriceAmazon.Text = data.PriceAmazon.ToString();
                     txtShippingAmazon.Text = data.AmazonShipping.ToString();
 
-                    if(linkLblAmazon.Links.Count > 0)
+                    if (linkLblAmazon.Links.Count > 0)
                         linkLblAmazon.Links.RemoveAt(0);
 
                     if (data.UrlAmazon != "")
@@ -138,11 +138,11 @@ namespace Oege_Get_the_best_price.View
                         LinkLabel.Link linkAmazon = new LinkLabel.Link();
                         linkAmazon.LinkData = data.UrlAmazon;
                         linkLblAmazon.Links.Add(linkAmazon);
-                        butAmazon.Visible = false;                        
+                        butAmazon.Visible = false;
                     }
                     else
                     {
-                        linkLblAmazon.Text = "";                        
+                        linkLblAmazon.Text = "";
                         butAmazon.Visible = true;
                     }
 
@@ -150,7 +150,7 @@ namespace Oege_Get_the_best_price.View
                     txtPriceEaby.Text = data.PriceEbay.ToString();
                     txtShippingEbay.Text = data.EbayShipping.ToString();
 
-                    if(linkLblEbay.Links.Count > 0)
+                    if (linkLblEbay.Links.Count > 0)
                         linkLblEbay.Links.RemoveAt(0);
 
                     if (data.UrlEbay != "")
@@ -164,11 +164,11 @@ namespace Oege_Get_the_best_price.View
                     else
                     {
                         linkLblEbay.Text = "";
-                        
+
                         butEbay.Visible = true;
                     }
                 }
-            }            
+            }
         }
 
         private void backgroundWorkerExcel_DoWork(object sender, DoWorkEventArgs e)
@@ -205,7 +205,7 @@ namespace Oege_Get_the_best_price.View
         public void importExcelFile()
         {
             List<object> param = new List<object>();
-            if((new frmChooseColumn(hash, level,ref param)).ShowDialog() == DialogResult.OK)
+            if ((new frmChooseColumn(hash, level, ref param)).ShowDialog() == DialogResult.OK)
             {
                 backgroundWorkerExcel.RunWorkerAsync(param);
             }
@@ -235,9 +235,9 @@ namespace Oege_Get_the_best_price.View
                 {
                     Data data = null;
 
-                    for(int i = 0; i < headers.Count(); i++)
+                    for (int i = 0; i < headers.Count(); i++)
                     {
-                        switch(i)
+                        switch (i)
                         {
                             case 0:
                                 data = new Data(reader.GetField(headers[i]));
@@ -284,7 +284,7 @@ namespace Oege_Get_the_best_price.View
                             case 14:
                                 data.OwnPrice = parseDouble(reader.GetField(headers[i]));
                                 break;
-                        }                        
+                        }
                     }
 
                     tmp.Add(data);
@@ -315,7 +315,7 @@ namespace Oege_Get_the_best_price.View
             saveFileDialog.Filter = "CSV|*.csv";
             saveFileDialog.Title = "Speichern einer CSV-Datei";
 
-            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter writer = null;
 
@@ -324,8 +324,8 @@ namespace Oege_Get_the_best_price.View
                 var csv = new CsvWriter(writer);
                 csv.Configuration.Delimiter = ";";
 
-                
-                writer.WriteLine(header);                
+
+                writer.WriteLine(header);
 
                 foreach (var item in dataController.DataHolding.ListData)
                 {
@@ -347,17 +347,17 @@ namespace Oege_Get_the_best_price.View
                 case 0:
                     colorSet++;
                     return Color.Green;
-                case 1:                    
-                        if (colorSet > 0)
-                        {                            
-                            colorSet++;
-                            return Color.Orange;
-                        }
-                        else
-                        {                            
-                            colorSet++;
-                            return Color.Green;
-                        }
+                case 1:
+                    if (colorSet > 0)
+                    {
+                        colorSet++;
+                        return Color.Orange;
+                    }
+                    else
+                    {
+                        colorSet++;
+                        return Color.Green;
+                    }
                 case 2:
                     if (colorSet >= 1)
                         return Color.Red;
@@ -373,7 +373,7 @@ namespace Oege_Get_the_best_price.View
             listView.Items.Clear();
 
             int colorSwitcher = 0;
-            foreach(Data data in dataController.DataHolding.ListData)
+            foreach (Data data in dataController.DataHolding.ListData)
             {
                 Color currentBackColor;
                 ListViewItem lvi = new ListViewItem(data.Ean);
@@ -386,7 +386,7 @@ namespace Oege_Get_the_best_price.View
 
                 lvi.BackColor = currentBackColor;
 
-                lvi.SubItems.Add(data.Aritcel,Color.Black, currentBackColor, new Font("Arial", 12));
+                lvi.SubItems.Add(data.Aritcel, Color.Black, currentBackColor, new Font("Arial", 12));
 
                 Dictionary<Platform, double> dic = new Dictionary<Platform, double>();
 
@@ -410,7 +410,7 @@ namespace Oege_Get_the_best_price.View
 
                 short counter = 0;
                 short colorSet = 0;
-                foreach(KeyValuePair<Platform, double> element in myList)
+                foreach (KeyValuePair<Platform, double> element in myList)
                 {
                     Color backColor;
                     switch (element.Key)
@@ -424,7 +424,7 @@ namespace Oege_Get_the_best_price.View
                             backColor = getBackColor(counter, ref colorSet, data.PriceEbay, currentBackColor);
                             subitemEbay = new ListViewItem.ListViewSubItem(lvi, data.PriceEbay.ToString(), Color.Black, backColor, new Font("Arial", 12));
                             break;
-                            
+
                         case Platform.Own:
                             backColor = getBackColor(counter, ref colorSet, data.OwnPrice, currentBackColor);
                             subitemOwn = new ListViewItem.ListViewSubItem(lvi, data.OwnPrice.ToString(), Color.Black, backColor, new Font("Arial", 12));
@@ -466,9 +466,9 @@ namespace Oege_Get_the_best_price.View
 
             if (percentProgressEbay < 50)
                 lblProgressEbay.ForeColor = Color.Red;
-            else if(percentProgressEbay >= 50 && percentProgressEbay < 100)
+            else if (percentProgressEbay >= 50 && percentProgressEbay < 100)
                 lblProgressEbay.ForeColor = Color.Orange;
-            else if(percentProgressEbay >= 100)
+            else if (percentProgressEbay >= 100)
                 lblProgressEbay.ForeColor = Color.Green;
 
             progressBarParsing.Value = (percentProgressAmazon + percentProgressEbay) / 2;
@@ -503,7 +503,7 @@ namespace Oege_Get_the_best_price.View
                     lvwColumnSorter.SortColumn = e.Column;
                     lvwColumnSorter.Order = SortOrder.Ascending;
                 }*/
-                if(e.Column == currentSortedHeader.Key)
+                if (e.Column == currentSortedHeader.Key)
                 {
                     if (currentSortedHeader.Value == SortOrder.Ascending)
                     {
@@ -521,11 +521,11 @@ namespace Oege_Get_the_best_price.View
                 }
 
                 listView.Items.Clear();
-                
+
                 dataController.DataHolding.sortList(clickedIndex, (int)currentSortedHeader.Value);
 
                 updateListView();
-            }            
+            }
         }
 
         private void linkLblAmazon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -541,7 +541,7 @@ namespace Oege_Get_the_best_price.View
         private void butSearchEan_Click(object sender, EventArgs e)
         {
             ListViewItem searchResult = searchItem(txtSearchEan.Text);
-            if(searchResult != null)
+            if (searchResult != null)
             {
                 txtSearchEan.Clear();
                 listView.Focus();

@@ -47,13 +47,33 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.2.14.2\lib\net45\CsvHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\..\..\Neuer Ordner\Oege\HtmlAgilityPack\Net45\HtmlAgilityPack.dll</HintPath>
+      <HintPath>..\..\..\..\..\Dropbox\Oege (1)\HtmlAgilityPack\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="LinqToExcel, Version=1.10.1.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=x86">
       <HintPath>..\packages\LinqToExcel.1.10.1\lib\LinqToExcel.dll</HintPath>
@@ -64,7 +84,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MdiTabControl">
-      <HintPath>..\..\..\..\Neuer Ordner\Oege\MDITabControl\MdiTabControl\MdiTabControl\bin\Debug\MdiTabControl.dll</HintPath>
+      <HintPath>..\..\..\..\..\Dropbox\Oege (1)\MDITabControl\MdiTabControl\MdiTabControl\bin\Debug\MdiTabControl.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
@@ -87,6 +107,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -107,7 +128,6 @@
     <Compile Include="Controller\Parsing\ParsingControllerAmazon.cs" />
     <Compile Include="Controller\Parsing\ParsingControllerEbay.cs" />
     <Compile Include="Controller\Parsing\ParsingControllerIdealo.cs" />
-    <Compile Include="Controller\Parsing\ParsingControllerRest.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\DataHolding.cs" />
     <Compile Include="View\frmChooseColumn.cs">

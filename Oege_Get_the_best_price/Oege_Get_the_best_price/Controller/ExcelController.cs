@@ -84,7 +84,7 @@ namespace Oege_Get_the_best_price.Controller
 
                             data.Aritcel = discription.ToString();
 
-                            data.OwnPrice =  controller.parseDouble(price.ToString()) * currencyConversion;
+                            data.OwnPrice =  Math.Round(controller.parseDouble(price.ToString()) * currencyConversion,2);
 
                             tmp.Add(data);
                         }

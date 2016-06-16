@@ -73,7 +73,6 @@ namespace Oege_Get_the_best_price.Controller.Parsing.Amazon
             //TODO Kosten hier
             if(node == null)
             {
-                string Amazon = "http://www.amazon.de";
                 node = doc.DocumentNode.SelectSingleNode("//tr[@id='priceblock_ourprice_row']");
 
                 if(node != null)

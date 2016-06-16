@@ -130,5 +130,40 @@ namespace Oege_Get_the_best_price.View
 
             this.Cursor = Cursors.Default;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtShippingAmazon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLblAmazon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void lblAmazonArtikel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtArticleEbay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtShippingEbay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
