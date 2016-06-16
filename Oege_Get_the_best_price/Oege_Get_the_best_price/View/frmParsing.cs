@@ -47,6 +47,7 @@ namespace Oege_Get_the_best_price.View
         private int percentProgressIdealo;
         int hash;
         KeyValuePair<int, SortOrder> currentSortedHeader = new KeyValuePair<int, SortOrder>(-1, SortOrder.None);
+        Data actuellData = null;
 
         private const string EAN = "EAN";
         private const string articleDiscription = "Artikelbeschreibung";
@@ -56,9 +57,9 @@ namespace Oege_Get_the_best_price.View
         private const string articleDiscriptionAmazon = "ArtikelbeschreibungAmazon";
         private const string articleDiscriptionEbay = "ArtikelbeschreibungEbay";
         private const string articleDiscriptionIdealo = "ArtikelbeschreibungIdealo";
-        private const string priceAmazon = "ArtikelbeschreibungAmazon";
-        private const string priceEbay = "ArtikelbeschreibungEbay";
-        private const string priceIdealo = "ArtikelbeschreibungIdealo";
+        private const string priceAmazon = "PreisAmazon";
+        private const string priceEbay = "PreisEbay";
+        private const string priceIdealo = "PreisIdealo";
         private const string shippingAmazon = "VersantkostenAmazon";
         private const string shippingEbay = "VersantkostenEbay";
         private const string shippingIdealo = "VersantkostenIdealo";
@@ -103,10 +104,6 @@ namespace Oege_Get_the_best_price.View
             parsingController = controller.getParsingController(hash, level);
             if (parsingController == null)
                 throw new ArgumentNullException("parsingController", "parsingController ist null");
-
-
-            linkLblAmazon.Text = "";
-            linkLblEbay.Text = "";
         }
         #endregion
 
@@ -117,56 +114,41 @@ namespace Oege_Get_the_best_price.View
             {
                 string ean = listView.SelectedItems[0].Text;
 
-                Data data = dataController.DataHolding.getData(ean);
+                actuellData = dataController.DataHolding.getData(ean);
 
-                if (data != null)
+                if (actuellData != null)
                 {
-                    txtEan.Text = data.Ean;
-                    txtArtikel.Text = data.Aritcel;
-                    txtPriceOwn.Text = data.OwnPrice.ToString();
+                    txtEan.Text = actuellData.Ean;
+                    txtArtikel.Text = actuellData.Aritcel;
+                    txtPriceOwn.Text = actuellData.OwnPrice.ToString();
 
-                    txtArtikelAmazon.Text = data.DiscriptionAmazon;
-                    txtPriceAmazon.Text = data.PriceAmazon.ToString();
-                    txtShippingAmazon.Text = data.AmazonShipping.ToString();
+                    txtArtikelAmazon.Text = actuellData.DiscriptionAmazon;
+                    txtPriceAmazon.Text = actuellData.PriceAmazon.ToString();
+                    txtShippingAmazon.Text = actuellData.AmazonShipping.ToString();
 
-                    if (linkLblAmazon.Links.Count > 0)
-                        linkLblAmazon.Links.RemoveAt(0);
-
-                    if (data.UrlAmazon != "")
+                    if(actuellData.UrlAmazon != "")
                     {
-                        linkLblAmazon.Text = "Artikel in Amazon anschauen";
-                        LinkLabel.Link linkAmazon = new LinkLabel.Link();
-                        linkAmazon.LinkData = data.UrlAmazon;
-                        linkLblAmazon.Links.Add(linkAmazon);
-                        butAmazon.Visible = false;
+                        butAmazon.Text = "Artikel öffnen";
                     }
                     else
                     {
-                        linkLblAmazon.Text = "";
-                        butAmazon.Visible = true;
+                        butAmazon.Text = "Artikel suchen";
                     }
 
-                    txtArticleEbay.Text = data.DiscriptionEbay;
-                    txtPriceEaby.Text = data.PriceEbay.ToString();
-                    txtShippingEbay.Text = data.EbayShipping.ToString();
+                    txtArticleEbay.Text = actuellData.DiscriptionEbay;
+                    txtPriceEaby.Text = actuellData.PriceEbay.ToString();
+                    txtShippingEbay.Text = actuellData.EbayShipping.ToString();
 
-                    if (linkLblEbay.Links.Count > 0)
-                        linkLblEbay.Links.RemoveAt(0);
-
-                    if (data.UrlEbay != "")
+                    if (actuellData.UrlEbay != "")
                     {
-                        linkLblEbay.Text = "Artikel in Ebay anschauen";
-                        LinkLabel.Link linkEbay = new LinkLabel.Link();
-                        linkEbay.LinkData = data.UrlEbay;
-                        linkLblEbay.Links.Add(linkEbay);
-                        butEbay.Visible = false;
+                        butEbay.Text = "Artikel öffnen";
                     }
                     else
                     {
-                        linkLblEbay.Text = "";
-
-                        butEbay.Visible = true;
+                        butEbay.Text = "Artikel suchen";
                     }
+
+
                 }
             }
         }
@@ -175,7 +157,7 @@ namespace Oege_Get_the_best_price.View
         {
             List<object> param = (List<object>)e.Argument;
             if (param != null)
-                excelController.readExcelFile((string)param[0], level, (int)param[4], (int)param[1], (int)param[2], (double)param[3]);
+                excelController.readExcelFile((string)param[0], level, (string)param[4], (string)param[1], (string)param[2], (double)param[3]);
         }
         private void frmParsing_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -485,24 +467,6 @@ namespace Oege_Get_the_best_price.View
 
             if (parse)
             {
-                /*if (e.Column == lvwColumnSorter.SortColumn)
-                {
-                    // Reverse the current sort direction for this column.
-                    if (lvwColumnSorter.Order == SortOrder.Ascending)
-                    {
-                        lvwColumnSorter.Order = SortOrder.Descending;
-                    }
-                    else
-                    {
-                        lvwColumnSorter.Order = SortOrder.Ascending;
-                    }
-                }
-                else
-                {
-                    // Set the column number that is to be sorted; default to ascending.
-                    lvwColumnSorter.SortColumn = e.Column;
-                    lvwColumnSorter.Order = SortOrder.Ascending;
-                }*/
                 if (e.Column == currentSortedHeader.Key)
                 {
                     if (currentSortedHeader.Value == SortOrder.Ascending)
@@ -528,16 +492,6 @@ namespace Oege_Get_the_best_price.View
             }
         }
 
-        private void linkLblAmazon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(e.Link.LinkData.ToString());
-        }
-
-        private void linkLblEbay_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(e.Link.LinkData.ToString());
-        }
-
         private void butSearchEan_Click(object sender, EventArgs e)
         {
             ListViewItem searchResult = searchItem(txtSearchEan.Text);
@@ -548,6 +502,68 @@ namespace Oege_Get_the_best_price.View
                 listView.Items[searchResult.Index].Selected = true;
             }
 
+        }
+
+        private void butAmazon_Click(object sender, EventArgs e)
+        {
+            if(actuellData != null)
+            {
+                if(actuellData.UrlAmazon == "")
+                {
+                    string discription = actuellData.Aritcel;
+
+                    int indexAnd = discription.IndexOf("&");
+
+                    if (indexAnd > -1)
+                    {
+                        discription = discription.Replace("&", "");
+
+                        if (discription[indexAnd].ToString() == " ")
+                            discription = discription.Remove(indexAnd, 1);
+                    }
+
+                    string url = "http://www.amazon.de/s/&field-keywords=" + discription;
+
+
+                    Process.Start(url);
+                }
+                else
+                {
+                    Process.Start(actuellData.UrlAmazon);
+                }
+            }
+            
+        }
+
+        private void butEbay_Click(object sender, EventArgs e)
+        {
+            // = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + ean + "&rt=nc&LH_BIN=1";
+
+            if (actuellData != null)
+            {
+                if (actuellData.UrlEbay == "")
+                {
+                    string discription = actuellData.Aritcel;
+
+                    int indexAnd = discription.IndexOf("&");
+
+                    if(indexAnd > -1)
+                    {
+                        discription = discription.Replace("&", "");
+
+                        if (discription[indexAnd].ToString() == " ")
+                            discription = discription.Remove(indexAnd, 1);
+                    }                    
+
+                    string url = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + discription + "&rt=nc&LH_BIN=1";
+
+                    Process.Start(url);
+                }
+                else
+                {
+                    Process.Start(actuellData.UrlEbay);
+                }
+            }
         }
     }
 }

@@ -44,7 +44,11 @@ namespace Oege_Get_the_best_price.Controller
         public string makeEan(string ean)
         {
             string tmp = ean;
-            if(tmp.Length < 8)
+
+            if (tmp.Length == 8 || tmp.Length == 13)
+                return ean;
+
+            if (tmp.Length < 8)
             {
                 do
                 {

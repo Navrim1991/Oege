@@ -51,7 +51,6 @@
             this.txtShippingEbay = new System.Windows.Forms.TextBox();
             this.lblArticelEbay = new System.Windows.Forms.Label();
             this.txtArticleEbay = new System.Windows.Forms.TextBox();
-            this.linkLblEbay = new System.Windows.Forms.LinkLabel();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
             this.butAmazon = new System.Windows.Forms.Button();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
@@ -60,7 +59,6 @@
             this.txtShippingAmazon = new System.Windows.Forms.TextBox();
             this.lblAmazonArtikel = new System.Windows.Forms.Label();
             this.txtArtikelAmazon = new System.Windows.Forms.TextBox();
-            this.linkLblAmazon = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPriceOwn = new System.Windows.Forms.TextBox();
             this.lblPriceOwn = new System.Windows.Forms.Label();
@@ -247,7 +245,6 @@
             this.grpBoxEbay.Controls.Add(this.txtShippingEbay);
             this.grpBoxEbay.Controls.Add(this.lblArticelEbay);
             this.grpBoxEbay.Controls.Add(this.txtArticleEbay);
-            this.grpBoxEbay.Controls.Add(this.linkLblEbay);
             this.grpBoxEbay.Font = new System.Drawing.Font("Verdana", 18F);
             this.grpBoxEbay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.grpBoxEbay.Location = new System.Drawing.Point(21, 522);
@@ -270,6 +267,7 @@
             this.butEbay.TabIndex = 18;
             this.butEbay.Text = "Artikel suchen";
             this.butEbay.UseVisualStyleBackColor = true;
+            this.butEbay.Click += new System.EventHandler(this.butEbay_Click);
             // 
             // lblPriceEbay
             // 
@@ -338,19 +336,6 @@
             this.txtArticleEbay.Size = new System.Drawing.Size(349, 79);
             this.txtArticleEbay.TabIndex = 12;
             // 
-            // linkLblEbay
-            // 
-            this.linkLblEbay.AutoSize = true;
-            this.linkLblEbay.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblEbay.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.linkLblEbay.Location = new System.Drawing.Point(8, 225);
-            this.linkLblEbay.Name = "linkLblEbay";
-            this.linkLblEbay.Size = new System.Drawing.Size(123, 18);
-            this.linkLblEbay.TabIndex = 11;
-            this.linkLblEbay.TabStop = true;
-            this.linkLblEbay.Text = "<Platzhalter>";
-            this.linkLblEbay.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblEbay_LinkClicked);
-            // 
             // grpBoxAmazon
             // 
             this.grpBoxAmazon.Controls.Add(this.butAmazon);
@@ -360,7 +345,6 @@
             this.grpBoxAmazon.Controls.Add(this.txtShippingAmazon);
             this.grpBoxAmazon.Controls.Add(this.lblAmazonArtikel);
             this.grpBoxAmazon.Controls.Add(this.txtArtikelAmazon);
-            this.grpBoxAmazon.Controls.Add(this.linkLblAmazon);
             this.grpBoxAmazon.Font = new System.Drawing.Font("Verdana", 18F);
             this.grpBoxAmazon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.grpBoxAmazon.ImeMode = System.Windows.Forms.ImeMode.AlphaFull;
@@ -385,6 +369,7 @@
             this.butAmazon.TabIndex = 10;
             this.butAmazon.Text = "Artikel suchen";
             this.butAmazon.UseVisualStyleBackColor = true;
+            this.butAmazon.Click += new System.EventHandler(this.butAmazon_Click);
             // 
             // lblAmazonPrice
             // 
@@ -453,19 +438,6 @@
             this.txtArtikelAmazon.ReadOnly = true;
             this.txtArtikelAmazon.Size = new System.Drawing.Size(349, 79);
             this.txtArtikelAmazon.TabIndex = 4;
-            // 
-            // linkLblAmazon
-            // 
-            this.linkLblAmazon.AutoSize = true;
-            this.linkLblAmazon.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLblAmazon.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.linkLblAmazon.Location = new System.Drawing.Point(8, 234);
-            this.linkLblAmazon.Name = "linkLblAmazon";
-            this.linkLblAmazon.Size = new System.Drawing.Size(123, 18);
-            this.linkLblAmazon.TabIndex = 3;
-            this.linkLblAmazon.TabStop = true;
-            this.linkLblAmazon.Text = "<Platzhalter>";
-            this.linkLblAmazon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblAmazon_LinkClicked);
             // 
             // groupBox1
             // 
@@ -603,7 +575,6 @@
         private System.Windows.Forms.TextBox txtArtikel;
         private System.Windows.Forms.GroupBox grpBoxEbay;
         private System.Windows.Forms.GroupBox grpBoxAmazon;
-        private System.Windows.Forms.LinkLabel linkLblAmazon;
         private System.Windows.Forms.Label lvlProgress;
         private System.Windows.Forms.ProgressBar progressBarParsing;
         private System.Windows.Forms.TextBox txtSearchEan;
@@ -623,7 +594,6 @@
         private System.Windows.Forms.TextBox txtShippingEbay;
         private System.Windows.Forms.Label lblArticelEbay;
         private System.Windows.Forms.TextBox txtArticleEbay;
-        private System.Windows.Forms.LinkLabel linkLblEbay;
         private System.Windows.Forms.Button butAmazon;
         private System.Windows.Forms.Label lblPriceOwn;
         private System.Windows.Forms.TextBox txtPriceOwn;

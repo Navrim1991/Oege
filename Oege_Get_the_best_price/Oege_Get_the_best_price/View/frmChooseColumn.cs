@@ -44,24 +44,25 @@ namespace Oege_Get_the_best_price.View
             if (excelProcess != null)
             {
                 excelProcess.Kill();
+                //excelProcess.WaitForExit();
 
                 Thread.Sleep(100);
             }
 
             if (txtDiscription.Text != "")
-                param.Add(txtDiscription.Text.ToLower().First() - 96);
+                param.Add(txtDiscription.Text.ToLower());
             else
                 param.Add(-1);
 
             if (txtPrice.Text != "")
-                param.Add(txtPrice.Text.ToLower().First() - 96);
+                param.Add(txtPrice.Text.ToLower());
             else
                 param.Add(-1);
 
             param.Add(Controller.Controller.Instance().parseDouble(txtCurrencyConversion.Text, 1.0));
 
             if (txtEan.Text != "")
-                param.Add(txtEan.Text.ToLower().First() - 96);
+                param.Add(txtEan.Text.ToLower());
             else
                 this.DialogResult = DialogResult.Cancel;
 

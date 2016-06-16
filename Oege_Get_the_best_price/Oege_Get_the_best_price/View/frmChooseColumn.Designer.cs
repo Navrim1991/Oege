@@ -109,7 +109,7 @@
             // 
             this.txtDiscription.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiscription.Location = new System.Drawing.Point(194, 114);
-            this.txtDiscription.MaxLength = 1;
+            this.txtDiscription.MaxLength = 3;
             this.txtDiscription.Multiline = true;
             this.txtDiscription.Name = "txtDiscription";
             this.txtDiscription.Size = new System.Drawing.Size(100, 32);

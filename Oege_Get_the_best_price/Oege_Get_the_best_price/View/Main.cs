@@ -85,8 +85,14 @@ namespace Oege_Get_the_best_price.View
 
         private void projektÖffnenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (activeForm.GetType() == typeof(frmParsing))
+            frmParsing frm = ((frmParsing)activeForm);
+            if (!frm.hasData())
                 ((frmParsing)activeForm).importData();
+            else
+            {
+                addPage();
+                ((frmParsing)activeForm).importData();
+            }
         }
 
         private void einzelneEanSuchenToolStripMenuItem_Click(object sender, EventArgs e)

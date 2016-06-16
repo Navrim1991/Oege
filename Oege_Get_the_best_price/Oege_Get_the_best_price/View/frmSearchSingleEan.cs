@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oege_Get_the_best_price.Model;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Oege_Get_the_best_price.View
 {
@@ -23,8 +24,6 @@ namespace Oege_Get_the_best_price.View
         public frmSearchSingleEan()
         {
             InitializeComponent();
-            linkLblAmazon.Text = "";
-            linkLblEbay.Text = "";
 
             controller = Controller.Controller.Instance();
             controller.Register(this, level);
@@ -63,19 +62,9 @@ namespace Oege_Get_the_best_price.View
             txtPriceAmazon.Clear();
             txtShippingAmazon.Clear();
 
-            if (linkLblAmazon.Links.Count > 0)
-                linkLblAmazon.Links.RemoveAt(0);
-
-            linkLblAmazon.Text = "";
-
             txtArticleEbay.Clear();
             txtPriceEaby.Clear();
             txtShippingEbay.Clear();
-
-            if (linkLblEbay.Links.Count > 0)
-                linkLblEbay.Links.RemoveAt(0);
-
-            linkLblEbay.Text = "";
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -93,77 +82,34 @@ namespace Oege_Get_the_best_price.View
                 txtPriceAmazon.Text = data.PriceAmazon.ToString();
                 txtShippingAmazon.Text = data.AmazonShipping.ToString();
 
-                if (linkLblAmazon.Links.Count > 0)
-                    linkLblAmazon.Links.RemoveAt(0);
-
-                if (data.UrlAmazon != "")
-                {
-                    linkLblAmazon.Text = "Artikel in Amazon anschauen";
-                    LinkLabel.Link linkAmazon = new LinkLabel.Link();
-                    linkAmazon.LinkData = data.UrlAmazon;
-                    linkLblAmazon.Links.Add(linkAmazon);
-                }
-                else
-                {
-                    linkLblAmazon.Text = "";
-                }
-
                 txtArticleEbay.Text = data.DiscriptionEbay;
                 txtPriceEaby.Text = data.PriceEbay.ToString();
                 txtShippingEbay.Text = data.EbayShipping.ToString();
 
-                if (linkLblEbay.Links.Count > 0)
-                    linkLblEbay.Links.RemoveAt(0);
-
-                if (data.UrlEbay != "")
-                {
-                    linkLblEbay.Text = "Artikel in Ebay anschauen";
-                    LinkLabel.Link linkEbay = new LinkLabel.Link();
-                    linkEbay.LinkData = data.UrlEbay;
-                    linkLblEbay.Links.Add(linkEbay);
-                }
+                if (data.UrlAmazon == "")
+                    butAmazon.Enabled = false;
                 else
-                {
-                    linkLblEbay.Text = "";
-                }
+                    butAmazon.Enabled = true;
+
+                if (data.UrlEbay == "")
+                    butEbay.Enabled = false;
+                else
+                    butEbay.Enabled = true;
             }
 
             this.Cursor = Cursors.Default;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void butAmazon_Click(object sender, EventArgs e)
         {
-
+            if (data !=  null && data.UrlAmazon != "")
+                Process.Start(data.UrlAmazon);
         }
 
-        private void txtShippingAmazon_TextChanged(object sender, EventArgs e)
+        private void butEbay_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void linkLblAmazon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void lblAmazonArtikel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtArticleEbay_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtShippingEbay_TextChanged(object sender, EventArgs e)
-        {
-
+            if (data != null && data.UrlEbay != "")
+                Process.Start(data.UrlEbay);
         }
     }
 }

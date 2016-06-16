@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Oege_Get_the_best_price.Controller
 {
@@ -39,8 +41,11 @@ namespace Oege_Get_the_best_price.Controller
             }
         }
 
-        public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice, double currencyConversion)
+        public void readExcelFile(string filePath, int level, string eanIndex, string discriptionIndex, string priceIndex, double currencyConversion)
         {
+            int indexEan = eanIndex.ToLower().First() - 96;
+            int indexPrice = priceIndex.ToLower().First() - 96;
+            int indexDiscriptionOne = discriptionIndex.ToLower().First() - 96;
             Excel.Application app;
             Excel.Workbook workBook;
             Excel.Worksheet workSheet;
@@ -62,7 +67,8 @@ namespace Oege_Get_the_best_price.Controller
             {
                 if(columns >= indexEan)
                 {
-                    object discription = "";
+                    object discriptionOne = "";
+                    object discriptionTwo = "";
                     object price = 0.0;
                     object ean = (object)(workSheet.Cells[i, indexEan] as Excel.Range).Value;
 
@@ -76,13 +82,20 @@ namespace Oege_Get_the_best_price.Controller
                         {
                             Model.Data data = new Model.Data(eanString);
 
-                            if (indexDiscription > 0 && columns >= indexDiscription)
-                                discription = (object)(workSheet.Cells[i, indexDiscription] as Excel.Range).Value;
+                            if (indexDiscriptionOne > 0 && columns >= indexDiscriptionOne)
+                                discriptionOne = (object)(workSheet.Cells[i, indexDiscriptionOne] as Excel.Range).Value;
+
+                            if(discriptionIndex.Length > 1)
+                            {
+                                int indexDiscriptionTwo = discriptionIndex.ToLower().Last() - 96;
+
+                                discriptionTwo = " " + (object)(workSheet.Cells[i, indexDiscriptionTwo] as Excel.Range).Value;
+                            }
 
                             if (indexPrice > 0 && columns >= indexPrice)
                                 price = (object)(workSheet.Cells[i, indexPrice] as Excel.Range).Value;
 
-                            data.Aritcel = discription.ToString();
+                            data.Aritcel = discriptionOne.ToString() + discriptionTwo.ToString();
 
                             data.OwnPrice =  Math.Round(controller.parseDouble(price.ToString()) * currencyConversion,2);
 
@@ -96,12 +109,29 @@ namespace Oege_Get_the_best_price.Controller
                     }
                 }
             }
-            workBook.Close(false);
+            workBook.Close(false,"",null);
             app.Quit();
 
             releaseObject(workSheet);
             releaseObject(workBook);
             releaseObject(app);
+
+            Thread.Sleep(100);
+
+            Process[] proc = Process.GetProcessesByName("Excel");
+
+            proc.OrderBy(x => x.StartTime);
+            
+            if(proc.Count() > 0)
+            {
+                int windowhandle = proc[0].MainWindowHandle.ToInt32();
+                if(windowhandle == 0)
+                {
+                    proc[0].Kill();
+                    proc[0].WaitForExit();
+                }
+                
+            }
 
             Controller.Instance().getDataController(guiHash, level).DataHolding.ListData = tmp;
 
@@ -126,6 +156,7 @@ namespace Oege_Get_the_best_price.Controller
                 GC.Collect();
             }
         }
+
 
         /*public void readExcelFile(string filePath, int level, int indexEan, int indexDiscription, int indexPrice)
         {
