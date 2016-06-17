@@ -26,6 +26,19 @@ namespace Oege_Get_the_best_price.View
             None
         };
 
+        public enum Shipping
+        {
+            Shipping = 1,
+            NoShipping = 2
+            
+        };
+
+        public enum NettoBrutto
+        {
+            Brutto = 4,
+            Netto = 8
+        };
+
         private enum SortOrder
         {
             Ascending,
@@ -46,7 +59,7 @@ namespace Oege_Get_the_best_price.View
         private int percentProgressEbay;
         private int percentProgressIdealo;
         int hash;
-        KeyValuePair<int, SortOrder> currentSortedHeader = new KeyValuePair<int, SortOrder>(-1, SortOrder.None);
+        KeyValuePair<int, SortOrder> currentSortedHeader = new KeyValuePair<int, SortOrder>(0, SortOrder.Ascending);
         Data actuellData = null;
 
         private const string EAN = "EAN";
@@ -71,6 +84,8 @@ namespace Oege_Get_the_best_price.View
             shippingIdealo + ";" + ownPrice;
 
         const short level = 1;
+
+        int priceCalculator;
 
         #endregion
 
@@ -104,6 +119,8 @@ namespace Oege_Get_the_best_price.View
             parsingController = controller.getParsingController(hash, level);
             if (parsingController == null)
                 throw new ArgumentNullException("parsingController", "parsingController ist null");
+
+            setPriceCalculator();
         }
         #endregion
 
@@ -350,11 +367,31 @@ namespace Oege_Get_the_best_price.View
             return currentBackColor;
         }
 
+        private void setPriceCalculator()
+        {
+            priceCalculator = 0;
+
+            if (rdioButBrutto.Checked == true)
+                priceCalculator |= (int)NettoBrutto.Brutto;
+            else
+                priceCalculator |= (int)NettoBrutto.Netto;
+
+            if (rdioButShipping.Checked == true)
+                priceCalculator |= (int)Shipping.Shipping;
+            else
+                priceCalculator |= (int)Shipping.NoShipping;
+        }
+
         public void updateListView()
         {
             listView.Items.Clear();
 
             int colorSwitcher = 0;
+
+            setPriceCalculator();
+
+            dataController.DataHolding.sortList(currentSortedHeader.Key, (int)currentSortedHeader.Value, priceCalculator);
+
             foreach (Data data in dataController.DataHolding.ListData)
             {
                 Color currentBackColor;
@@ -369,11 +406,42 @@ namespace Oege_Get_the_best_price.View
                 lvi.BackColor = currentBackColor;
 
                 lvi.SubItems.Add(data.Aritcel, Color.Black, currentBackColor, new Font("Arial", 12));
+                double MwSt = 0.19; 
+
+                double amazonPrice = 0.0;
+                double ebayPrice = 0.0;
+
+                switch(priceCalculator)
+                {
+                    //Brutto and shipping
+                    case 5:
+                        amazonPrice = data.PriceAmazon + data.AmazonShipping;
+                        ebayPrice = data.PriceEbay + data.EbayShipping;
+                        break;
+                    //Brutto and no shipping
+                    case 6:
+                        amazonPrice = data.PriceAmazon;
+                        ebayPrice = data.PriceEbay;
+                        break;
+                    //Netto and shipping
+                    case 9:
+                        amazonPrice = (data.PriceAmazon / (1 + MwSt)) + data.AmazonShipping;
+                        ebayPrice = (data.PriceEbay / (1 + MwSt)) + data.EbayShipping;
+                        break;
+                    //Netto and no shipping
+                    case 10:
+                        amazonPrice = (data.PriceAmazon / (1 + MwSt));
+                        ebayPrice = (data.PriceEbay / (1 + MwSt));
+                        break;
+                }
+
+                amazonPrice = Math.Round(amazonPrice, 2);
+                ebayPrice = Math.Round(ebayPrice, 2);
 
                 Dictionary<Platform, double> dic = new Dictionary<Platform, double>();
 
-                dic.Add(Platform.Amazon, data.PriceAmazon);
-                dic.Add(Platform.Ebay, data.PriceEbay);
+                dic.Add(Platform.Amazon, amazonPrice);
+                dic.Add(Platform.Ebay, ebayPrice);
                 dic.Add(Platform.Own, data.OwnPrice);
 
                 ListViewItem.ListViewSubItem subitemAmazon = null;
@@ -398,13 +466,13 @@ namespace Oege_Get_the_best_price.View
                     switch (element.Key)
                     {
                         case Platform.Amazon:
-                            backColor = getBackColor(counter, ref colorSet, data.PriceAmazon, currentBackColor);
-                            subitemAmazon = new ListViewItem.ListViewSubItem(lvi, data.PriceAmazon.ToString(), Color.Black, backColor, new Font("Arial", 12));
+                            backColor = getBackColor(counter, ref colorSet, amazonPrice, currentBackColor);
+                            subitemAmazon = new ListViewItem.ListViewSubItem(lvi, amazonPrice.ToString(), Color.Black, backColor, new Font("Arial", 12));
                             break;
 
                         case Platform.Ebay:
-                            backColor = getBackColor(counter, ref colorSet, data.PriceEbay, currentBackColor);
-                            subitemEbay = new ListViewItem.ListViewSubItem(lvi, data.PriceEbay.ToString(), Color.Black, backColor, new Font("Arial", 12));
+                            backColor = getBackColor(counter, ref colorSet, ebayPrice, currentBackColor);
+                            subitemEbay = new ListViewItem.ListViewSubItem(lvi, ebayPrice.ToString(), Color.Black, backColor, new Font("Arial", 12));
                             break;
 
                         case Platform.Own:
@@ -486,8 +554,6 @@ namespace Oege_Get_the_best_price.View
 
                 listView.Items.Clear();
 
-                dataController.DataHolding.sortList(clickedIndex, (int)currentSortedHeader.Value);
-
                 updateListView();
             }
         }
@@ -564,6 +630,12 @@ namespace Oege_Get_the_best_price.View
                     Process.Start(actuellData.UrlEbay);
                 }
             }
+        }
+
+        private void radioButtons_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            updateListView();
         }
     }
 }

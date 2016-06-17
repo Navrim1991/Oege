@@ -118,19 +118,19 @@ namespace Oege_Get_the_best_price.Controller
 
             Thread.Sleep(100);
 
+            
+
             Process[] proc = Process.GetProcessesByName("Excel");
 
             proc.OrderBy(x => x.StartTime);
             
             if(proc.Count() > 0)
-            {
-                int windowhandle = proc[0].MainWindowHandle.ToInt32();
-                if(windowhandle == 0)
+            {                
+                if(proc[0].MainWindowHandle.ToInt32() == 0)
                 {
                     proc[0].Kill();
                     proc[0].WaitForExit();
-                }
-                
+                }                
             }
 
             Controller.Instance().getDataController(guiHash, level).DataHolding.ListData = tmp;

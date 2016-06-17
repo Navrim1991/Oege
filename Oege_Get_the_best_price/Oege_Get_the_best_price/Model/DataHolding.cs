@@ -44,47 +44,166 @@ namespace Oege_Get_the_best_price.Model
             syncLock = new object();
         }
 
-        public void sortList(int index, int order)
+        public void sortList(int index, int order, int priceCalculator)
         {
             //order = 1 asc
             //order = 2 desc
             switch (index)
             {
                     case 0:
-                        if (order == 0)
-                            listData = (from p in listData orderby p.Ean select p).ToList();
-                        else if (order == 1)
-                            listData = (from p in listData orderby p.Ean descending select p).ToList();
-                        break;
+                        sortEan(order);
+                    break;
                     case 1:
-                        if (order == 0)
-                            listData = (from p in listData orderby p.Aritcel select p).ToList();
-                        else if (order == 1)
-                            listData = (from p in listData orderby p.Aritcel descending select p).ToList();
-                        break;
+                        sortArticle(order);
+                    break;
                     case 2:
-                    if (order == 0)
-                        listData.Sort((Data x, Data y) => (x.PriceAmazon.CompareTo(y.PriceAmazon )));
-                    //listData = (from p in listData orderby ((int)(p.PriceAmazon * 100)) select p).ToList();
-                    else if (order == 1)
-                        listData.Sort((Data x, Data y) => -1*(x.PriceAmazon.CompareTo(y.PriceAmazon)));
-                    //listData = (from p in listData orderby ((int)(p.PriceAmazon * 100)) descending select p).ToList();
-
-
+                        sortPriceAmazon(order, priceCalculator);
                     break;
                     case 3:
-                        if (order == 0)
-                            listData = (from p in listData orderby ((int)(p.PriceEbay * 100)) select p).ToList();
-                        else if (order == 1)
-                            listData = (from p in listData orderby ((int)(p.PriceEbay * 100)) descending select p).ToList();
+                        sortPriceEbay(order, priceCalculator);
                         break;
                     case 4:
-                    if (order == 0)
-                        listData = (from p in listData orderby ((int)(p.OwnPrice * 100))select p).ToList();
-                    else if (order == 1)
-                        listData = (from p in listData orderby ((int)(p.OwnPrice * 100)) descending select p).ToList();
+                        sortOwnPrice(order);
                     break;
             }
+        }
+
+        private void sortEan(int order)
+        {
+            
+            if (order == 0)
+            {                
+                listData = (from p in listData orderby p.Ean select p).ToList();
+            }
+                
+            else if (order == 1)
+                listData = (from p in listData orderby p.Ean descending select p).ToList();
+        }
+
+        private void sortArticle(int order)
+        {
+            if (order == 0)
+                listData = (from p in listData orderby p.Aritcel select p).ToList();
+            else if (order == 1)
+                listData = (from p in listData orderby p.Aritcel descending select p).ToList();
+        }
+
+        private void sortPriceAmazon(int order, int priceCalculator)
+        {
+            double MwSt = 0.19;
+            if (order == 0)
+            {
+                switch (priceCalculator)
+                {
+                    //Brutto and shipping
+                    case 5:
+                        //amazonPrice = data.PriceAmazon + data.AmazonShipping;
+                        listData = (from p in listData orderby (p.PriceAmazon + p.AmazonShipping) select p).ToList();
+                        break;
+                    //Brutto and no shipping
+                    case 6:
+                        //amazonPrice = data.PriceAmazon;
+                        listData = (from p in listData orderby p.PriceAmazon select p).ToList();
+                        break;
+                    //Netto and shipping
+                    case 9:
+                        //amazonPrice = (data.PriceAmazon / (1 + MwSt)) + data.AmazonShipping; 
+                        listData = (from p in listData orderby ((p.PriceAmazon / 1 + MwSt) + p.AmazonShipping) select p).ToList();
+                        break;
+                    //Netto and no shipping
+                    case 10:
+                        listData = (from p in listData orderby ((p.PriceAmazon / 1 + MwSt)) select p).ToList();
+                        break;
+                }
+            }                
+            else if (order == 1)
+            {
+                switch (priceCalculator)
+                {
+                    //Brutto and shipping
+                    case 5:
+                        //amazonPrice = data.PriceAmazon + data.AmazonShipping;
+                        listData = (from p in listData orderby (p.PriceAmazon + p.AmazonShipping) descending select p).ToList();
+                        break;
+                    //Brutto and no shipping
+                    case 6:
+                        //amazonPrice = data.PriceAmazon;
+                        listData = (from p in listData orderby p.PriceAmazon descending select p).ToList();
+                        break;
+                    //Netto and shipping
+                    case 9:
+                        //amazonPrice = (data.PriceAmazon / (1 + MwSt)) + data.AmazonShipping; 
+                        listData = (from p in listData orderby ((p.PriceAmazon / 1 + MwSt) + p.AmazonShipping) descending select p).ToList();
+                        break;
+                    //Netto and no shipping
+                    case 10:
+                        listData = (from p in listData orderby ((p.PriceAmazon / 1 + MwSt)) descending select p).ToList();
+                        break;
+                }
+            }
+        }
+
+        private void sortPriceEbay(int order, int priceCalculator)
+        {
+            double MwSt = 0.19;
+            if (order == 0)
+            {
+                switch (priceCalculator)
+                {
+                    //Brutto and shipping
+                    case 5:
+                        //EbayPrice = data.PriceEbay + data.EbayShipping;
+                        listData = (from p in listData orderby (p.PriceEbay + p.EbayShipping) select p).ToList();
+                        break;
+                    //Brutto and no shipping
+                    case 6:
+                        //EbayPrice = data.PriceEbay;
+                        listData = (from p in listData orderby p.PriceEbay select p).ToList();
+                        break;
+                    //Netto and shipping
+                    case 9:
+                        //EbayPrice = (data.PriceEbay / (1 + MwSt)) + data.EbayShipping; 
+                        listData = (from p in listData orderby ((p.PriceEbay / 1 + MwSt) + p.EbayShipping) select p).ToList();
+                        break;
+                    //Netto and no shipping
+                    case 10:
+                        listData = (from p in listData orderby ((p.PriceEbay / 1 + MwSt)) select p).ToList();
+                        break;
+                }
+            }
+            else if (order == 1)
+            {
+                switch (priceCalculator)
+                {
+                    //Brutto and shipping
+                    case 5:
+                        //EbayPrice = data.PriceEbay + data.EbayShipping;
+                        listData = (from p in listData orderby (p.PriceEbay + p.EbayShipping) descending select p).ToList();
+                        break;
+                    //Brutto and no shipping
+                    case 6:
+                        //EbayPrice = data.PriceEbay;
+                        listData = (from p in listData orderby p.PriceEbay descending select p).ToList();
+                        break;
+                    //Netto and shipping
+                    case 9:
+                        //EbayPrice = (data.PriceEbay / (1 + MwSt)) + data.EbayShipping; 
+                        listData = (from p in listData orderby ((p.PriceEbay / 1 + MwSt) + p.EbayShipping) descending select p).ToList();
+                        break;
+                    //Netto and no shipping
+                    case 10:
+                        listData = (from p in listData orderby ((p.PriceEbay / 1 + MwSt)) descending select p).ToList();
+                        break;
+                }
+            }
+        }
+
+        private void sortOwnPrice(int order)
+        {
+            if (order == 0)
+                listData = (from p in listData orderby p.OwnPrice select p).ToList();
+            else if (order == 1)
+                listData = (from p in listData orderby p.OwnPrice descending select p).ToList();
         }
 
         public Data getData(string ean)

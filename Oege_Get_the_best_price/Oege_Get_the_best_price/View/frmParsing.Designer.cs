@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmParsing));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rdioButShipping = new System.Windows.Forms.RadioButton();
+            this.rdioButNoShipping = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rdioButBrutto = new System.Windows.Forms.RadioButton();
+            this.rdioButNetto = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.butSearchEan = new System.Windows.Forms.Button();
             this.txtSearchEan = new System.Windows.Forms.TextBox();
@@ -72,6 +78,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpBoxEbay.SuspendLayout();
             this.grpBoxAmazon.SuspendLayout();
@@ -90,6 +98,8 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainer1.Panel1.BackgroundImage")));
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.butSearchEan);
             this.splitContainer1.Panel1.Controls.Add(this.txtSearchEan);
@@ -108,6 +118,74 @@
             this.splitContainer1.SplitterDistance = 1110;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.rdioButShipping);
+            this.panel2.Controls.Add(this.rdioButNoShipping);
+            this.panel2.Location = new System.Drawing.Point(940, 11);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(165, 52);
+            this.panel2.TabIndex = 8;
+            // 
+            // rdioButShipping
+            // 
+            this.rdioButShipping.AutoSize = true;
+            this.rdioButShipping.Location = new System.Drawing.Point(3, 3);
+            this.rdioButShipping.Name = "rdioButShipping";
+            this.rdioButShipping.Size = new System.Drawing.Size(147, 20);
+            this.rdioButShipping.TabIndex = 1;
+            this.rdioButShipping.Text = "mit Versandkosten";
+            this.rdioButShipping.UseVisualStyleBackColor = true;
+            this.rdioButShipping.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // rdioButNoShipping
+            // 
+            this.rdioButNoShipping.AutoSize = true;
+            this.rdioButNoShipping.Checked = true;
+            this.rdioButNoShipping.Location = new System.Drawing.Point(3, 29);
+            this.rdioButNoShipping.Name = "rdioButNoShipping";
+            this.rdioButNoShipping.Size = new System.Drawing.Size(161, 20);
+            this.rdioButNoShipping.TabIndex = 0;
+            this.rdioButNoShipping.TabStop = true;
+            this.rdioButNoShipping.Text = "keine Versandkosten";
+            this.rdioButNoShipping.UseVisualStyleBackColor = true;
+            this.rdioButNoShipping.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.rdioButBrutto);
+            this.panel1.Controls.Add(this.rdioButNetto);
+            this.panel1.Location = new System.Drawing.Point(855, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(79, 52);
+            this.panel1.TabIndex = 7;
+            // 
+            // rdioButBrutto
+            // 
+            this.rdioButBrutto.AutoSize = true;
+            this.rdioButBrutto.Checked = true;
+            this.rdioButBrutto.Location = new System.Drawing.Point(3, 29);
+            this.rdioButBrutto.Name = "rdioButBrutto";
+            this.rdioButBrutto.Size = new System.Drawing.Size(67, 20);
+            this.rdioButBrutto.TabIndex = 1;
+            this.rdioButBrutto.TabStop = true;
+            this.rdioButBrutto.Text = "Brutto";
+            this.rdioButBrutto.UseVisualStyleBackColor = true;
+            this.rdioButBrutto.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // rdioButNetto
+            // 
+            this.rdioButNetto.AutoSize = true;
+            this.rdioButNetto.Location = new System.Drawing.Point(3, 3);
+            this.rdioButNetto.Name = "rdioButNetto";
+            this.rdioButNetto.Size = new System.Drawing.Size(63, 20);
+            this.rdioButNetto.TabIndex = 0;
+            this.rdioButNetto.Text = "Netto";
+            this.rdioButNetto.UseVisualStyleBackColor = true;
+            this.rdioButNetto.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -550,6 +628,10 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpBoxEbay.ResumeLayout(false);
             this.grpBoxEbay.PerformLayout();
@@ -602,5 +684,11 @@
         private System.Windows.Forms.TextBox txtArtikelAmazon;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rdioButShipping;
+        private System.Windows.Forms.RadioButton rdioButNoShipping;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rdioButBrutto;
+        private System.Windows.Forms.RadioButton rdioButNetto;
     }
 }
