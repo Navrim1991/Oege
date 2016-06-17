@@ -240,8 +240,9 @@
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(0, 80);
             this.listView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(1105, 1158);
+            this.listView.Size = new System.Drawing.Size(1105, 850);
             this.listView.TabIndex = 1;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
