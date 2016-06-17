@@ -1,12 +1,6 @@
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe.config
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.pdb
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.dll
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\MdiTabControl.dll
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\DocumentFormat.OpenXml.xml
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.pdb
-C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.xml
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csprojResolveAssemblyReference.cache
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.Properties.Resources.resources
 C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmParsing.resources
@@ -66,16 +60,29 @@ E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bi
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.xml
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Data.Linq.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Interfaces.dll
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.xml
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.ResolveComReference.cache
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmSearchSingleEan.resources
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.dll
-E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\MdiTabControl.dll
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.pdb
 E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.csproj.ResolveComReference.cache
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.View.frmSearchSingleEan.resources
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Data.Linq.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Remotion.Interfaces.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.dll
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\CsvHelper.xml
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\LinqToExcel.xml
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\log4net.xml
+C:\Users\Kafalar Kafalar\Source\Repos\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\RestSharp.xml
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.exe.manifest
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\bin\Debug\Oege_Get_the_best_price.application
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.exe.manifest
+E:\Dropbox\Repository_PC\Oege\Oege_Get_the_best_price\Oege_Get_the_best_price\obj\Debug\Oege_Get_the_best_price.application
