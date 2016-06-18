@@ -97,6 +97,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainer1.Panel1.BackgroundImage")));
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
@@ -122,6 +123,7 @@
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.rdioButShipping);
             this.panel2.Controls.Add(this.rdioButNoShipping);
             this.panel2.Location = new System.Drawing.Point(940, 11);
@@ -156,6 +158,7 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.rdioButBrutto);
             this.panel1.Controls.Add(this.rdioButNetto);
             this.panel1.Location = new System.Drawing.Point(855, 11);
@@ -219,7 +222,7 @@
             this.txtSearchEan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchEan.Multiline = true;
             this.txtSearchEan.Name = "txtSearchEan";
-            this.txtSearchEan.Size = new System.Drawing.Size(212, 35);
+            this.txtSearchEan.Size = new System.Drawing.Size(212, 30);
             this.txtSearchEan.TabIndex = 4;
             // 
             // listView
