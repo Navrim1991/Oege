@@ -32,6 +32,7 @@
             this.butSearchEan = new System.Windows.Forms.Button();
             this.txtSearchEan = new System.Windows.Forms.TextBox();
             this.grpBoxEbay = new System.Windows.Forms.GroupBox();
+            this.butEbay = new System.Windows.Forms.Button();
             this.lblPriceEbay = new System.Windows.Forms.Label();
             this.txtPriceEaby = new System.Windows.Forms.TextBox();
             this.lblShippingEbay = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.lblArticelEbay = new System.Windows.Forms.Label();
             this.txtArticleEbay = new System.Windows.Forms.TextBox();
             this.grpBoxAmazon = new System.Windows.Forms.GroupBox();
+            this.butAmazon = new System.Windows.Forms.Button();
             this.lblAmazonPrice = new System.Windows.Forms.Label();
             this.txtPriceAmazon = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,8 +48,9 @@
             this.lblAmazonArtikel = new System.Windows.Forms.Label();
             this.txtArtikelAmazon = new System.Windows.Forms.TextBox();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.butAmazon = new System.Windows.Forms.Button();
-            this.butEbay = new System.Windows.Forms.Button();
+            this.butSearchBilligerde = new System.Windows.Forms.Button();
+            this.butSearchGoogle = new System.Windows.Forms.Button();
+            this.butSearchIdealo = new System.Windows.Forms.Button();
             this.grpBoxEbay.SuspendLayout();
             this.grpBoxAmazon.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +96,19 @@
             this.grpBoxEbay.TabIndex = 10;
             this.grpBoxEbay.TabStop = false;
             this.grpBoxEbay.Text = "Ebay";
+            // 
+            // butEbay
+            // 
+            this.butEbay.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butEbay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butEbay.Location = new System.Drawing.Point(373, 249);
+            this.butEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.butEbay.Name = "butEbay";
+            this.butEbay.Size = new System.Drawing.Size(138, 28);
+            this.butEbay.TabIndex = 18;
+            this.butEbay.Text = "Artikel öffnen";
+            this.butEbay.UseVisualStyleBackColor = true;
+            this.butEbay.Click += new System.EventHandler(this.butEbay_Click);
             // 
             // lblPriceEbay
             // 
@@ -184,6 +200,19 @@
             this.grpBoxAmazon.TabStop = false;
             this.grpBoxAmazon.Text = "Amazon";
             // 
+            // butAmazon
+            // 
+            this.butAmazon.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butAmazon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butAmazon.Location = new System.Drawing.Point(373, 242);
+            this.butAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.butAmazon.Name = "butAmazon";
+            this.butAmazon.Size = new System.Drawing.Size(138, 28);
+            this.butAmazon.TabIndex = 11;
+            this.butAmazon.Text = "Artikel öffnen";
+            this.butAmazon.UseVisualStyleBackColor = true;
+            this.butAmazon.Click += new System.EventHandler(this.butAmazon_Click);
+            // 
             // lblAmazonPrice
             // 
             this.lblAmazonPrice.AutoSize = true;
@@ -259,38 +288,54 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // butAmazon
+            // butSearchBilligerde
             // 
-            this.butAmazon.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butAmazon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.butAmazon.Location = new System.Drawing.Point(373, 242);
-            this.butAmazon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.butAmazon.Name = "butAmazon";
-            this.butAmazon.Size = new System.Drawing.Size(138, 28);
-            this.butAmazon.TabIndex = 11;
-            this.butAmazon.Text = "Artikel öffnen";
-            this.butAmazon.UseVisualStyleBackColor = true;
-            this.butAmazon.Click += new System.EventHandler(this.butAmazon_Click);
+            this.butSearchBilligerde.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butSearchBilligerde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butSearchBilligerde.Location = new System.Drawing.Point(105, 667);
+            this.butSearchBilligerde.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.butSearchBilligerde.Name = "butSearchBilligerde";
+            this.butSearchBilligerde.Size = new System.Drawing.Size(138, 28);
+            this.butSearchBilligerde.TabIndex = 19;
+            this.butSearchBilligerde.Text = "Billiger.de";
+            this.butSearchBilligerde.UseVisualStyleBackColor = true;
+            this.butSearchBilligerde.Click += new System.EventHandler(this.butSearchBilligerde_Click);
             // 
-            // butEbay
+            // butSearchGoogle
             // 
-            this.butEbay.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butEbay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.butEbay.Location = new System.Drawing.Point(373, 249);
-            this.butEbay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.butEbay.Name = "butEbay";
-            this.butEbay.Size = new System.Drawing.Size(138, 28);
-            this.butEbay.TabIndex = 18;
-            this.butEbay.Text = "Artikel öffnen";
-            this.butEbay.UseVisualStyleBackColor = true;
-            this.butEbay.Click += new System.EventHandler(this.butEbay_Click);
+            this.butSearchGoogle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butSearchGoogle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butSearchGoogle.Location = new System.Drawing.Point(249, 667);
+            this.butSearchGoogle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.butSearchGoogle.Name = "butSearchGoogle";
+            this.butSearchGoogle.Size = new System.Drawing.Size(138, 28);
+            this.butSearchGoogle.TabIndex = 20;
+            this.butSearchGoogle.Text = "Google";
+            this.butSearchGoogle.UseVisualStyleBackColor = true;
+            this.butSearchGoogle.Click += new System.EventHandler(this.butSearchGoogle_Click);
+            // 
+            // butSearchIdealo
+            // 
+            this.butSearchIdealo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butSearchIdealo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.butSearchIdealo.Location = new System.Drawing.Point(393, 667);
+            this.butSearchIdealo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.butSearchIdealo.Name = "butSearchIdealo";
+            this.butSearchIdealo.Size = new System.Drawing.Size(138, 28);
+            this.butSearchIdealo.TabIndex = 21;
+            this.butSearchIdealo.Text = "Idealo";
+            this.butSearchIdealo.UseVisualStyleBackColor = true;
+            this.butSearchIdealo.Click += new System.EventHandler(this.butSearchIdealo_Click);
             // 
             // frmSearchSingleEan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(565, 694);
+            this.ClientSize = new System.Drawing.Size(565, 703);
+            this.Controls.Add(this.butSearchIdealo);
+            this.Controls.Add(this.butSearchGoogle);
+            this.Controls.Add(this.butSearchBilligerde);
             this.Controls.Add(this.grpBoxEbay);
             this.Controls.Add(this.grpBoxAmazon);
             this.Controls.Add(this.butSearchEan);
@@ -332,5 +377,8 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.Button butEbay;
         private System.Windows.Forms.Button butAmazon;
+        private System.Windows.Forms.Button butSearchBilligerde;
+        private System.Windows.Forms.Button butSearchGoogle;
+        private System.Windows.Forms.Button butSearchIdealo;
     }
 }

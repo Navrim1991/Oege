@@ -153,7 +153,7 @@
             this.rdioButNoShipping.TabStop = true;
             this.rdioButNoShipping.Text = "keine Versandkosten";
             this.rdioButNoShipping.UseVisualStyleBackColor = true;
-            this.rdioButNoShipping.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            //this.rdioButNoShipping.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
             // 
             // panel1
             // 
@@ -177,7 +177,7 @@
             this.rdioButBrutto.TabStop = true;
             this.rdioButBrutto.Text = "Brutto";
             this.rdioButBrutto.UseVisualStyleBackColor = true;
-            this.rdioButBrutto.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            //this.rdioButBrutto.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
             // 
             // rdioButNetto
             // 
@@ -195,9 +195,9 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(221, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 32);
+            this.pictureBox1.Size = new System.Drawing.Size(26, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -220,7 +220,6 @@
             this.txtSearchEan.Font = new System.Drawing.Font("Verdana", 14F);
             this.txtSearchEan.Location = new System.Drawing.Point(36, 27);
             this.txtSearchEan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearchEan.Multiline = true;
             this.txtSearchEan.Name = "txtSearchEan";
             this.txtSearchEan.Size = new System.Drawing.Size(212, 30);
             this.txtSearchEan.TabIndex = 4;

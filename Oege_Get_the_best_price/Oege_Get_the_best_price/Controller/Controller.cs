@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oege_Get_the_best_price.Controller.Parsing;
 using System.Text.RegularExpressions;
+using Oege_Get_the_best_price.View;
 
 namespace Oege_Get_the_best_price.Controller
 {
@@ -150,6 +151,22 @@ namespace Oege_Get_the_best_price.Controller
             }
 
             return null;
+        }
+
+        public int getCountFormParsing(frmParsing frm)
+        {
+            if (frm != null && frm.GetType() == typeof(frmParsing))
+            {
+                if (listFormController != null)
+                {
+                    int count = (from formController in listFormController where formController.Frm.GetType() == typeof(frmParsing) select  formController).Count();
+                    return count;
+                }
+                else
+                    return 0;
+            }
+
+            return -1;
         }
 
         public ParsingController getParsingController(int hash, int level)

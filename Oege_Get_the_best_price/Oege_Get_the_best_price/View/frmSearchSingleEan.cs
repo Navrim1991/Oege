@@ -111,5 +111,32 @@ namespace Oege_Get_the_best_price.View
             if (data != null && data.UrlEbay != "")
                 Process.Start(data.UrlEbay);
         }
+
+        private void butSearchBilligerde_Click(object sender, EventArgs e)
+        {
+            if(controller.checkEan(txtSearchEan.Text))
+            {
+                string url = "http://www.billiger.de/suche.html?&searchstring=" + txtSearchEan.Text + "&order=s_price";
+                Process.Start(url);
+            }
+        }
+
+        private void butSearchGoogle_Click(object sender, EventArgs e)
+        {
+            if (controller.checkEan(txtSearchEan.Text))
+            {
+                string url = "https://www.google.de/webhp?&ion=1#tbm=shop&q=" + txtSearchEan.Text + "&tbs=vw:l,p_ord:p&tbm=shop";
+                Process.Start(url);
+            }
+        }
+
+        private void butSearchIdealo_Click(object sender, EventArgs e)
+        {
+            if (controller.checkEan(txtSearchEan.Text))
+            {
+                string url = "http://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=" + txtSearchEan.Text;
+                Process.Start(url);
+            }
+        }
     }
 }

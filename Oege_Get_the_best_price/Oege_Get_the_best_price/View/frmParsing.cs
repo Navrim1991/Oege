@@ -115,6 +115,15 @@ namespace Oege_Get_the_best_price.View
             formController = controller.getFormController(hash, level);
             if (formController == null)
                 throw new ArgumentNullException("formController", "formController ist null");
+            else
+            {
+                int count = controller.getCountFormParsing(this);
+                if(count > -1)
+                {
+                    this.Text = "Excel Liste " + count;
+                }
+                
+            }
 
             parsingController = controller.getParsingController(hash, level);
             if (parsingController == null)
@@ -125,6 +134,125 @@ namespace Oege_Get_the_best_price.View
         #endregion
 
         #region Events
+        private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            int clickedIndex = -1;
+            bool parse = int.TryParse(e.Column.ToString(), out clickedIndex);
+
+            if (parse)
+            {
+                if (e.Column == currentSortedHeader.Key)
+                {
+                    if (currentSortedHeader.Value == SortOrder.Ascending)
+                    {
+                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Descending);
+                    }
+                    else
+                    {
+                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
+                    }
+                }
+                else
+                {
+                    // Set the column number that is to be sorted; default to ascending.
+                    currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
+                }
+
+                listView.Items.Clear();
+
+                updateListView();
+            }
+        }
+
+        private void butSearchEan_Click(object sender, EventArgs e)
+        {
+            if (txtSearchEan.Text != "" && controller.checkEan(txtSearchEan.Text))
+            {
+                txtSearchEan.Clear();
+                selectSearchedItem(txtSearchEan.Text);
+            }
+        }
+
+        private void butAmazon_Click(object sender, EventArgs e)
+        {
+            if (actuellData != null)
+            {
+                if (actuellData.UrlAmazon == "")
+                {
+                    string discription = actuellData.Aritcel;
+
+                    int indexAnd = discription.IndexOf("&");
+
+                    if (indexAnd > -1)
+                    {
+                        discription = discription.Replace("&", "");
+
+                        if (discription[indexAnd].ToString() == " ")
+                            discription = discription.Remove(indexAnd, 1);
+                    }
+
+                    string url = "http://www.amazon.de/s/&field-keywords=" + discription;
+
+
+                    Process.Start(url);
+                }
+                else
+                {
+                    Process.Start(actuellData.UrlAmazon);
+                }
+            }
+
+        }
+
+        private void butEbay_Click(object sender, EventArgs e)
+        {
+            // = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + ean + "&rt=nc&LH_BIN=1";
+
+            if (actuellData != null)
+            {
+                if (actuellData.UrlEbay == "")
+                {
+                    string discription = actuellData.Aritcel;
+
+                    int indexAnd = discription.IndexOf("&");
+
+                    if (indexAnd > -1)
+                    {
+                        discription = discription.Replace("&", "");
+
+                        if (discription[indexAnd].ToString() == " ")
+                            discription = discription.Remove(indexAnd, 1);
+                    }
+
+                    string url = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + discription + "&rt=nc&LH_BIN=1";
+
+                    Process.Start(url);
+                }
+                else
+                {
+                    Process.Start(actuellData.UrlEbay);
+                }
+            }
+        }
+
+        private void radioButtons_CheckedChanged(object sender, EventArgs e)
+        {
+            ListViewItem selectedItem = null;
+            string ean = "";
+
+            if (listView.SelectedItems.Count > 0)
+                selectedItem = listView.SelectedItems[0];
+
+            if (selectedItem != null)
+                ean = selectedItem.Text;
+
+            updateListView();
+
+            if (controller.checkEan(ean))
+                selectSearchedItem(ean);
+
+        }
+
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView.SelectedItems.Count > 0)
@@ -190,6 +318,19 @@ namespace Oege_Get_the_best_price.View
         #endregion
 
         #region methods
+
+        private void selectSearchedItem(string ean)
+        {
+            ListViewItem searchResult = searchItem(ean);
+            if (searchResult != null)
+            {
+                listView.Focus();
+                listView.Items[searchResult.Index].Selected = true;
+                listView.Items[searchResult.Index].Focused = true;
+                listView.TopItem = searchResult;
+
+            }
+        }
 
         public bool hasData()
         {
@@ -528,117 +669,6 @@ namespace Oege_Get_the_best_price.View
 
         #endregion
 
-        private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            int clickedIndex = -1;
-            bool parse = int.TryParse(e.Column.ToString(), out clickedIndex);
-
-            if (parse)
-            {
-                if (e.Column == currentSortedHeader.Key)
-                {
-                    if (currentSortedHeader.Value == SortOrder.Ascending)
-                    {
-                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Descending);
-                    }
-                    else
-                    {
-                        currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
-                    }
-                }
-                else
-                {
-                    // Set the column number that is to be sorted; default to ascending.
-                    currentSortedHeader = new KeyValuePair<int, SortOrder>(e.Column, SortOrder.Ascending);
-                }
-
-                listView.Items.Clear();
-
-                updateListView();
-            }
-        }
-
-        private void butSearchEan_Click(object sender, EventArgs e)
-        {
-            ListViewItem searchResult = searchItem(txtSearchEan.Text);
-            if (searchResult != null)
-            {
-                txtSearchEan.Clear();
-                listView.Focus();
-                listView.Items[searchResult.Index].Selected = true;
-                listView.Items[searchResult.Index].Focused = true;
-                listView.TopItem = searchResult;
-              
-            }
-
-        }
-
-        private void butAmazon_Click(object sender, EventArgs e)
-        {
-            if(actuellData != null)
-            {
-                if(actuellData.UrlAmazon == "")
-                {
-                    string discription = actuellData.Aritcel;
-
-                    int indexAnd = discription.IndexOf("&");
-
-                    if (indexAnd > -1)
-                    {
-                        discription = discription.Replace("&", "");
-
-                        if (discription[indexAnd].ToString() == " ")
-                            discription = discription.Remove(indexAnd, 1);
-                    }
-
-                    string url = "http://www.amazon.de/s/&field-keywords=" + discription;
-
-
-                    Process.Start(url);
-                }
-                else
-                {
-                    Process.Start(actuellData.UrlAmazon);
-                }
-            }
-            
-        }
-
-        private void butEbay_Click(object sender, EventArgs e)
-        {
-            // = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + ean + "&rt=nc&LH_BIN=1";
-
-            if (actuellData != null)
-            {
-                if (actuellData.UrlEbay == "")
-                {
-                    string discription = actuellData.Aritcel;
-
-                    int indexAnd = discription.IndexOf("&");
-
-                    if(indexAnd > -1)
-                    {
-                        discription = discription.Replace("&", "");
-
-                        if (discription[indexAnd].ToString() == " ")
-                            discription = discription.Remove(indexAnd, 1);
-                    }                    
-
-                    string url = "http://www.ebay.de/sch/i.html?_from=R40&_sacat=0&_sop=15&_nkw=" + discription + "&rt=nc&LH_BIN=1";
-
-                    Process.Start(url);
-                }
-                else
-                {
-                    Process.Start(actuellData.UrlEbay);
-                }
-            }
-        }
-
-        private void radioButtons_CheckedChanged(object sender, EventArgs e)
-        {
-            
-            updateListView();
-        }
+        
     }
 }
