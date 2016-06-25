@@ -568,6 +568,7 @@ namespace Oege_Get_the_best_price.View
                 listView.Items[searchResult.Index].Selected = true;
                 listView.Items[searchResult.Index].Focused = true;
                 listView.TopItem = searchResult;
+              
             }
 
         }
